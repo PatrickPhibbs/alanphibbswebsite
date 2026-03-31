@@ -74,9 +74,9 @@ export const projects: Project[] = [
   },
   {
     id: '08-crossguns-snooker-club',
-    title: 'Crossguns Snooker Club',
+    title: 'Commercial Building Restoration',
     category: 'Restoration',
-    description: 'External restoration of the Crossguns Snooker Club including full exterior repaint and professional graffiti removal.',
+    description: 'External restoration of a commercial building including full exterior repaint and professional graffiti removal.',
     coverImage: '/images/projects/08-crossguns-snooker-club/01.jpg',
     images: imgs('08-crossguns-snooker-club', 4),
   },
