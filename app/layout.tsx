@@ -42,9 +42,6 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: "Alan Phibbs General Contractor",
   description: 'Quality construction, renovation & fit-out services across Dublin. Residential new builds, extensions, and refurbishments since 1998.',
-  icons: {
-    icon: '/logo-removebg-preview.png',
-  },
   openGraph: {
     title: "Alan Phibbs Construction General Contractor",
     description: 'Quality construction, renovation & fit-out services across Dublin.',
