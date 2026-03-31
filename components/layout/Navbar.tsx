@@ -30,7 +30,7 @@ export default function Navbar() {
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-sm border-b border-maroon-800/10' : 'bg-white/97'}`}>
       {/* Main nav */}
-      <nav className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+      <nav className="max-w-7xl mx-auto px-6 py-3.5 md:py-5 flex items-center justify-between">
         <Logo />
 
         {/* Desktop links */}
