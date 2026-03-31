@@ -37,7 +37,8 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json({ success: true });
-  } catch {
-    return NextResponse.json({ success: false, error: 'Failed to send message' }, { status: 500 });
+  } catch (err) {
+    console.error('[contact] SMTP error:', err);
+    return NextResponse.json({ success: false, error: String(err) }, { status: 500 });
   }
 }
