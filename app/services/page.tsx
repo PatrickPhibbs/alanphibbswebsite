@@ -8,7 +8,7 @@ import FaqSection from '@/components/ui/FaqSection';
 const faqs = [
   {
     q: 'Do you offer free quotes?',
-    a: 'Yes — we offer a free initial consultation and site visit for all projects across Dublin and Greystones. Get in touch to arrange yours.',
+    a: 'Yes - we offer a free initial consultation and site visit for all projects across Dublin and Greystones. Get in touch to arrange yours.',
   },
   {
     q: 'Why use lime plaster and lime render on older buildings?',

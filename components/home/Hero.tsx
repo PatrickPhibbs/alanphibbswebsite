@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import Button from '@/components/ui/Button';
 import ScrollIndicator from '@/components/ui/ScrollIndicator';
 
-function HeroVideo({ src }: { src: string }) {
+function HeroVideo({ src, poster }: { src: string; poster?: string }) {
   const ref = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -25,6 +25,7 @@ function HeroVideo({ src }: { src: string }) {
     <video
       ref={ref}
       src={src}
+      poster={poster}
       autoPlay
       muted
       playsInline
@@ -39,10 +40,10 @@ export default function Hero() {
       {/* Background videos — split 50/50 */}
       <div className="absolute inset-0 flex">
         <div className="relative w-1/2 h-full overflow-hidden">
-          <HeroVideo src="/videos/video1.mp4" />
+          <HeroVideo src="/videos/video1.mp4" poster="/images/projects/04-country-house-renovation/01.jpg" />
         </div>
         <div className="relative w-1/2 h-full overflow-hidden">
-          <HeroVideo src="/videos/video2.mp4" />
+          <HeroVideo src="/videos/video2.mp4" poster="/images/projects/01-office-fitout/01.jpg" />
         </div>
       </div>
 
