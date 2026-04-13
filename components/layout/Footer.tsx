@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { Facebook, Linkedin } from 'lucide-react';
 
 const quickLinks = [
   { href: '/', label: 'Home' },
@@ -27,8 +28,7 @@ export default function Footer() {
               <Image src="/logo-removebg-preview.png" alt="Alan Phibbs Construction" height={40} width={168} style={{ objectFit: 'contain', filter: 'brightness(0) invert(1)' }} />
             </Link>
             <p className="text-white/45 text-sm leading-relaxed max-w-xs">
-              Dublin&apos;s premier construction company specialising in residential new builds,
-              renovations, and fit-outs since 1998.
+              Based in Kilquade, Co. Wicklow. Residential extensions, renovations, and fit-outs across Wicklow and Dublin, with over 35 years in the trade.
             </p>
           </div>
 
@@ -76,11 +76,29 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="border-t border-white/8">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center text-white/25 text-xs gap-2">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center text-white/25 text-xs gap-4">
           <span>© {new Date().getFullYear()} Alan Phibbs Construction</span>
-          <div className="flex gap-5">
-            <Link href="#" className="hover:text-white/60 transition-colors">Privacy Policy</Link>
-            <Link href="#" className="hover:text-white/60 transition-colors">Terms</Link>
+          <div className="flex items-center gap-4">
+            <a
+              href="https://www.facebook.com/profile.php?id=61579554132431"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              className="flex items-center gap-1.5 text-white/40 hover:text-white transition-colors"
+            >
+              <Facebook size={14} />
+              <span>Facebook</span>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/alan-patrick-phibbs-05012127a/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="flex items-center gap-1.5 text-white/40 hover:text-white transition-colors"
+            >
+              <Linkedin size={14} />
+              <span>LinkedIn</span>
+            </a>
           </div>
         </div>
       </div>

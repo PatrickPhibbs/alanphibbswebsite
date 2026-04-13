@@ -10,7 +10,7 @@ export default function AwardBanner() {
           {/* Ghost number — creates depth and tension */}
           <div className="select-none leading-none">
             <span className="font-heading font-black text-[7rem] md:text-[11rem] text-white/8 leading-none block">
-              28
+              35
             </span>
             <span className="font-heading font-bold text-5xl md:text-6xl text-gold-500 leading-none -mt-6 md:-mt-10 block">
               Years
@@ -20,10 +20,10 @@ export default function AwardBanner() {
           {/* Text — sits at baseline with the number */}
           <div className="pb-1 md:pb-3">
             <p className="text-cream-100 text-xl md:text-2xl font-light leading-snug mb-4 max-w-md">
-              Trusted by Dublin homeowners for nearly three decades.
+              Trusted by homeowners across Wicklow and Dublin for over three decades.
             </p>
             <p className="text-cream-200/40 text-xs uppercase tracking-[0.25em]">
-              Est. 1998
+              Est. 1991
             </p>
           </div>
         </div>

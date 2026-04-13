@@ -85,7 +85,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.8 }}
           className="mt-8 text-cream-200/50 text-xs uppercase tracking-[0.25em]"
         >
-          Dublin · Est. 1998
+          Wicklow & Dublin · Est. 1991
         </motion.p>
       </div>
     </section>
