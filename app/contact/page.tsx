@@ -10,12 +10,12 @@ const faqs = [
     a: 'We are available Monday to Friday 8am–6pm and Saturday 9am–1pm. You can also reach us via our contact form at any time.',
   },
   {
-    q: 'How do I get a quote?',
+    q: 'How do I get in touch?',
     a: 'Fill in our contact form or call us on +353 89 220 4082 and we\'ll arrange a free site visit at a time that suits you.',
   },
   {
     q: 'Do you serve Greystones and Dublin?',
-    a: 'Yes — we are based in Greystones, Co. Wicklow, and take on projects across Dublin city, County Dublin, and the wider Wicklow area.',
+    a: 'Yes, we are based in Greystones, Co. Wicklow, and take on projects across Dublin city, County Dublin, and the wider Wicklow area.',
   },
 ];
 

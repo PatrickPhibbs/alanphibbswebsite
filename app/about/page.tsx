@@ -31,7 +31,7 @@ export const metadata: Metadata = {
 
 const features = [
   { title: '35+ Years in the Trade', description: 'Alan has been building since 1987, working across Dublin, London, and Wicklow on residential, commercial, and restoration projects.' },
-  { title: 'Fully Insured', description: 'Comprehensive insurance coverage for every project, giving you complete peace of mind.' },
+  { title: 'Fully Insured', description: 'Full public liability and employers\' liability insurance on every project.' },
   { title: 'Hands-On Approach', description: 'Alan manages every project personally from start to finish. You always know who you are dealing with.' },
   { title: 'Wicklow and Dublin', description: 'Based in Kilquade, Co. Wicklow, serving clients across Wicklow, Dublin city, and County Dublin.' },
 ];

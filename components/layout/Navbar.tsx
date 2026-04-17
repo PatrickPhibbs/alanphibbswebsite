@@ -47,7 +47,7 @@ export default function Navbar() {
             </Link>
           ))}
           <Button href="/contact" className="ml-4">
-            GET A QUOTE
+            GET IN TOUCH
           </Button>
         </div>
 
@@ -85,7 +85,7 @@ export default function Navbar() {
                 </Link>
               ))}
               <Button href="/contact" onClick={() => setIsOpen(false)}>
-                GET A QUOTE
+                GET IN TOUCH
               </Button>
             </div>
           </motion.div>

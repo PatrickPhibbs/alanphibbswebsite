@@ -19,9 +19,9 @@ describe('Navbar', () => {
     expect(screen.getByText('Contact')).toBeInTheDocument();
   });
 
-  it('renders GET A QUOTE button', () => {
+  it('renders GET IN TOUCH button', () => {
     render(<Navbar />);
-    expect(screen.getAllByText('GET A QUOTE').length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText('GET IN TOUCH').length).toBeGreaterThanOrEqual(1);
   });
 
   it('renders correct phone number', () => {

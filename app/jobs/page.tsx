@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: 'Join the Alan Phibbs Construction team. We are hiring experienced tradespeople and site staff across Dublin.',
   openGraph: {
     title: 'Careers | Alan Phibbs Construction',
-    description: 'Join our team — hiring experienced tradespeople across Dublin.',
+    description: 'Join our team, hiring experienced tradespeople across Dublin.',
     siteName: 'Alan Phibbs Construction',
   },
 };
@@ -50,13 +50,13 @@ const roles = [
     type: 'Full-time',
     location: 'Dublin',
     description:
-      'An exciting opportunity for an experienced site manager to oversee multiple live projects. You will coordinate subcontractors, manage programmes and budgets, liaise with clients, and ensure all work meets our quality and safety standards.',
+      'We are looking for an experienced site manager to oversee multiple live projects. You will coordinate subcontractors, manage programmes and budgets, liaise with clients, and ensure all work meets our quality and safety standards.',
     requirements: [
       'Minimum 5 years site management experience',
       'Experience managing residential and commercial projects',
       'Strong understanding of Irish building regulations',
       'Excellent communication and leadership skills',
-      'Safe Pass & manual handling — PSCS card an advantage',
+      'Safe Pass & manual handling, PSCS card an advantage',
     ],
   },
 ];
@@ -77,7 +77,7 @@ export default function JobsPage() {
         <div className="absolute inset-0 bg-black/60" />
         <div className="relative z-10 max-w-7xl mx-auto px-6 pb-10 w-full">
           <h1 className="font-heading text-5xl md:text-7xl font-bold text-white">Careers</h1>
-          <p className="mt-2 text-white/50 text-xs uppercase tracking-[0.2em]">Work with us — we&apos;re hiring across Dublin</p>
+          <p className="mt-2 text-white/50 text-xs uppercase tracking-[0.2em]">Work with us. We&apos;re hiring across Dublin</p>
         </div>
       </section>
 
@@ -87,7 +87,7 @@ export default function JobsPage() {
           <div className="max-w-2xl">
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-maroon-800 mb-4">Join Our Team</h2>
             <p className="text-maroon-800/65 text-sm leading-relaxed">
-              Alan Phibbs Construction has been building Dublin since 1998. We take pride in our work, our team, and the standards we hold ourselves to. If you&apos;re a skilled tradesperson or site professional looking for steady, quality work with a company that values its people — we want to hear from you.
+              Alan Phibbs Construction has been building Dublin since 1998. We take pride in our work, our team, and the standards we hold ourselves to. If you&apos;re a skilled tradesperson or site professional looking for steady, quality work with a company that values its people, we want to hear from you.
             </p>
           </div>
         </AnimateOnScroll>
@@ -115,7 +115,7 @@ export default function JobsPage() {
                     </div>
                   </div>
                   <a
-                    href={`mailto:alanphibbs@alanphibbs.ie?subject=Application — ${role.title}`}
+                    href={`mailto:alanphibbs@alanphibbs.ie?subject=Application: ${role.title}`}
                     className="shrink-0 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-maroon-800 border-b border-maroon-800/20 hover:border-maroon-800 pb-px transition-colors"
                   >
                     Apply Now <ChevronRight size={12} />

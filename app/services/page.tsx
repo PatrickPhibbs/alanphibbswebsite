@@ -26,10 +26,10 @@ const faqs = [
 
 export const metadata: Metadata = {
   title: 'Our Services | Alan Phibbs Construction',
-  description: 'Restoration & conservation, garden projects, and office fit-outs across Dublin and Greystones. Lime plaster, lime render, and period building specialists.',
+  description: 'Restoration & conservation, kitchen and bathroom fitouts, painting, electrical, groundworks, and office fit-outs across Dublin and Wicklow.',
   openGraph: {
     title: 'Our Services | Alan Phibbs Construction',
-    description: 'Restoration & conservation, garden projects, and office fit-outs across Dublin and Greystones.',
+    description: 'Restoration & conservation, kitchen and bathroom fitouts, painting, electrical, groundworks, and office fit-outs across Dublin and Wicklow.',
     siteName: 'Alan Phibbs Construction',
   },
 };
@@ -39,11 +39,11 @@ export default function ServicesPage() {
     <>
       {/* Hero banner */}
       <section className="relative h-[38vh] flex items-end mt-20">
-        <Image src="/images/projects/01-office-fitout/06.jpg" alt="Alan Phibbs Construction services" fill priority className="object-cover" sizes="100vw" />
+        <Image src="/images/services/restoration-after.jpg" alt="Alan Phibbs Construction services" fill priority className="object-cover" sizes="100vw" />
         <div className="absolute inset-0 bg-black/60" />
         <div className="relative z-10 max-w-7xl mx-auto px-6 pb-10 w-full">
           <h1 className="font-heading text-5xl md:text-7xl font-bold text-white">Our Services</h1>
-          <p className="mt-2 text-white/50 text-xs uppercase tracking-[0.2em]">Expert construction tailored to your project</p>
+          <p className="mt-2 text-white/50 text-xs uppercase tracking-[0.2em]">Quality construction across Wicklow and Dublin</p>
         </div>
       </section>
 
@@ -51,19 +51,57 @@ export default function ServicesPage() {
       <div className="max-w-7xl mx-auto px-6 pt-20 pb-8 space-y-24">
         {services.map((service, i) => {
           const imageLeft = i % 2 === 0;
+          const hasBeforeAfter = !!service.beforeImage;
+
           return (
             <AnimateOnScroll key={service.id} direction={imageLeft ? 'left' : 'right'}>
               <div className={`grid grid-cols-1 md:grid-cols-2 gap-16 items-start ${!imageLeft ? 'md:[direction:rtl]' : ''}`}>
-                {/* Service image */}
-                <div className={`aspect-[4/3] relative overflow-hidden ${!imageLeft ? 'md:[direction:ltr]' : ''}`}>
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover"
-                    loading="lazy"
-                  />
+
+                {/* Image panel */}
+                <div className={`${!imageLeft ? 'md:[direction:ltr]' : ''}`}>
+                  {hasBeforeAfter ? (
+                    <div className="flex flex-col gap-2">
+                      <div className="grid grid-cols-2 gap-1">
+                        <div className="relative aspect-[3/4] overflow-hidden">
+                          <Image
+                            src={service.beforeImage!}
+                            alt={`${service.title} before`}
+                            fill
+                            sizes="(max-width: 768px) 50vw, 25vw"
+                            className="object-cover"
+                            loading="lazy"
+                          />
+                          <div className="absolute bottom-0 left-0 right-0 bg-black/60 px-3 py-2">
+                            <span className="text-white/80 text-[10px] uppercase tracking-[0.2em]">Before</span>
+                          </div>
+                        </div>
+                        <div className="relative aspect-[3/4] overflow-hidden">
+                          <Image
+                            src={service.image}
+                            alt={`${service.title} after`}
+                            fill
+                            sizes="(max-width: 768px) 50vw, 25vw"
+                            className="object-cover"
+                            loading="lazy"
+                          />
+                          <div className="absolute bottom-0 left-0 right-0 bg-maroon-800/80 px-3 py-2">
+                            <span className="text-gold-500 text-[10px] uppercase tracking-[0.2em]">After</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="aspect-[4/3] relative overflow-hidden">
+                      <Image
+                        src={service.image}
+                        alt={service.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
                 </div>
 
                 {/* Text content */}
@@ -79,9 +117,10 @@ export default function ServicesPage() {
                     ))}
                   </ul>
                   <a href="/contact" className="text-maroon-800 text-xs font-semibold uppercase tracking-[0.15em] hover:text-black transition-colors border-b border-maroon-800/20 hover:border-black pb-px">
-                    Get a Quote →
+                    Get in Touch →
                   </a>
                 </div>
+
               </div>
             </AnimateOnScroll>
           );
@@ -100,7 +139,7 @@ export default function ServicesPage() {
             Get in touch today for a free consultation and quote.
           </p>
           <div className="flex items-center gap-8 flex-wrap">
-            <Button href="/contact" variant="outline">Get a Free Quote</Button>
+            <Button href="/contact" variant="outline">Get in Touch</Button>
             <a href="/projects" className="text-cream-200/60 text-sm uppercase tracking-[0.15em] hover:text-white transition-colors border-b border-cream-200/20 hover:border-white pb-px">
               View Our Projects →
             </a>

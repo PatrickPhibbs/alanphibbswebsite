@@ -18,7 +18,7 @@ describe('ServiceCards', () => {
 
   it('renders stats bar with years experience', () => {
     render(<ServiceCards />);
-    expect(screen.getByText(/28/)).toBeInTheDocument();
+    expect(screen.getByText(/35\+/)).toBeInTheDocument();
     expect(screen.getByText(/Years/i)).toBeInTheDocument();
   });
 

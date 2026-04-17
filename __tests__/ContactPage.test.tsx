@@ -47,7 +47,7 @@ describe('ContactPage', () => {
   it('renders FAQ section with questions', () => {
     render(<ContactPage />);
     expect(screen.getByText(/What are your working hours/i)).toBeInTheDocument();
-    expect(screen.getByText(/How do I get a quote/i)).toBeInTheDocument();
+    expect(screen.getByText(/How do I get in touch/i)).toBeInTheDocument();
     expect(screen.getByText(/Do you serve Greystones and Dublin/i)).toBeInTheDocument();
   });
 });

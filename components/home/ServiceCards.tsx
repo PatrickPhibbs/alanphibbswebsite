@@ -11,16 +11,16 @@ interface ServiceCard {
 }
 
 const serviceCards: ServiceCard[] = [
-  { title: 'Restoration & Conservation', href: '/services', image: '/images/projects/10-victorian-building-restoration/02.jpg' },
-  { title: 'Garden Projects', href: '/services', image: '/images/projects/07-garden-landscaping/01.jpg' },
-  { title: 'Office Fit Out & Refurbishments', href: '/services', image: '/images/projects/01-office-fitout/01.jpg' },
+  { title: 'Restoration & Conservation', href: '/services', image: '/images/services/restoration-after.jpg' },
+  { title: 'Kitchen & Bathroom Fitouts', href: '/services', image: '/images/services/kitchen-fitout.jpg' },
+  { title: 'Office Fit Out & Refurbishments', href: '/services', image: '/images/services/office-fitout.jpg' },
 ];
 
 const stats = [
-  { value: '28', label: 'Years\nEstablished' },
-  { value: '300+', label: 'Projects\nCompleted' },
+  { value: '35+', label: 'Years\nEstablished' },
+  { value: 'Wicklow', label: 'Based &\nBuilding' },
   { value: 'Fully Insured', label: 'Every\nProject' },
-  { value: 'Dublin', label: 'Based &\nOperating' },
+  { value: 'Dublin', label: 'City &\nCounty' },
 ];
 
 function Card({ card, className }: { card: ServiceCard; className?: string }) {

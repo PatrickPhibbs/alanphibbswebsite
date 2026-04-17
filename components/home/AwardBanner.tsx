@@ -7,7 +7,7 @@ export default function AwardBanner() {
     <section className="bg-maroon-800 overflow-hidden">
       <AnimateOnScroll direction="fade">
         <div className="max-w-7xl mx-auto px-6 py-16 md:py-24 grid grid-cols-1 md:grid-cols-[auto_1fr] gap-x-16 gap-y-4 items-end">
-          {/* Ghost number — creates depth and tension */}
+          {/* Ghost number */}
           <div className="select-none leading-none">
             <span className="font-heading font-black text-[7rem] md:text-[11rem] text-white/8 leading-none block">
               35
@@ -17,7 +17,7 @@ export default function AwardBanner() {
             </span>
           </div>
 
-          {/* Text — sits at baseline with the number */}
+          {/* Text */}
           <div className="pb-1 md:pb-3">
             <p className="text-cream-100 text-xl md:text-2xl font-light leading-snug mb-4 max-w-md">
               Trusted by homeowners across Wicklow and Dublin for over three decades.

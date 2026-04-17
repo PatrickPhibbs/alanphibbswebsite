@@ -54,7 +54,7 @@ export default function ProjectGrid() {
           activeProject
             ? activeProject.images.map((src, i) => ({
                 src,
-                alt: `${activeProject.title} — photo ${i + 1}`,
+                alt: `${activeProject.title} photo ${i + 1}`,
               }))
             : []
         }

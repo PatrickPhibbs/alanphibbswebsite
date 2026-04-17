@@ -37,7 +37,7 @@ function HeroVideo({ src, poster }: { src: string; poster?: string }) {
 export default function Hero() {
   return (
     <section className="relative h-screen flex items-end overflow-hidden">
-      {/* Background videos — split 50/50 */}
+      {/* Background videos */}
       <div className="absolute inset-0 flex">
         <div className="relative w-1/2 h-full overflow-hidden">
           <HeroVideo src="/videos/video1.mp4" poster="/images/projects/04-country-house-renovation/01.jpg" />
@@ -47,13 +47,13 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Gradient overlay — heavier at bottom, nothing at top */}
+      {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
       {/* Scroll indicator */}
       <ScrollIndicator />
 
-      {/* Content — bottom-anchored, left-aligned */}
+      {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 pb-20 w-full">
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
@@ -61,7 +61,7 @@ export default function Hero() {
           transition={{ duration: 0.9, delay: 0.1 }}
           className="font-heading text-[4rem] md:text-[7rem] lg:text-[9rem] font-black text-white leading-[0.88] tracking-tight mb-8"
         >
-          Building<br />Your Vision
+          General Contractor
         </motion.h1>
 
         <motion.div
@@ -75,7 +75,7 @@ export default function Hero() {
             href="/contact"
             className="text-cream-200/80 text-sm uppercase tracking-[0.15em] hover:text-white transition-colors border-b border-cream-200/30 hover:border-white pb-px"
           >
-            Get a Quote →
+            Get in Touch →
           </a>
         </motion.div>
 

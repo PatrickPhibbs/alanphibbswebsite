@@ -11,7 +11,7 @@ describe('Hero', () => {
   it('renders CTA buttons', () => {
     render(<Hero />);
     expect(screen.getByText('Our Projects')).toBeInTheDocument();
-    expect(screen.getByText(/Get a Quote/)).toBeInTheDocument();
+    expect(screen.getByText(/Get in Touch/)).toBeInTheDocument();
   });
 
   it('renders scroll indicator', () => {
