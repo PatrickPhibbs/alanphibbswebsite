@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import AnimateOnScroll from '@/components/ui/AnimateOnScroll';
 import SectionHeading from '@/components/ui/SectionHeading';
+import PageContainer from '@/components/ui/PageContainer';
 
 const services = [
   {
@@ -46,7 +47,7 @@ const services = [
 export default function ServiceCards() {
   return (
     <section className="bg-warm-100 border-y border-warm-300/50">
-      <div className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-10 py-14 md:py-16">
+      <PageContainer className="py-14 md:py-16">
         <AnimateOnScroll>
           <SectionHeading subtitle="What we do">Services</SectionHeading>
         </AnimateOnScroll>
@@ -77,7 +78,7 @@ export default function ServiceCards() {
             <span>Dublin & Wicklow</span>
           </div>
         </AnimateOnScroll>
-      </div>
+      </PageContainer>
     </section>
   );
 }

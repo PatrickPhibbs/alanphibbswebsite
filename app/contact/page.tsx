@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { Phone, Mail, Clock, MapPin } from 'lucide-react';
 import ContactForm from '@/components/contact/ContactForm';
 import FaqSection from '@/components/ui/FaqSection';
+import PageContainer from '@/components/ui/PageContainer';
 
 const faqs = [
   {
@@ -50,17 +51,18 @@ export default function ContactPage() {
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-black/60" />
-        <div className="relative z-10 max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-10 pb-10 w-full">
+        <PageContainer className="relative z-10 pb-10 w-full">
           <h1 className="font-heading text-4xl md:text-6xl font-extralight text-white">
             Tell us about your project
           </h1>
           <p className="mt-3 text-white/70 text-[11px] uppercase tracking-[0.2em] font-light">
             We would be glad to hear from you
           </p>
-        </div>
+        </PageContainer>
       </section>
 
-      <section className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-10 pt-12 pb-14">
+      <section>
+        <PageContainer className="pt-12 pb-14">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           <div>
             <h2 className="font-heading text-2xl md:text-3xl font-light text-charcoal-900 mb-8">
@@ -92,6 +94,7 @@ export default function ContactPage() {
             </ul>
           </div>
         </div>
+        </PageContainer>
       </section>
 
       <FaqSection faqs={faqs} />

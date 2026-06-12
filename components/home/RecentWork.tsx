@@ -6,12 +6,14 @@ import { ArrowRight } from 'lucide-react';
 import SectionHeading from '@/components/ui/SectionHeading';
 import AnimateOnScroll from '@/components/ui/AnimateOnScroll';
 import { projects } from '@/lib/projects';
+import PageContainer from '@/components/ui/PageContainer';
 
 export default function RecentWork() {
   const recentProjects = projects.slice(0, 6);
 
   return (
-    <section className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-10 py-14 md:py-16">
+    <section>
+      <PageContainer className="py-14 md:py-16">
       <div className="flex items-end justify-between gap-4 flex-wrap mb-8 md:mb-10">
         <SectionHeading subtitle="Selected work across Dublin and Wicklow">
           Recent projects
@@ -55,6 +57,7 @@ export default function RecentWork() {
           </AnimateOnScroll>
         ))}
       </div>
+      </PageContainer>
     </section>
   );
 }

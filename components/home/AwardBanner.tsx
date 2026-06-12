@@ -2,6 +2,7 @@
 
 import AnimateOnScroll from '@/components/ui/AnimateOnScroll';
 import SectionHeading from '@/components/ui/SectionHeading';
+import PageContainer from '@/components/ui/PageContainer';
 
 const qualities = [
   {
@@ -33,7 +34,7 @@ const qualities = [
 export default function AwardBanner() {
   return (
     <section className="bg-charcoal-900 overflow-hidden">
-      <div className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-10 py-14 md:py-16">
+      <PageContainer className="py-14 md:py-16">
         <AnimateOnScroll direction="fade">
           <SectionHeading light subtitle="How we work">
             Built properly, finished carefully.
@@ -58,7 +59,7 @@ export default function AwardBanner() {
             </AnimateOnScroll>
           ))}
         </div>
-      </div>
+      </PageContainer>
     </section>
   );
 }

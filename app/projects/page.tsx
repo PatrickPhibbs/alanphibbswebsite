@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import ProjectGrid from '@/components/projects/ProjectGrid';
+import PageContainer from '@/components/ui/PageContainer';
 
 export const metadata: Metadata = {
   title: 'Our Projects | Alan Phibbs Construction',
@@ -27,18 +28,20 @@ export default function ProjectsPage() {
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-black/60" />
-        <div className="relative z-10 max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-10 pb-10 w-full">
+        <PageContainer className="relative z-10 pb-10 w-full">
           <h1 className="font-heading text-4xl md:text-6xl font-extralight text-white">
             Our projects
           </h1>
           <p className="mt-3 text-white/70 text-[11px] uppercase tracking-[0.2em] font-light">
             Renovations, restorations and fit-outs across Dublin and Wicklow
           </p>
-        </div>
+        </PageContainer>
       </section>
 
-      <section className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-10 pt-12 pb-14">
+      <section>
+        <PageContainer className="pt-12 pb-14">
         <ProjectGrid />
+        </PageContainer>
       </section>
     </>
   );

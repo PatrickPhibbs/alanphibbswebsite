@@ -1,4 +1,5 @@
 import JsonLd from '@/components/JsonLd';
+import PageContainer from '@/components/ui/PageContainer';
 
 export interface Faq {
   q: string;
@@ -20,7 +21,8 @@ export default function FaqSection({ faqs }: { faqs: Faq[] }) {
   };
 
   return (
-    <section className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-10 py-12 md:py-14">
+    <section>
+      <PageContainer className="py-12 md:py-14">
       <JsonLd data={schema} />
       <h2 className="font-heading text-3xl md:text-4xl font-light text-charcoal-900 mb-10">
         Frequently asked questions
@@ -33,6 +35,7 @@ export default function FaqSection({ faqs }: { faqs: Faq[] }) {
           </div>
         ))}
       </dl>
+      </PageContainer>
     </section>
   );
 }

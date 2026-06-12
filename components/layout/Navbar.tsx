@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Logo from '@/components/ui/Logo';
 import Button from '@/components/ui/Button';
 import ThemeToggle from '@/components/ui/ThemeToggle';
+import PageContainer from '@/components/ui/PageContainer';
 
 const navLinks = [
   { href: '/services', label: 'Services' },
@@ -36,8 +37,9 @@ export default function Navbar() {
           : 'bg-warm-50/90 dark:bg-charcoal-950/90'
       }`}
     >
-      <nav className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-10 py-3 md:py-3.5 flex items-center justify-between">
-        <Logo />
+      <PageContainer>
+        <nav className="py-3 md:py-3.5 flex items-center justify-between">
+          <Logo />
 
         <div className="hidden md:flex items-center gap-9">
           {navLinks.map((link) => (
@@ -70,7 +72,8 @@ export default function Navbar() {
             {isOpen ? <X size={19} strokeWidth={1.5} /> : <Menu size={19} strokeWidth={1.5} />}
           </button>
         </div>
-      </nav>
+        </nav>
+      </PageContainer>
 
       <AnimatePresence>
         {isOpen && (

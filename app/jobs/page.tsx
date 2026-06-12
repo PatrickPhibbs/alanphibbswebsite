@@ -4,6 +4,7 @@ import { MapPin, Clock, ChevronRight } from 'lucide-react';
 import Button from '@/components/ui/Button';
 import SectionHeading from '@/components/ui/SectionHeading';
 import AnimateOnScroll from '@/components/ui/AnimateOnScroll';
+import PageContainer from '@/components/ui/PageContainer';
 
 export const metadata: Metadata = {
   title: 'Careers | Alan Phibbs Construction',
@@ -75,15 +76,16 @@ export default function JobsPage() {
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-black/60" />
-        <div className="relative z-10 max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-10 pb-10 w-full">
+        <PageContainer className="relative z-10 pb-10 w-full">
           <h1 className="font-heading text-4xl md:text-6xl font-extralight text-white">Careers</h1>
           <p className="mt-3 text-white/70 text-[11px] uppercase tracking-[0.2em] font-light">
             Work with us across Dublin and Wicklow
           </p>
-        </div>
+        </PageContainer>
       </section>
 
-      <section className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-10 pt-16 pb-4">
+      <section>
+        <PageContainer className="pt-16 pb-4">
         <AnimateOnScroll>
           <div className="max-w-2xl">
             <h2 className="font-heading text-3xl md:text-4xl font-light text-charcoal-900 mb-4">
@@ -97,9 +99,11 @@ export default function JobsPage() {
             </p>
           </div>
         </AnimateOnScroll>
+        </PageContainer>
       </section>
 
-      <section className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-10 pt-12 pb-16">
+      <section>
+        <PageContainer className="pt-12 pb-16">
         <SectionHeading subtitle="Current openings">Open positions</SectionHeading>
         <div className="space-y-4">
           {roles.map((role, i) => (
@@ -147,10 +151,11 @@ export default function JobsPage() {
             </AnimateOnScroll>
           ))}
         </div>
+        </PageContainer>
       </section>
 
       <section className="bg-charcoal-900 py-20">
-        <div className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-10">
+        <PageContainer>
           <h2 className="font-heading text-3xl md:text-4xl font-light text-warm-50 mb-4 leading-tight">
             Don&apos;t see your role?
           </h2>
@@ -160,7 +165,7 @@ export default function JobsPage() {
           <Button href="/contact" variant="outline-light">
             Get in touch
           </Button>
-        </div>
+        </PageContainer>
       </section>
     </>
   );

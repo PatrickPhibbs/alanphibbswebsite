@@ -4,6 +4,7 @@ import { Phone, Mail, Clock, MapPin } from 'lucide-react';
 import AnimateOnScroll from '@/components/ui/AnimateOnScroll';
 import SectionHeading from '@/components/ui/SectionHeading';
 import Button from '@/components/ui/Button';
+import PageContainer from '@/components/ui/PageContainer';
 
 const details = [
   { icon: Phone, label: 'Phone', value: '+353 89 220 4082', href: 'tel:+353892204082' },
@@ -15,7 +16,7 @@ const details = [
 export default function ContactTeaser() {
   return (
     <section className="border-t border-warm-300/60 bg-warm-100">
-      <div className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-10 py-14 md:py-16">
+      <PageContainer className="py-14 md:py-16">
         <AnimateOnScroll>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
             <div>
@@ -51,7 +52,7 @@ export default function ContactTeaser() {
             </ul>
           </div>
         </AnimateOnScroll>
-      </div>
+      </PageContainer>
     </section>
   );
 }

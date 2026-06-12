@@ -3,6 +3,7 @@ import Image from 'next/image';
 import AnimateOnScroll from '@/components/ui/AnimateOnScroll';
 import SectionHeading from '@/components/ui/SectionHeading';
 import FaqSection from '@/components/ui/FaqSection';
+import PageContainer from '@/components/ui/PageContainer';
 
 const faqs = [
   {
@@ -65,15 +66,16 @@ export default function AboutPage() {
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-black/60" />
-        <div className="relative z-10 max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-10 pb-10 w-full">
+        <PageContainer className="relative z-10 pb-10 w-full">
           <h1 className="font-heading text-4xl md:text-6xl font-extralight text-white">About us</h1>
           <p className="mt-3 text-white/70 text-[11px] uppercase tracking-[0.2em] font-light">
             Over 35 years in the trade across Wicklow and Dublin
           </p>
-        </div>
+        </PageContainer>
       </section>
 
-      <section className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-10 pt-14 pb-10">
+      <section>
+        <PageContainer className="pt-14 pb-10">
         <AnimateOnScroll>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
             <div className="aspect-[4/3] relative overflow-hidden bg-warm-200">
@@ -112,10 +114,11 @@ export default function AboutPage() {
             </div>
           </div>
         </AnimateOnScroll>
+        </PageContainer>
       </section>
 
       <section className="bg-warm-100 border-y border-warm-300/50 py-20">
-        <div className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-10">
+        <PageContainer>
           <SectionHeading subtitle="What sets us apart">Why choose us</SectionHeading>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-10">
             {features.map((feature, i) => (
@@ -131,7 +134,7 @@ export default function AboutPage() {
               </AnimateOnScroll>
             ))}
           </div>
-        </div>
+        </PageContainer>
       </section>
 
       <FaqSection faqs={faqs} />

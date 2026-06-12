@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Facebook, Linkedin } from 'lucide-react';
+import PageContainer from '@/components/ui/PageContainer';
 
 const quickLinks = [
   { href: '/', label: 'Home' },
@@ -23,7 +24,7 @@ const services = [
 export default function Footer() {
   return (
     <footer className="bg-charcoal-900 text-warm-100">
-      <div className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-10 pt-14 pb-10">
+      <PageContainer className="pt-14 pb-10">
         <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1fr] gap-12 md:gap-10">
           <div>
             <Link href="/" className="mb-6 inline-block">
@@ -104,10 +105,10 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-      </div>
+      </PageContainer>
 
       <div className="border-t border-warm-50/8">
-        <div className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-10 py-4 flex flex-col md:flex-row justify-between items-center text-warm-400/50 text-xs font-light gap-4">
+        <PageContainer className="py-4 flex flex-col md:flex-row justify-between items-center text-warm-400/50 text-xs font-light gap-4">
           <span>© {new Date().getFullYear()} Alan Phibbs Construction</span>
           <div className="flex items-center gap-5">
             <a
@@ -131,7 +132,7 @@ export default function Footer() {
               <span>LinkedIn</span>
             </a>
           </div>
-        </div>
+        </PageContainer>
       </div>
     </footer>
   );

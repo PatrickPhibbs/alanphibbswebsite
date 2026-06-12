@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Button from '@/components/ui/Button';
+import PageContainer from '@/components/ui/PageContainer';
 
 function HeroVideo({ src, poster }: { src: string; poster?: string }) {
   const ref = useRef<HTMLVideoElement>(null);
@@ -53,7 +54,7 @@ export default function Hero() {
 
       <div className="absolute inset-0 bg-gradient-to-t from-black/88 via-black/40 to-black/15" />
 
-      <div className="relative z-10 w-full max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-10 pb-12 md:pb-16 pt-28">
+      <PageContainer className="relative z-10 pb-12 md:pb-16 pt-28">
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -106,7 +107,7 @@ export default function Hero() {
         >
           Established 1991 · Fully insured · Dublin & Wicklow
         </motion.p>
-      </div>
+      </PageContainer>
     </section>
   );
 }

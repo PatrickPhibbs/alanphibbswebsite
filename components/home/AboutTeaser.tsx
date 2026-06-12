@@ -4,11 +4,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import AnimateOnScroll from '@/components/ui/AnimateOnScroll';
 import SectionHeading from '@/components/ui/SectionHeading';
+import PageContainer from '@/components/ui/PageContainer';
 
 export default function AboutTeaser() {
   return (
-    <section className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-10 py-14 md:py-16">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+    <section>
+      <PageContainer className="py-14 md:py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
         <AnimateOnScroll>
           <div className="relative aspect-[4/3] lg:aspect-[5/4] overflow-hidden bg-warm-200">
             <Image
@@ -43,7 +45,8 @@ export default function AboutTeaser() {
             Read our story
           </Link>
         </AnimateOnScroll>
-      </div>
+        </div>
+      </PageContainer>
     </section>
   );
 }
