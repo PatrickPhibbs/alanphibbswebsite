@@ -12,33 +12,47 @@ const quickLinks = [
 ];
 
 const services = [
+  'Residential Renovations',
   'Restoration & Conservation',
-  'Garden Projects',
-  'Office Fit Out & Refurbishments',
+  'Extensions & Structural Works',
+  'Kitchen & Bathroom Fit-Outs',
+  'Office & Commercial Fit-Out',
+  'Garden & External Works',
 ];
 
 export default function Footer() {
   return (
-    <footer className="bg-maroon-800 text-white">
-      <div className="max-w-7xl mx-auto px-6 pt-16 pb-12">
-        <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1fr] gap-12">
-          {/* Company Info */}
+    <footer className="bg-charcoal-900 text-warm-100">
+      <div className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-10 pt-14 pb-10">
+        <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1fr] gap-12 md:gap-10">
           <div>
             <Link href="/" className="mb-6 inline-block">
-              <Image src="/logo-removebg-preview.png" alt="Alan Phibbs Construction" height={40} width={168} style={{ objectFit: 'contain', filter: 'brightness(0) invert(1)' }} />
+              <Image
+                src="/logo-removebg-preview.png"
+                alt="Alan Phibbs Construction"
+                height={36}
+                width={152}
+                className="brightness-0 invert dark:brightness-100 dark:invert-0 opacity-90"
+                style={{ objectFit: 'contain' }}
+              />
             </Link>
-            <p className="text-white/45 text-sm leading-relaxed max-w-xs">
-              Based in Kilquade, Co. Wicklow. Residential extensions, renovations, and fit-outs across Wicklow and Dublin, with over 35 years in the trade.
+            <p className="text-warm-300/80 text-sm leading-relaxed max-w-xs font-light">
+              Based in Kilquade, Co. Wicklow. Residential renovations, restorations and fit-outs
+              across Wicklow and Dublin, with over 35 years in the trade.
             </p>
           </div>
 
-          {/* Quick Links */}
           <div>
-            <h3 className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/30 mb-5">Navigation</h3>
+            <h3 className="text-[10px] font-light uppercase tracking-[0.22em] text-warm-400/60 mb-5">
+              Navigation
+            </h3>
             <ul className="space-y-2.5">
               {quickLinks.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-white/55 text-sm hover:text-white transition-colors">
+                  <Link
+                    href={link.href}
+                    className="text-warm-200/70 text-sm font-light hover:text-warm-50 transition-colors"
+                  >
                     {link.label}
                   </Link>
                 </li>
@@ -46,13 +60,17 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Our Services */}
           <div>
-            <h3 className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/30 mb-5">Services</h3>
+            <h3 className="text-[10px] font-light uppercase tracking-[0.22em] text-warm-400/60 mb-5">
+              Services
+            </h3>
             <ul className="space-y-2.5">
               {services.map((service) => (
                 <li key={service}>
-                  <Link href="/services" className="text-white/55 text-sm hover:text-white transition-colors">
+                  <Link
+                    href="/services"
+                    className="text-warm-200/70 text-sm font-light hover:text-warm-50 transition-colors"
+                  >
                     {service}
                   </Link>
                 </li>
@@ -60,33 +78,46 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact Details */}
           <div>
-            <h3 className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/30 mb-5">Contact</h3>
-            <ul className="space-y-2.5 text-white/55 text-sm">
+            <h3 className="text-[10px] font-light uppercase tracking-[0.22em] text-warm-400/60 mb-5">
+              Contact
+            </h3>
+            <ul className="space-y-2.5 text-warm-200/70 text-sm font-light">
               <li>
-                <a href="tel:+353892204082" className="hover:text-white transition-colors">+353 89 220 4082</a>
+                <a href="tel:+353892204082" className="hover:text-warm-50 transition-colors">
+                  +353 89 220 4082
+                </a>
               </li>
-              <li>alanphibbs@alanphibbs.ie</li>
-              <li className="text-white/30 text-xs">Mon–Fri 8am–6pm · Sat 9am–1pm</li>
+              <li>
+                <a
+                  href="mailto:alanphibbs@alanphibbs.ie"
+                  className="hover:text-warm-50 transition-colors"
+                >
+                  alanphibbs@alanphibbs.ie
+                </a>
+              </li>
+              <li className="text-warm-400/70 text-xs pt-1">
+                Dublin & Wicklow
+                <br />
+                Mon–Fri 8am–6pm · Sat 9am–1pm
+              </li>
             </ul>
           </div>
         </div>
       </div>
 
-      {/* Bottom bar */}
-      <div className="border-t border-white/8">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center text-white/25 text-xs gap-4">
+      <div className="border-t border-warm-50/8">
+        <div className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-10 py-4 flex flex-col md:flex-row justify-between items-center text-warm-400/50 text-xs font-light gap-4">
           <span>© {new Date().getFullYear()} Alan Phibbs Construction</span>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-5">
             <a
               href="https://www.facebook.com/profile.php?id=61579554132431"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook"
-              className="flex items-center gap-1.5 text-white/40 hover:text-white transition-colors"
+              className="flex items-center gap-1.5 hover:text-warm-200 transition-colors"
             >
-              <Facebook size={14} />
+              <Facebook size={14} strokeWidth={1.5} />
               <span>Facebook</span>
             </a>
             <a
@@ -94,9 +125,9 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="flex items-center gap-1.5 text-white/40 hover:text-white transition-colors"
+              className="flex items-center gap-1.5 hover:text-warm-200 transition-colors"
             >
-              <Linkedin size={14} />
+              <Linkedin size={14} strokeWidth={1.5} />
               <span>LinkedIn</span>
             </a>
           </div>

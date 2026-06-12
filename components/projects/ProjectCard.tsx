@@ -11,36 +11,35 @@ interface ProjectCardProps {
 export default function ProjectCard({ project, onClick }: ProjectCardProps) {
   return (
     <div
-      className="group relative overflow-hidden bg-cream-200 cursor-pointer"
+      className="group relative overflow-hidden bg-warm-50 cursor-pointer border border-warm-300/50"
       onClick={onClick}
     >
-      {/* Cover image */}
-      <div className="aspect-[4/3] relative overflow-hidden">
+      <div className="aspect-[5/4] relative overflow-hidden">
         <Image
           src={project.coverImage}
           alt={project.title}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
           loading="lazy"
         />
       </div>
 
-      {/* Content */}
-      <div className="p-5 border-t border-cream-300">
-        <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-maroon-800/35 block mb-1.5">
-          {project.category} &middot; {project.images.length} photos
+      <div className="p-4 md:p-5 border-t border-warm-300/60">
+        <span className="text-[10px] uppercase tracking-[0.2em] text-stone-400 font-light block mb-2">
+          {project.category}
         </span>
-        <h3 className="font-heading text-lg font-bold text-maroon-800 leading-tight">
+        <h3 className="font-heading text-xl font-light text-charcoal-900 leading-snug">
           {project.title}
         </h3>
-        <p className="text-sm text-maroon-800/55 mt-1.5 leading-relaxed">{project.description}</p>
+        <p className="text-sm text-charcoal-600 mt-2 leading-relaxed font-light">
+          {project.description}
+        </p>
       </div>
 
-      {/* Hover overlay */}
-      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-all duration-300 flex items-center justify-center">
-        <span className="px-5 py-2 bg-white text-black font-semibold text-xs uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          View Gallery
+      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-400 flex items-center justify-center pointer-events-none">
+        <span className="px-5 py-2.5 border border-warm-50/80 text-warm-50 text-[11px] uppercase tracking-[0.15em] font-light opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          View gallery
         </span>
       </div>
     </div>

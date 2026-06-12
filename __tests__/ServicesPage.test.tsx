@@ -4,20 +4,20 @@ import ServicesPage from '@/app/services/page';
 describe('ServicesPage', () => {
   it('renders page title', () => {
     render(<ServicesPage />);
-    expect(screen.getByText('Our Services')).toBeInTheDocument();
+    expect(screen.getByText('Our services')).toBeInTheDocument();
   });
 
-  it('renders all three services', () => {
+  it('renders key services', () => {
     render(<ServicesPage />);
     expect(screen.getByText('Restoration & Conservation')).toBeInTheDocument();
-    expect(screen.getByText('Garden Projects')).toBeInTheDocument();
+    expect(screen.getByText('Garden & Landscaping')).toBeInTheDocument();
     expect(screen.getByText('Office Fit Out & Refurbishments')).toBeInTheDocument();
   });
 
   it('renders CTA section', () => {
     render(<ServicesPage />);
     const headings = screen.getAllByRole('heading');
-    const ctaHeading = headings.find((h) => h.textContent?.includes('Ready to Start'));
+    const ctaHeading = headings.find((h) => h.textContent?.includes('Ready to discuss'));
     expect(ctaHeading).toBeDefined();
   });
 

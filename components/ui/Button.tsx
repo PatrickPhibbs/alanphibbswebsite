@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 interface ButtonProps {
   children: React.ReactNode;
-  variant?: 'solid' | 'outline';
+  variant?: 'solid' | 'outline' | 'outline-light';
   href?: string;
   onClick?: () => void;
   type?: 'button' | 'submit';
@@ -19,13 +19,18 @@ export default function Button({
   className = '',
   disabled = false,
 }: ButtonProps) {
-  const base = 'inline-flex items-center justify-center px-6 py-3 text-sm font-semibold uppercase tracking-wider transition-all duration-200';
+  const base =
+    'inline-flex items-center justify-center px-7 py-3.5 text-sm font-light tracking-[0.08em] transition-all duration-250 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-charcoal-800';
   const variants = {
-    solid: 'bg-maroon-800 text-white hover:bg-maroon-900',
-    outline: 'border border-white/60 text-white bg-transparent hover:bg-white hover:text-black',
+    solid:
+      'bg-charcoal-800 text-warm-50 hover:bg-charcoal-900 dark:bg-warm-300 dark:text-charcoal-900 dark:hover:bg-warm-400',
+    outline:
+      'border border-charcoal-800/25 text-charcoal-800 bg-transparent hover:bg-charcoal-800 hover:text-warm-50 hover:border-charcoal-800 dark:border-warm-400 dark:text-charcoal-900 dark:hover:bg-warm-200 dark:hover:text-charcoal-900 dark:hover:border-warm-300',
+    'outline-light':
+      'border border-warm-50/50 text-warm-50 bg-transparent hover:bg-warm-50 hover:text-charcoal-900 hover:border-warm-50',
   };
 
-  const classes = `${base} ${variants[variant]} ${className}`;
+  const classes = `${base} ${variants[variant]} ${disabled ? 'opacity-50 pointer-events-none' : ''} ${className}`;
 
   if (href) {
     return (

@@ -1,82 +1,80 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import AnimateOnScroll from '@/components/ui/AnimateOnScroll';
+import SectionHeading from '@/components/ui/SectionHeading';
 
-interface ServiceCard {
-  title: string;
-  href: string;
-  image: string;
-}
-
-const serviceCards: ServiceCard[] = [
-  { title: 'Restoration & Conservation', href: '/services', image: '/images/services/restoration-after.jpg' },
-  { title: 'Kitchen & Bathroom Fitouts', href: '/services', image: '/images/services/kitchen-fitout.jpg' },
-  { title: 'Office Fit Out & Refurbishments', href: '/services', image: '/images/services/office-fitout.jpg' },
+const services = [
+  {
+    title: 'Residential Renovations',
+    description:
+      'Full house refurbishments and room-by-room upgrades, carefully managed with respect for occupied homes.',
+    href: '/services',
+  },
+  {
+    title: 'Extensions & Structural Works',
+    description:
+      'Timber frame builds, structural alterations and extensions from foundations through to finished plaster.',
+    href: '/services',
+  },
+  {
+    title: 'Restoration & Conservation',
+    description:
+      'Period property work including lime finishes, facade restoration and conservation-listed buildings.',
+    href: '/services',
+  },
+  {
+    title: 'Kitchen, Bathroom & Interior Fit-Outs',
+    description:
+      'Complete fit-outs coordinated from first fix to final tile, with a high-quality finish throughout.',
+    href: '/services',
+  },
+  {
+    title: 'Office & Commercial Fit-Out',
+    description:
+      'Shell-and-core to turnkey commercial spaces, with trades coordinated on site to minimise disruption.',
+    href: '/services',
+  },
+  {
+    title: 'Garden & External Works',
+    description:
+      'Paving, decking, boundary walls and landscaping, with durable external work that suits the property.',
+    href: '/services',
+  },
 ];
-
-const stats = [
-  { value: '35+', label: 'Years\nEstablished' },
-  { value: 'Wicklow', label: 'Based &\nBuilding' },
-  { value: 'Fully Insured', label: 'Every\nProject' },
-  { value: 'Dublin', label: 'City &\nCounty' },
-];
-
-function Card({ card, className }: { card: ServiceCard; className?: string }) {
-  return (
-    <Link
-      href={card.href}
-      className={`group relative overflow-hidden block ${className || ''}`}
-    >
-      <Image
-        src={card.image}
-        alt={card.title}
-        fill
-        sizes="(max-width: 768px) 100vw, 50vw"
-        className="object-cover transition-transform duration-500 group-hover:scale-105"
-        loading="lazy"
-      />
-      <div className="absolute top-0 left-0 z-10">
-        <div className="bg-black/85 px-5 py-3">
-          <span className="text-white font-heading text-sm md:text-base font-semibold group-hover:underline decoration-white/60 underline-offset-4 transition-all">
-            {card.title}
-          </span>
-        </div>
-      </div>
-    </Link>
-  );
-}
 
 export default function ServiceCards() {
   return (
-    <section className="max-w-7xl mx-auto px-6 pt-3 pb-12">
-      <div className="bg-cream-300 flex flex-col gap-px">
-        {/* Service cards: 50% + 25% + 25% */}
+    <section className="bg-warm-100 border-y border-warm-300/50">
+      <div className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-10 py-14 md:py-16">
         <AnimateOnScroll>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-px bg-cream-300">
-            <Card card={serviceCards[0]} className="md:col-span-2 h-64 md:h-80" />
-            <Card card={serviceCards[1]} className="h-64 md:h-80" />
-            <Card card={serviceCards[2]} className="h-64 md:h-80" />
-          </div>
+          <SectionHeading subtitle="What we do">Services</SectionHeading>
         </AnimateOnScroll>
 
-        {/* Stats bar */}
-        <AnimateOnScroll delay={0.1}>
-          <div className="grid grid-cols-2 md:grid-cols-4 bg-maroon-800">
-            {stats.map((stat, i) => (
-              <div
-                key={stat.value}
-                className={`px-8 py-10 flex flex-col gap-1 ${i < stats.length - 1 ? 'border-r border-white/10' : ''}`}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-warm-300/60 border border-warm-300/60">
+          {services.map((service, i) => (
+            <AnimateOnScroll key={service.title} delay={i * 0.05}>
+              <Link
+                href={service.href}
+                className="group block bg-warm-50 p-6 md:p-8 h-full hover:bg-warm-100 transition-colors duration-300 cursor-pointer"
               >
-                <span className="font-heading font-black text-3xl md:text-4xl text-gold-500 leading-none">
-                  {stat.value}
-                </span>
-                <span className="text-white/45 text-[10px] uppercase tracking-[0.2em] leading-snug whitespace-pre-line">
-                  {stat.label}
-                </span>
-              </div>
-            ))}
+                <h3 className="font-heading text-xl font-light text-charcoal-900 mb-3 leading-snug group-hover:text-charcoal-700 transition-colors">
+                  {service.title}
+                </h3>
+                <p className="text-charcoal-600 text-sm font-light leading-relaxed">
+                  {service.description}
+                </p>
+              </Link>
+            </AnimateOnScroll>
+          ))}
+        </div>
+
+        <AnimateOnScroll delay={0.2}>
+          <div className="mt-8 flex flex-wrap gap-x-10 gap-y-4 text-[11px] uppercase tracking-[0.18em] text-stone-400 font-light">
+            <span>Established 1991</span>
+            <span>Fully insured</span>
+            <span>Wicklow based</span>
+            <span>Dublin & Wicklow</span>
           </div>
         </AnimateOnScroll>
       </div>

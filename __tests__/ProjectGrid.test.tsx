@@ -12,10 +12,10 @@ describe('ProjectGrid', () => {
     const buttons = screen.getAllByRole('button');
     const filterLabels = buttons.map((b) => b.textContent);
     expect(filterLabels).toContain('All');
-    expect(filterLabels).toContain('New Builds');
-    expect(filterLabels).toContain('Renovations');
-    expect(filterLabels).toContain('Fit-Outs');
-    expect(filterLabels).toContain('Landscaping');
     expect(filterLabels).toContain('Restoration');
+    expect(filterLabels).toContain('Renovation');
+    expect(filterLabels).toContain('Extension');
+    expect(filterLabels).toContain('Fit-Out');
+    expect(filterLabels).toContain('Period Property');
   });
 });

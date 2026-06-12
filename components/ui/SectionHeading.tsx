@@ -5,15 +5,28 @@ interface SectionHeadingProps {
   centered?: boolean;
 }
 
-export default function SectionHeading({ children, subtitle, light = false, centered = false }: SectionHeadingProps) {
+export default function SectionHeading({
+  children,
+  subtitle,
+  light = false,
+  centered = false,
+}: SectionHeadingProps) {
   return (
-    <div className={`mb-10 ${centered ? 'text-center' : ''}`}>
+    <div className={`mb-8 md:mb-10 ${centered ? 'text-center' : ''}`}>
       {subtitle && (
-        <p className={`text-xs uppercase tracking-[0.2em] font-medium mb-3 ${light ? 'text-cream-200/60' : 'text-maroon-800/40'}`}>
+        <p
+          className={`text-[11px] uppercase tracking-[0.22em] font-light mb-3 ${
+            light ? 'text-warm-200/70' : 'text-stone-400'
+          }`}
+        >
           {subtitle}
         </p>
       )}
-      <h2 className={`font-heading text-4xl md:text-5xl font-bold leading-tight ${light ? 'text-white' : 'text-maroon-800'}`}>
+      <h2
+        className={`font-heading text-3xl md:text-[2.65rem] font-light leading-[1.12] ${
+          light ? 'text-warm-50' : 'text-charcoal-900'
+        }`}
+      >
         {children}
       </h2>
     </div>

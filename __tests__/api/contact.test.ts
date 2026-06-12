@@ -1,22 +1,20 @@
 /**
  * @jest-environment node
  */
-import { POST } from '@/app/api/contact/route';
+const mockSend = jest.fn().mockResolvedValue({ id: 'test-id' });
 
-const mockSendMail = jest.fn().mockResolvedValue({ messageId: 'test-id' });
-
-jest.mock('nodemailer', () => ({
-  createTransport: jest.fn(() => ({
-    sendMail: mockSendMail,
+jest.mock('resend', () => ({
+  Resend: jest.fn().mockImplementation(() => ({
+    emails: { send: (...args: unknown[]) => mockSend(...args) },
   })),
 }));
+
+import { POST } from '@/app/api/contact/route';
 
 describe('POST /api/contact', () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    process.env.SMTP_HOST = 'smtp.test.com';
-    process.env.SMTP_USER = 'user@test.com';
-    process.env.SMTP_PASS = 'password';
+    process.env.RESEND_API_KEY = 're_test_key';
   });
 
   it('sends email and returns success', async () => {
@@ -36,7 +34,7 @@ describe('POST /api/contact', () => {
 
     expect(response.status).toBe(200);
     expect(data.success).toBe(true);
-    expect(mockSendMail).toHaveBeenCalledWith(
+    expect(mockSend).toHaveBeenCalledWith(
       expect.objectContaining({
         to: 'alanphibbs@alanphibbs.ie',
         subject: expect.stringContaining('Test User'),
@@ -45,7 +43,7 @@ describe('POST /api/contact', () => {
   });
 
   it('returns 500 on send failure', async () => {
-    mockSendMail.mockRejectedValueOnce(new Error('SMTP error'));
+    mockSend.mockRejectedValueOnce(new Error('Resend error'));
 
     const request = new Request('http://localhost/api/contact', {
       method: 'POST',

@@ -4,7 +4,7 @@ import RecentWork from '@/components/home/RecentWork';
 describe('RecentWork', () => {
   it('renders section heading', () => {
     render(<RecentWork />);
-    expect(screen.getByText('Recent Work')).toBeInTheDocument();
+    expect(screen.getByText('Recent projects')).toBeInTheDocument();
   });
 
   it('renders 6 project thumbnails', () => {
@@ -15,6 +15,6 @@ describe('RecentWork', () => {
 
   it('renders view all projects link', () => {
     render(<RecentWork />);
-    expect(screen.getByText(/View All/)).toBeInTheDocument();
+    expect(screen.getByText(/View all/)).toBeInTheDocument();
   });
 });

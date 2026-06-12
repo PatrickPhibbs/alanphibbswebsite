@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
-import { Montserrat } from 'next/font/google';
+import { Raleway } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import JsonLd from '@/components/JsonLd';
+import ThemeProvider from '@/components/ui/ThemeProvider';
+import { THEME_STORAGE_KEY } from '@/lib/theme';
 
 const businessSchema = {
   '@context': 'https://schema.org',
@@ -12,7 +14,7 @@ const businessSchema = {
   url: 'https://www.alanphibbs.ie',
   telephone: '+353892204082',
   email: 'alanphibbs@alanphibbs.ie',
-  foundingDate: '1998',
+  foundingDate: '1991',
   logo: 'https://www.alanphibbs.ie/logo-removebg-preview.png',
   address: {
     '@type': 'PostalAddress',
@@ -33,18 +35,20 @@ const businessSchema = {
   sameAs: [],
 };
 
-const montserrat = Montserrat({
-  variable: '--font-montserrat',
+const raleway = Raleway({
+  variable: '--font-raleway',
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700', '800'],
+  weight: ['200', '300', '400'],
 });
 
 export const metadata: Metadata = {
-  title: "Alan Phibbs General Contractor",
-  description: 'Quality construction, renovation & fit-out services across Dublin. Residential new builds, extensions, and refurbishments since 1998.',
+  title: 'Alan Phibbs General Contractor',
+  description:
+    'Residential renovations, restorations and fit-outs across Dublin and Wicklow. Careful planning, reliable delivery and a high-quality finish since 1991.',
   openGraph: {
-    title: "Alan Phibbs Construction General Contractor",
-    description: 'Quality construction, renovation & fit-out services across Dublin.',
+    title: 'Alan Phibbs Construction | General Contractor',
+    description:
+      'Residential renovations, restorations and fit-outs across Dublin and Wicklow.',
     siteName: 'Alan Phibbs',
     type: 'website',
   },
@@ -58,13 +62,20 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const themeScript = `(function(){try{var s=localStorage.getItem("${THEME_STORAGE_KEY}");var t=s==="light"||s==="dark"?s:(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");if(t==="dark")document.documentElement.classList.add("dark");}catch(e){}})();`;
+
   return (
-    <html lang="en">
-      <body className={`${montserrat.variable} antialiased`}>
-        <JsonLd data={businessSchema} />
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body className={`${raleway.variable} antialiased`}>
+        <ThemeProvider>
+          <JsonLd data={businessSchema} />
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

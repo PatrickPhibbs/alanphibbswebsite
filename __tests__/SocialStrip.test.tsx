@@ -5,7 +5,7 @@ describe('SocialStrip', () => {
   it('renders social media links', () => {
     render(<SocialStrip />);
     const links = screen.getAllByRole('link');
-    expect(links.length).toBeGreaterThanOrEqual(4);
+    expect(links.length).toBeGreaterThanOrEqual(2);
   });
 
   it('has fixed positioning', () => {

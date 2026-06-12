@@ -2,20 +2,15 @@ import { render, screen } from '@testing-library/react';
 import AwardBanner from '@/components/home/AwardBanner';
 
 describe('AwardBanner', () => {
-  it('renders 35 years heading', () => {
+  it('renders quality section heading', () => {
     render(<AwardBanner />);
-    expect(screen.getByText('35')).toBeInTheDocument();
-    expect(screen.getByText('Years')).toBeInTheDocument();
+    expect(screen.getByText(/Built properly, finished carefully/)).toBeInTheDocument();
   });
 
-  it('does not render outdated 28 years figure', () => {
+  it('renders how we work qualities', () => {
     render(<AwardBanner />);
-    expect(screen.queryByText('28')).not.toBeInTheDocument();
-  });
-
-  it('renders trust message', () => {
-    render(<AwardBanner />);
-    expect(screen.getByText(/Trusted by homeowners/)).toBeInTheDocument();
+    expect(screen.getByText(/Site visits and clear scope/)).toBeInTheDocument();
+    expect(screen.getByText(/Fully insured work/)).toBeInTheDocument();
   });
 
   it('does not contain award-winning text', () => {
@@ -23,9 +18,9 @@ describe('AwardBanner', () => {
     expect(screen.queryByText(/award.winning/i)).not.toBeInTheDocument();
   });
 
-  it('has maroon background', () => {
+  it('has charcoal background', () => {
     const { container } = render(<AwardBanner />);
     const section = container.firstChild as HTMLElement;
-    expect(section.className).toMatch(/bg-maroon/);
+    expect(section.className).toMatch(/bg-charcoal/);
   });
 });

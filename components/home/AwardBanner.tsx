@@ -1,33 +1,64 @@
 'use client';
 
 import AnimateOnScroll from '@/components/ui/AnimateOnScroll';
+import SectionHeading from '@/components/ui/SectionHeading';
+
+const qualities = [
+  {
+    title: 'Site visits and clear scope',
+    description: 'Every project starts with a practical visit and an honest conversation about what is involved.',
+  },
+  {
+    title: 'Practical advice before work begins',
+    description: 'Straightforward guidance on sequencing, materials and what to expect before anything starts on site.',
+  },
+  {
+    title: 'Coordination of trades',
+    description: 'Plumbing, electrical, tiling and joinery managed together so you deal with one contractor.',
+  },
+  {
+    title: 'Respect for occupied homes',
+    description: 'Work planned around how you live in the property, with care taken to protect finished spaces.',
+  },
+  {
+    title: 'Clean finish and tidy handover',
+    description: 'Snagging addressed properly and sites left ready to move back into.',
+  },
+  {
+    title: 'Fully insured work',
+    description: 'Public liability and employers\' liability cover on every project.',
+  },
+];
 
 export default function AwardBanner() {
   return (
-    <section className="bg-maroon-800 overflow-hidden">
-      <AnimateOnScroll direction="fade">
-        <div className="max-w-7xl mx-auto px-6 py-16 md:py-24 grid grid-cols-1 md:grid-cols-[auto_1fr] gap-x-16 gap-y-4 items-end">
-          {/* Ghost number */}
-          <div className="select-none leading-none">
-            <span className="font-heading font-black text-[7rem] md:text-[11rem] text-white/8 leading-none block">
-              35
-            </span>
-            <span className="font-heading font-bold text-5xl md:text-6xl text-gold-500 leading-none -mt-6 md:-mt-10 block">
-              Years
-            </span>
-          </div>
+    <section className="bg-charcoal-900 overflow-hidden">
+      <div className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-10 py-14 md:py-16">
+        <AnimateOnScroll direction="fade">
+          <SectionHeading light subtitle="How we work">
+            Built properly, finished carefully.
+          </SectionHeading>
+          <p className="text-warm-200/75 text-base md:text-lg font-light leading-relaxed max-w-2xl -mt-4 mb-10">
+            From first visit to final handover, the work is planned clearly, managed on site and finished
+            with attention to the details that make a project feel complete.
+          </p>
+        </AnimateOnScroll>
 
-          {/* Text */}
-          <div className="pb-1 md:pb-3">
-            <p className="text-cream-100 text-xl md:text-2xl font-light leading-snug mb-4 max-w-md">
-              Trusted by homeowners across Wicklow and Dublin for over three decades.
-            </p>
-            <p className="text-cream-200/40 text-xs uppercase tracking-[0.25em]">
-              Est. 1991
-            </p>
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-warm-50/10">
+          {qualities.map((item, i) => (
+            <AnimateOnScroll key={item.title} delay={i * 0.05}>
+              <div className="bg-charcoal-900 p-6 md:p-7 h-full border border-warm-50/5">
+                <h3 className="font-heading text-lg font-light text-warm-50 mb-3 leading-snug">
+                  {item.title}
+                </h3>
+                <p className="text-warm-300/70 text-sm font-light leading-relaxed">
+                  {item.description}
+                </p>
+              </div>
+            </AnimateOnScroll>
+          ))}
         </div>
-      </AnimateOnScroll>
+      </div>
     </section>
   );
 }

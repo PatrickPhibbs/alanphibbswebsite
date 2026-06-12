@@ -1,40 +1,331 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme inline {
-  --color-maroon-50: #f9f0f1;
-  --color-maroon-100: #f0dde0;
-  --color-maroon-200: #ddb8be;
-  --color-maroon-300: #bf8590;
-  --color-maroon-400: #9e5463;
-  --color-maroon-500: #7d3344;
-  --color-maroon-600: #5e2232;
-  --color-maroon-700: #4a1827;
-  --color-maroon-800: #2f0f18;
-  --color-maroon-900: #1a080e;
-  --color-maroon-950: #0d0407;
+  /* Warm off-white backgrounds */
+  --color-warm-50: #faf8f5;
+  --color-warm-100: #f5f2ed;
+  --color-warm-200: #ebe6de;
+  --color-warm-300: #ddd6cb;
+  --color-warm-400: #c9c0b3;
 
-  --color-cream-50: #fffdf9;
-  --color-cream-100: #faf6ee;
-  --color-cream-200: #f2ead8;
-  --color-cream-300: #e4d8be;
+  /* Charcoal text — softened for comfortable reading on warm backgrounds */
+  --color-charcoal-950: #141413;
+  --color-charcoal-900: #2a2a28;
+  --color-charcoal-800: #3d3d3a;
+  --color-charcoal-700: #52524e;
+  --color-charcoal-600: #6b6b66;
+  --color-charcoal-500: #8a8780;
 
-  --color-gold-400: #d4b86a;
-  --color-gold-500: #c9a84c;
-  --color-gold-600: #a8882d;
+  /* Stone & taupe accents */
+  --color-stone-400: #9c958c;
+  --color-stone-300: #b5aea4;
+  --color-taupe-600: #6b6359;
+  --color-taupe-500: #8a8177;
 
-  --font-heading: var(--font-montserrat);
-  --font-body: var(--font-montserrat);
+  /* Muted bronze */
+  --color-bronze-500: #9a8468;
+  --color-bronze-400: #b09a7e;
+
+  --font-heading: var(--font-raleway);
+  --font-body: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+html {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+
+  --color-warm-50: #141413;
+  --color-warm-100: #1c1c1a;
+  --color-warm-200: #2a2a28;
+  --color-warm-300: #3d3d3a;
+  --color-warm-400: #52524e;
+
+  --color-charcoal-950: #faf8f5;
+  --color-charcoal-900: #faf8f5;
+  --color-charcoal-800: #f5f2ed;
+  --color-charcoal-700: #ebe6de;
+  --color-charcoal-600: #ddd6cb;
+  --color-charcoal-500: #c9c0b3;
+
+  --color-stone-400: #b5aea4;
+  --color-stone-300: #9c958c;
+  --color-taupe-600: #b5aea4;
+  --color-taupe-500: #9c958c;
+
+  --color-bronze-500: #b09a7e;
+  --color-bronze-400: #c9b49a;
+}
+
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *::before,
+html.theme-transition *::after {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    fill 0.3s ease,
+    stroke 0.3s ease !important;
 }
 
 body {
-  background: var(--color-cream-50);
-  color: #1a1a1a;
-  font-family: var(--font-body), system-ui, sans-serif;
+  background: var(--color-warm-50);
+  color: var(--color-charcoal-900);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading), system-ui, sans-serif;
-  line-height: 1.1;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+}
+
+/*
+ * Tailwind bakes utility colours at build time.
+ * Wire surface + text utilities to theme vars so dark mode flips the full site.
+ */
+@layer utilities {
+  /* Backgrounds */
+  html.dark .bg-warm-50 {
+    background-color: var(--color-warm-50);
+  }
+
+  html.dark .bg-warm-100 {
+    background-color: var(--color-warm-100);
+  }
+
+  html.dark .bg-warm-200 {
+    background-color: var(--color-warm-200);
+  }
+
+  html.dark .bg-warm-300 {
+    background-color: var(--color-warm-300);
+  }
+
+  html.dark .bg-warm-50\/90 {
+    background-color: color-mix(in srgb, var(--color-warm-50) 90%, transparent);
+  }
+
+  html.dark .bg-warm-50\/95 {
+    background-color: color-mix(in srgb, var(--color-warm-50) 95%, transparent);
+  }
+
+  html.dark .bg-warm-50\/10 {
+    background-color: color-mix(in srgb, var(--color-charcoal-900) 10%, transparent);
+  }
+
+  html.dark .bg-warm-300\/60 {
+    background-color: color-mix(in srgb, var(--color-warm-300) 60%, transparent);
+  }
+
+  html.dark .hover\:bg-warm-100:hover {
+    background-color: var(--color-warm-100);
+  }
+
+  html.dark .bg-charcoal-900 {
+    background-color: var(--color-warm-100);
+  }
+
+  html.dark .bg-charcoal-800 {
+    background-color: var(--color-warm-300);
+  }
+
+  html.dark .bg-charcoal-800\/30 {
+    background-color: color-mix(in srgb, var(--color-warm-300) 30%, transparent);
+  }
+
+  /* Borders */
+  html.dark .border-warm-300 {
+    border-color: var(--color-warm-300);
+  }
+
+  html.dark .border-warm-300\/60 {
+    border-color: color-mix(in srgb, var(--color-warm-300) 60%, transparent);
+  }
+
+  html.dark .border-warm-300\/50 {
+    border-color: color-mix(in srgb, var(--color-warm-300) 50%, transparent);
+  }
+
+  html.dark .border-warm-50\/5 {
+    border-color: color-mix(in srgb, var(--color-charcoal-900) 5%, transparent);
+  }
+
+  html.dark .border-warm-50\/8 {
+    border-color: color-mix(in srgb, var(--color-charcoal-900) 8%, transparent);
+  }
+
+  html.dark .border-warm-50\/80 {
+    border-color: color-mix(in srgb, var(--color-charcoal-900) 80%, transparent);
+  }
+
+  html.dark .border-charcoal-800\/20 {
+    border-color: color-mix(in srgb, var(--color-charcoal-800) 20%, transparent);
+  }
+
+  html.dark .border-charcoal-800\/25 {
+    border-color: color-mix(in srgb, var(--color-charcoal-800) 25%, transparent);
+  }
+
+  html.dark .border-charcoal-800\/30 {
+    border-color: color-mix(in srgb, var(--color-charcoal-800) 30%, transparent);
+  }
+
+  html.dark .hover\:border-charcoal-800:hover {
+    border-color: var(--color-charcoal-800);
+  }
+
+  html.dark .hover\:border-warm-50:hover {
+    border-color: var(--color-charcoal-900);
+  }
+
+  html.dark .border-warm-200\/20 {
+    border-color: color-mix(in srgb, var(--color-charcoal-700) 20%, transparent);
+  }
+
+  /* Dividers */
+  html.dark .divide-warm-300 > :not([hidden]) ~ :not([hidden]) {
+    border-color: var(--color-warm-300);
+  }
+
+  html.dark .divide-warm-300\/60 > :not([hidden]) ~ :not([hidden]) {
+    border-color: color-mix(in srgb, var(--color-warm-300) 60%, transparent);
+  }
+
+  /* Text */
+  html.dark .text-charcoal-950 {
+    color: var(--color-charcoal-950);
+  }
+
+  html.dark .text-charcoal-900 {
+    color: var(--color-charcoal-900);
+  }
+
+  html.dark .text-charcoal-800 {
+    color: var(--color-charcoal-800);
+  }
+
+  html.dark .text-charcoal-700 {
+    color: var(--color-charcoal-700);
+  }
+
+  html.dark .text-charcoal-600 {
+    color: var(--color-charcoal-600);
+  }
+
+  html.dark .text-charcoal-500 {
+    color: var(--color-charcoal-500);
+  }
+
+  html.dark .text-stone-400 {
+    color: var(--color-stone-400);
+  }
+
+  html.dark .text-warm-50 {
+    color: var(--color-charcoal-900);
+  }
+
+  html.dark .text-warm-100 {
+    color: var(--color-charcoal-800);
+  }
+
+  html.dark .text-warm-200 {
+    color: var(--color-charcoal-700);
+  }
+
+  html.dark .text-warm-300 {
+    color: var(--color-charcoal-600);
+  }
+
+  html.dark .text-warm-400 {
+    color: var(--color-charcoal-500);
+  }
+
+  html.dark .text-warm-200\/70 {
+    color: color-mix(in srgb, var(--color-charcoal-700) 70%, transparent);
+  }
+
+  html.dark .text-warm-200\/75 {
+    color: color-mix(in srgb, var(--color-charcoal-700) 75%, transparent);
+  }
+
+  html.dark .text-warm-200\/60 {
+    color: color-mix(in srgb, var(--color-charcoal-700) 60%, transparent);
+  }
+
+  html.dark .text-warm-300\/70 {
+    color: color-mix(in srgb, var(--color-charcoal-600) 70%, transparent);
+  }
+
+  html.dark .text-warm-300\/80 {
+    color: color-mix(in srgb, var(--color-charcoal-600) 80%, transparent);
+  }
+
+  html.dark .text-warm-400\/60 {
+    color: color-mix(in srgb, var(--color-charcoal-500) 60%, transparent);
+  }
+
+  html.dark .text-warm-400\/70 {
+    color: color-mix(in srgb, var(--color-charcoal-500) 70%, transparent);
+  }
+
+  html.dark .text-warm-400\/50 {
+    color: color-mix(in srgb, var(--color-charcoal-500) 50%, transparent);
+  }
+
+  html.dark .hover\:text-charcoal-900:hover {
+    color: var(--color-charcoal-900);
+  }
+
+  html.dark .hover\:text-charcoal-800:hover {
+    color: var(--color-charcoal-800);
+  }
+
+  html.dark .hover\:text-charcoal-700:hover {
+    color: var(--color-charcoal-700);
+  }
+
+  html.dark .hover\:text-charcoal-600:hover {
+    color: var(--color-charcoal-600);
+  }
+
+  html.dark .hover\:text-warm-50:hover {
+    color: var(--color-charcoal-900);
+  }
+
+  html.dark .hover\:text-warm-200:hover {
+    color: var(--color-charcoal-700);
+  }
+
+  html.dark .group:hover .group-hover\:text-charcoal-700 {
+    color: var(--color-charcoal-700);
+  }
+
+  html.dark .focus\:ring-charcoal-800:focus {
+    --tw-ring-color: var(--color-charcoal-800);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

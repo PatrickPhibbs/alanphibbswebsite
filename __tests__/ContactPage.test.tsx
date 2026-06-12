@@ -9,7 +9,7 @@ jest.mock('@emailjs/browser', () => ({
 describe('ContactPage', () => {
   it('renders page title', () => {
     render(<ContactPage />);
-    expect(screen.getByText('Get In Touch')).toBeInTheDocument();
+    expect(screen.getByText(/Tell us about your project/i)).toBeInTheDocument();
   });
 
   it('renders correct phone number', () => {

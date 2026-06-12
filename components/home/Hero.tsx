@@ -3,7 +3,6 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Button from '@/components/ui/Button';
-import ScrollIndicator from '@/components/ui/ScrollIndicator';
 
 function HeroVideo({ src, poster }: { src: string; poster?: string }) {
   const ref = useRef<HTMLVideoElement>(null);
@@ -36,56 +35,76 @@ function HeroVideo({ src, poster }: { src: string; poster?: string }) {
 
 export default function Hero() {
   return (
-    <section className="relative h-screen flex items-end overflow-hidden">
-      {/* Background videos */}
+    <section className="relative min-h-[88vh] md:min-h-screen flex items-end overflow-hidden">
       <div className="absolute inset-0 flex">
         <div className="relative w-1/2 h-full overflow-hidden">
-          <HeroVideo src="/videos/video1.mp4" poster="/images/projects/04-country-house-renovation/01.jpg" />
+          <HeroVideo
+            src="/videos/video1.mp4"
+            poster="/images/projects/04-country-house-renovation/01.jpg"
+          />
         </div>
         <div className="relative w-1/2 h-full overflow-hidden">
-          <HeroVideo src="/videos/video2.mp4" poster="/images/projects/01-office-fitout/01.jpg" />
+          <HeroVideo
+            src="/videos/video2.mp4"
+            poster="/images/projects/01-office-fitout/01.jpg"
+          />
         </div>
       </div>
 
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/88 via-black/40 to-black/15" />
 
-      {/* Scroll indicator */}
-      <ScrollIndicator />
-
-      {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pb-20 w-full">
-        <motion.h1
-          initial={{ opacity: 0, y: 40 }}
+      <div className="relative z-10 w-full max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-10 pb-12 md:pb-16 pt-28">
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.1 }}
-          className="font-heading text-[4rem] md:text-[7rem] lg:text-[9rem] font-black text-white leading-[0.88] tracking-tight mb-8"
+          transition={{ duration: 0.7, delay: 0.1 }}
+          className="text-[11px] uppercase tracking-[0.24em] text-white/80 font-light mb-4"
         >
-          General Contractor
+          Dublin & Wicklow · Established 1991
+        </motion.p>
+
+        <motion.h1
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="font-heading font-extralight text-white text-[2.35rem] sm:text-5xl md:text-6xl lg:text-[4.5rem] leading-[1.06] max-w-5xl mb-4"
+        >
+          Renovations, restorations and fit-outs finished with care.
         </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.35 }}
+          className="text-white/80 text-base md:text-lg font-light leading-relaxed max-w-2xl mb-7"
+        >
+          Alan Phibbs delivers residential and commercial construction work across Dublin and
+          Wicklow, with a focus on careful planning, reliable delivery and a high-quality finish.
+        </motion.p>
 
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="flex items-center gap-8 flex-wrap"
+          transition={{ duration: 0.7, delay: 0.5 }}
+          className="flex flex-wrap items-center gap-3 md:gap-4"
         >
-          <Button href="/projects">Our Projects</Button>
-          <a
-            href="/contact"
-            className="text-cream-200/80 text-sm uppercase tracking-[0.15em] hover:text-white transition-colors border-b border-cream-200/30 hover:border-white pb-px"
+          <Button href="/contact">Discuss a Project</Button>
+          <Button
+            href="/projects"
+            variant="outline-light"
+            className="!border-white/50 !text-white hover:!bg-white hover:!text-black hover:!border-white"
           >
-            Get in Touch →
-          </a>
+            View Recent Work
+          </Button>
         </motion.div>
 
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-8 text-cream-200/50 text-xs uppercase tracking-[0.25em]"
+          transition={{ duration: 0.7, delay: 0.65 }}
+          className="mt-7 text-[11px] uppercase tracking-[0.2em] text-white/55 font-light"
         >
-          Wicklow & Dublin · Est. 1991
+          Established 1991 · Fully insured · Dublin & Wicklow
         </motion.p>
       </div>
     </section>

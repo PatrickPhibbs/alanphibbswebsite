@@ -17,7 +17,7 @@ export default function SocialStrip() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={social.label}
-          className="w-9 h-9 rounded-full bg-white/80 shadow-md flex items-center justify-center text-maroon-800 hover:bg-maroon-800 hover:text-white hover:scale-110 transition-all duration-300"
+          className="w-9 h-9 rounded-full bg-warm-50/90 shadow-sm border border-warm-300/60 flex items-center justify-center text-charcoal-700 hover:bg-charcoal-800 hover:text-warm-50 transition-colors duration-300 cursor-pointer"
         >
           <social.icon size={16} />
         </a>

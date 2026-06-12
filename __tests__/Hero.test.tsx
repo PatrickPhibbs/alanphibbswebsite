@@ -5,22 +5,18 @@ describe('Hero', () => {
   it('renders main heading', () => {
     render(<Hero />);
     expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { level: 1 }).textContent).toMatch(/Building/);
+    expect(screen.getByRole('heading', { level: 1 }).textContent).toMatch(/Renovations/);
   });
 
   it('renders CTA buttons', () => {
     render(<Hero />);
-    expect(screen.getByText('Our Projects')).toBeInTheDocument();
-    expect(screen.getByText(/Get in Touch/)).toBeInTheDocument();
-  });
-
-  it('renders scroll indicator', () => {
-    render(<Hero />);
-    expect(screen.getByText('SCROLL DOWN')).toBeInTheDocument();
+    expect(screen.getByText('Discuss a Project')).toBeInTheDocument();
+    expect(screen.getByText('View Recent Work')).toBeInTheDocument();
   });
 
   it('renders Dublin established text', () => {
     render(<Hero />);
-    expect(screen.getByText(/Dublin/)).toBeInTheDocument();
+    expect(screen.getAllByText(/Dublin & Wicklow/).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Established 1991/).length).toBeGreaterThan(0);
   });
 });
