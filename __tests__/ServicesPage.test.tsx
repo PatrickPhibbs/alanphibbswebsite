@@ -9,9 +9,9 @@ describe('ServicesPage', () => {
 
   it('renders key services', () => {
     render(<ServicesPage />);
-    expect(screen.getByText('Restoration & Conservation')).toBeInTheDocument();
-    expect(screen.getByText('Garden & Landscaping')).toBeInTheDocument();
-    expect(screen.getByText('Office Fit Out & Refurbishments')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Restoration & Conservation' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Garden & Landscaping' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Office Fit Out & Refurbishments' })).toBeInTheDocument();
   });
 
   it('renders CTA section', () => {

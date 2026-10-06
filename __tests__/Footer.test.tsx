@@ -37,7 +37,7 @@ describe('Footer', () => {
   it('renders copyright with current year', () => {
     render(<Footer />);
     const year = new Date().getFullYear().toString();
-    expect(screen.getByText(new RegExp(`© ${year} Alan Phibbs Construction`))).toBeInTheDocument();
+    expect(screen.getByText(new RegExp(`© ${year} AP General Contractors Ltd`))).toBeInTheDocument();
   });
 
   it('renders a Jobs link in navigation', () => {

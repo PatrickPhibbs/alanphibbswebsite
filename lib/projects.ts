@@ -14,103 +14,97 @@ export interface Project {
   images: string[];
 }
 
-function imgs(folder: string, count: number): string[] {
-  return Array.from({ length: count }, (_, i) =>
-    `/images/projects/${folder}/${String(i + 1).padStart(2, '0')}.jpg`
-  );
+// Images are listed in display order: the first is the cover, finished work comes before
+// in-progress shots. Near-duplicates and photos that read as mess rather than craft are left out.
+function imgs(folder: string, order: number[]): string[] {
+  return order.map((n) => `/images/projects/${folder}/${String(n).padStart(2, '0')}.jpg`);
+}
+
+function project(p: Omit<Project, 'coverImage'>): Project {
+  return { ...p, coverImage: p.images[0] };
 }
 
 export const projects: Project[] = [
-  {
-    id: '07-garden-landscaping',
-    title: 'Garden Renovation',
-    category: 'Renovation',
-    description:
-      'Rear garden transformation featuring timber slatted fencing, granite paving, composite decking, and rendered boundary walls.',
-    coverImage: '/images/projects/07-garden-landscaping/01.jpg',
-    images: imgs('07-garden-landscaping', 5),
-  },
-  {
+  project({
     id: '10-victorian-building-restoration',
     title: 'Victorian Building Restoration',
     category: 'Restoration',
     description:
       'Facade restoration of a protected Victorian building including exterior repainting, ornamental stonework repair, and corbel restoration.',
-    coverImage: '/images/projects/10-victorian-building-restoration/02.jpg',
-    images: imgs('10-victorian-building-restoration', 16),
-  },
-  {
+    images: imgs('10-victorian-building-restoration', [2, 3, 4, 10, 15, 12, 13, 9, 16, 14, 5, 6, 7, 11, 1]),
+  }),
+  project({
     id: '01-office-fitout',
     title: 'Office Fit-Out',
     category: 'Fit-Out',
     description:
       'A modern basement office transformation featuring dark slatted timber panelling, a dedicated conference room, and bespoke workstations.',
-    coverImage: '/images/projects/01-office-fitout/03.jpg',
-    images: imgs('01-office-fitout', 8),
-  },
-  {
+    images: imgs('01-office-fitout', [1, 3, 6, 7, 4, 2]),
+  }),
+  project({
     id: '09-apartment-fitout',
     title: 'Apartment Fit-Out',
     category: 'Fit-Out',
     description:
       'Contemporary apartment fit-out with a sleek white kitchen, vertically tiled bathrooms, built-in bookshelving, and floating timber shelves throughout.',
-    coverImage: '/images/projects/09-apartment-fitout/01.jpg',
-    images: imgs('09-apartment-fitout', 10),
-  },
-  {
-    id: '06-period-house-interior',
-    title: 'Period House Interior',
-    category: 'Period Property',
-    description:
-      'Sensitive interior renovation of a Victorian terraced house, including restoration of original pine floors and a full bathroom installation.',
-    coverImage: '/images/services/painting-interior.jpg',
-    images: imgs('06-period-house-interior', 4),
-  },
-  {
+    images: imgs('09-apartment-fitout', [1, 4, 5, 3, 6, 7, 2, 8, 10]),
+  }),
+  project({
     id: '04-country-house-renovation',
     title: 'Country House Renovation',
     category: 'Renovation',
     description:
       'Full renovation of a large rural period property: groundworks, Unilin insulation, liquid screed, flat roof with skylights, and a finished kitchen with terrazzo flooring.',
-    coverImage: '/images/services/country-house-kitchen.jpg',
-    images: imgs('04-country-house-renovation', 19),
-  },
-  {
+    images: imgs('04-country-house-renovation', [13, 14, 10, 8, 9, 7, 15, 5, 2, 3, 4, 18, 16, 17, 19, 11, 12, 1]),
+  }),
+  project({
+    id: '07-garden-landscaping',
+    title: 'Garden Renovation',
+    category: 'Renovation',
+    description:
+      'Rear garden transformation featuring timber slatted fencing, granite paving, composite decking, and rendered boundary walls.',
+    images: imgs('07-garden-landscaping', [4, 5, 1]),
+  }),
+  project({
+    id: '06-period-house-interior',
+    title: 'Period House Interior',
+    category: 'Period Property',
+    description:
+      'Sensitive interior renovation of a Victorian terraced house, including restoration of original pine floors and a full bathroom installation.',
+    images: imgs('06-period-house-interior', [2, 1, 3]),
+  }),
+  project({
     id: '02-commercial-fitout',
     title: 'Bar & Restaurant Fit-Out',
     category: 'Fit-Out',
     description:
       'Urban commercial build-out featuring a curved oak bar counter, structural steel frame, and full street-facing glazing, from shell and core to finished venue.',
-    coverImage: '/images/projects/02-commercial-fitout/09.jpg',
-    images: imgs('02-commercial-fitout', 12),
-  },
-  {
+    images: imgs('02-commercial-fitout', [4, 3, 10, 1, 9, 8, 5, 6, 7, 11, 12]),
+  }),
+  project({
     id: '03-new-build-extension',
     title: 'Timber Frame New Build',
     category: 'Extension',
     description:
       'Timber frame construction from foundations up, including Rockwool insulation, breather membrane, drylining, and high-quality plastering throughout.',
-    coverImage: '/images/projects/03-new-build-extension/01.jpg',
-    images: imgs('03-new-build-extension', 9),
-  },
-  {
+    images: imgs('03-new-build-extension', [7, 8, 3, 9, 4, 6, 1, 2]),
+  }),
+  project({
     id: '05-commercial-kitchen',
     title: 'Commercial Kitchen',
     category: 'Fit-Out',
     description:
       'Professional commercial kitchen installation featuring navy cabinetry, white countertops, built-in appliances, and a suspended ceiling system.',
-    coverImage: '/images/projects/05-commercial-kitchen/01.jpg',
-    images: imgs('05-commercial-kitchen', 3),
-  },
-  {
+    images: imgs('05-commercial-kitchen', [1, 2]),
+  }),
+  project({
     id: '08-crossguns-snooker-club',
     title: 'Commercial Building Restoration',
     category: 'Restoration',
     description:
       'External restoration of a commercial building including full exterior repaint and professional graffiti removal.',
-    coverImage: '/images/projects/08-crossguns-snooker-club/01.jpg',
-    images: imgs('08-crossguns-snooker-club', 4),
-  },
+    images: imgs('08-crossguns-snooker-club', [2, 3, 4, 1]),
+  }),
 ];
 
 export const categories = [

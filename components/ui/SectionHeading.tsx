@@ -3,6 +3,7 @@ interface SectionHeadingProps {
   subtitle?: string;
   light?: boolean;
   centered?: boolean;
+  className?: string;
 }
 
 export default function SectionHeading({
@@ -10,22 +11,24 @@ export default function SectionHeading({
   subtitle,
   light = false,
   centered = false,
+  className = 'mb-10 md:mb-12',
 }: SectionHeadingProps) {
   return (
-    <div className={`mb-8 md:mb-10 ${centered ? 'text-center' : ''}`}>
+    <div className={`${className} ${centered ? 'text-center' : ''}`}>
       {subtitle && (
         <p
-          className={`text-[11px] uppercase tracking-[0.22em] font-light mb-3 ${
-            light ? 'text-warm-200/70' : 'text-stone-400'
+          className={`inline-flex items-center gap-3 text-[11px] md:text-xs font-semibold uppercase tracking-[0.2em] mb-4 ${
+            light ? 'text-accent' : 'text-accent-strong'
           }`}
         >
+          <span aria-hidden className="h-px w-8 bg-current" />
           {subtitle}
         </p>
       )}
       <h2
-        className={`font-heading text-3xl md:text-[2.65rem] font-light leading-[1.12] ${
-          light ? 'text-warm-50' : 'text-charcoal-900'
-        }`}
+        className={`font-heading text-[2rem] sm:text-4xl md:text-5xl font-bold leading-[1.05] tracking-[-0.025em] max-w-3xl ${
+          centered ? 'mx-auto' : ''
+        } ${light ? 'text-white' : 'text-ink'}`}
       >
         {children}
       </h2>

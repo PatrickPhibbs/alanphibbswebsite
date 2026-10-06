@@ -15,9 +15,9 @@ export default function ThemeToggle({ className = '' }: ThemeToggleProps) {
       type="button"
       onClick={toggleTheme}
       aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-      className={`p-1.5 text-charcoal-700 dark:text-warm-300 hover:text-charcoal-900 dark:hover:text-warm-50 transition-colors cursor-pointer ${className}`}
+      className={`p-2 text-ink hover:text-accent transition-colors cursor-pointer ${className}`}
     >
-      {theme === 'dark' ? <Sun size={18} strokeWidth={1.5} /> : <Moon size={18} strokeWidth={1.5} />}
+      {theme === 'dark' ? <Sun size={18} strokeWidth={1.75} /> : <Moon size={18} strokeWidth={1.75} />}
     </button>
   );
 }

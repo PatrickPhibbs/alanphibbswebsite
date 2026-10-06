@@ -64,7 +64,7 @@ export const services: Service[] = [
       'Underfloor heating installation',
       'Bathroom and kitchen plumbing first and second fix',
     ],
-    image: '/images/services/electrical-plumbing.jpg',
+    image: '/images/services/bathroom-fitout.jpg',
   },
   {
     id: '5',
@@ -78,7 +78,7 @@ export const services: Service[] = [
       'Chimney stacks, stone walls, and pointing',
       'Lead flashing and flat roof installation',
     ],
-    image: '/images/services/roof-chimney-after.jpg',
+    image: '/images/services/groundworks-after.jpg',
     beforeImage: '/images/services/groundworks-before.jpg',
   },
   {

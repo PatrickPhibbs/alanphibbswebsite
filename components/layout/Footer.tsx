@@ -1,7 +1,8 @@
 import Link from 'next/link';
-import Image from 'next/image';
-import { Facebook, Linkedin } from 'lucide-react';
+import { Facebook, Linkedin, Phone, Mail } from 'lucide-react';
 import PageContainer from '@/components/ui/PageContainer';
+import Logo from '@/components/ui/Logo';
+import { site } from '@/lib/site';
 
 const quickLinks = [
   { href: '/', label: 'Home' },
@@ -21,39 +22,28 @@ const services = [
   'Garden & External Works',
 ];
 
+const columnHeading = 'text-[11px] font-bold uppercase tracking-[0.18em] text-accent mb-5';
+const linkClass = 'text-white/70 text-[15px] hover:text-white transition-colors';
+
 export default function Footer() {
   return (
-    <footer className="bg-charcoal-900 text-warm-100">
+    <footer className="bg-night text-white pb-16 md:pb-0">
       <PageContainer className="pt-14 pb-10">
-        <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1fr] gap-12 md:gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1.3fr_1.3fr] gap-12 lg:gap-10">
           <div>
-            <Link href="/" className="mb-6 inline-block">
-              <Image
-                src="/logo-removebg-preview.png"
-                alt="Alan Phibbs Construction"
-                height={36}
-                width={152}
-                className="brightness-0 invert dark:brightness-100 dark:invert-0 opacity-90"
-                style={{ objectFit: 'contain' }}
-              />
-            </Link>
-            <p className="text-warm-300/80 text-sm leading-relaxed max-w-xs font-light">
+            <Logo light className="mb-6" />
+            <p className="text-white/60 text-[15px] leading-relaxed max-w-sm">
               Based in Kilquade, Co. Wicklow. Residential renovations, restorations and fit-outs
               across Wicklow and Dublin, with over 35 years in the trade.
             </p>
           </div>
 
           <div>
-            <h3 className="text-[10px] font-light uppercase tracking-[0.22em] text-warm-400/60 mb-5">
-              Navigation
-            </h3>
-            <ul className="space-y-2.5">
+            <h3 className={columnHeading}>Navigation</h3>
+            <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-warm-200/70 text-sm font-light hover:text-warm-50 transition-colors"
-                  >
+                  <Link href={link.href} className={linkClass}>
                     {link.label}
                   </Link>
                 </li>
@@ -62,16 +52,11 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-[10px] font-light uppercase tracking-[0.22em] text-warm-400/60 mb-5">
-              Services
-            </h3>
-            <ul className="space-y-2.5">
+            <h3 className={columnHeading}>Services</h3>
+            <ul className="space-y-3">
               {services.map((service) => (
                 <li key={service}>
-                  <Link
-                    href="/services"
-                    className="text-warm-200/70 text-sm font-light hover:text-warm-50 transition-colors"
-                  >
+                  <Link href="/services" className={linkClass}>
                     {service}
                   </Link>
                 </li>
@@ -80,45 +65,42 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-[10px] font-light uppercase tracking-[0.22em] text-warm-400/60 mb-5">
-              Contact
-            </h3>
-            <ul className="space-y-2.5 text-warm-200/70 text-sm font-light">
+            <h3 className={columnHeading}>Contact</h3>
+            <ul className="space-y-3 text-[15px]">
               <li>
-                <a href="tel:+353892204082" className="hover:text-warm-50 transition-colors">
-                  +353 89 220 4082
+                <a href={site.phoneHref} className={`${linkClass} inline-flex items-center gap-2`}>
+                  <Phone size={14} aria-hidden className="text-accent" />
+                  {site.phone}
                 </a>
               </li>
               <li>
-                <a
-                  href="mailto:alanphibbs@alanphibbs.ie"
-                  className="hover:text-warm-50 transition-colors"
-                >
-                  alanphibbs@alanphibbs.ie
+                <a href={site.emailHref} className={`${linkClass} inline-flex items-center gap-2 break-all`}>
+                  <Mail size={14} aria-hidden className="text-accent shrink-0" />
+                  {site.email}
                 </a>
               </li>
-              <li className="text-warm-400/70 text-xs pt-1">
-                Dublin & Wicklow
+              <li className="text-white/50 text-sm pt-2 leading-relaxed">
+                {site.area}
                 <br />
-                Mon–Fri 8am–6pm · Sat 9am–1pm
+                {site.hours}
               </li>
             </ul>
           </div>
         </div>
       </PageContainer>
 
-      <div className="border-t border-warm-50/8">
-        <PageContainer className="py-4 flex flex-col md:flex-row justify-between items-center text-warm-400/50 text-xs font-light gap-4">
-          <span>© {new Date().getFullYear()} Alan Phibbs Construction</span>
+      <div className="border-t border-night-line">
+        <PageContainer className="py-5 flex flex-col md:flex-row justify-between items-center text-white/45 text-xs gap-4">
+          <span>© {new Date().getFullYear()} {site.name}</span>
           <div className="flex items-center gap-5">
             <a
               href="https://www.facebook.com/profile.php?id=61579554132431"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook"
-              className="flex items-center gap-1.5 hover:text-warm-200 transition-colors"
+              className="flex items-center gap-1.5 hover:text-white transition-colors"
             >
-              <Facebook size={14} strokeWidth={1.5} />
+              <Facebook size={14} strokeWidth={1.75} />
               <span>Facebook</span>
             </a>
             <a
@@ -126,9 +108,9 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="flex items-center gap-1.5 hover:text-warm-200 transition-colors"
+              className="flex items-center gap-1.5 hover:text-white transition-colors"
             >
-              <Linkedin size={14} strokeWidth={1.5} />
+              <Linkedin size={14} strokeWidth={1.75} />
               <span>LinkedIn</span>
             </a>
           </div>

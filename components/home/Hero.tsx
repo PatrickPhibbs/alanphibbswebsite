@@ -1,113 +1,138 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import { ShieldCheck, MapPin, CalendarCheck } from 'lucide-react';
 import Button from '@/components/ui/Button';
 import PageContainer from '@/components/ui/PageContainer';
 
-function HeroVideo({ src, poster }: { src: string; poster?: string }) {
-  const ref = useRef<HTMLVideoElement>(null);
+const clips = [
+  { src: '/videos/video1.mp4', poster: '/images/hero/video1-poster.jpg' },
+  { src: '/videos/video2.mp4', poster: '/images/hero/video2-poster.jpg' },
+];
+
+const trust = [
+  { icon: CalendarCheck, label: 'Established 1991' },
+  { icon: ShieldCheck, label: 'Fully insured' },
+  { icon: MapPin, label: 'Dublin & Wicklow' },
+];
+
+/** Plays the clips back to back, cross-fading between them. */
+function HeroReel() {
+  const refs = useRef<(HTMLVideoElement | null)[]>([]);
+  const [active, setActive] = useState(0);
 
   useEffect(() => {
-    const video = ref.current;
-    if (!video) return;
-    const handleEnded = () => {
-      setTimeout(() => {
-        video.currentTime = 0;
-        video.play();
-      }, 5000);
-    };
-    video.addEventListener('ended', handleEnded);
-    return () => video.removeEventListener('ended', handleEnded);
-  }, []);
+    const current = refs.current[active];
+    if (!current) return;
+    current.currentTime = 0;
+    // play() rejects when autoplay is blocked; the poster frame stays visible instead.
+    current.play()?.catch(() => {});
+    const next = () => setActive((i) => (i + 1) % clips.length);
+    current.addEventListener('ended', next);
+    return () => current.removeEventListener('ended', next);
+  }, [active]);
 
   return (
-    <video
-      ref={ref}
-      src={src}
-      poster={poster}
-      autoPlay
-      muted
-      playsInline
-      className="absolute inset-0 w-full h-full object-cover"
-    />
+    <div className="absolute inset-0">
+      {clips.map((clip, i) => (
+        <video
+          key={clip.src}
+          ref={(el) => {
+            refs.current[i] = el;
+          }}
+          src={clip.src}
+          poster={clip.poster}
+          muted
+          playsInline
+          preload={i === 0 ? 'auto' : 'metadata'}
+          autoPlay={i === 0}
+          aria-hidden
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${
+            i === active ? 'opacity-100' : 'opacity-0'
+          }`}
+        />
+      ))}
+    </div>
   );
 }
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[88vh] md:min-h-screen flex items-end overflow-hidden">
-      <div className="absolute inset-0 flex">
-        <div className="relative w-1/2 h-full overflow-hidden">
-          <HeroVideo
-            src="/videos/video1.mp4"
-            poster="/images/projects/04-country-house-renovation/01.jpg"
-          />
-        </div>
-        <div className="relative w-1/2 h-full overflow-hidden">
-          <HeroVideo
-            src="/videos/video2.mp4"
-            poster="/images/projects/01-office-fitout/01.jpg"
-          />
-        </div>
-      </div>
+    <section className="relative flex min-h-[92svh] md:min-h-screen items-end overflow-hidden bg-night">
+      <HeroReel />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/25" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent" />
 
-      <div className="absolute inset-0 bg-gradient-to-t from-black/88 via-black/40 to-black/15" />
+      <div className="relative z-10 w-full">
+        <PageContainer className="pt-36 pb-10 md:pb-14">
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="inline-flex items-center gap-3 text-[11px] md:text-xs font-semibold uppercase tracking-[0.22em] text-accent mb-6"
+          >
+            <span aria-hidden className="h-px w-10 bg-accent" />
+            Dublin & Wicklow · Established 1991
+          </motion.p>
 
-      <PageContainer className="relative z-10 pb-12 md:pb-16 pt-28">
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="text-[11px] uppercase tracking-[0.24em] text-white/80 font-light mb-4"
-        >
-          Dublin & Wicklow · Established 1991
-        </motion.p>
+          <motion.h1
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="font-heading font-extrabold text-white text-[2.6rem] leading-[1.02] sm:text-6xl md:text-7xl lg:text-[5.5rem] tracking-[-0.035em] max-w-5xl mb-6"
+          >
+            Renovations, restorations and fit-outs finished with care.
+          </motion.h1>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="font-heading font-extralight text-white text-[2.35rem] sm:text-5xl md:text-6xl lg:text-[4.5rem] leading-[1.06] max-w-5xl mb-4"
-        >
-          Renovations, restorations and fit-outs finished with care.
-        </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.35 }}
+            className="text-white/85 text-base md:text-xl leading-relaxed max-w-2xl mb-9"
+          >
+            Alan Phibbs delivers residential and commercial construction work across Dublin and
+            Wicklow, with a focus on careful planning, reliable delivery and a high-quality finish.
+          </motion.p>
 
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.35 }}
-          className="text-white/80 text-base md:text-lg font-light leading-relaxed max-w-2xl mb-7"
-        >
-          Alan Phibbs delivers residential and commercial construction work across Dublin and
-          Wicklow, with a focus on careful planning, reliable delivery and a high-quality finish.
-        </motion.p>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="flex flex-col sm:flex-row sm:items-center gap-3"
+          >
+            <Button href="/contact" arrow>
+              Discuss a Project
+            </Button>
+            <Button href="/projects" variant="outline-light">
+              View Recent Work
+            </Button>
+          </motion.div>
+        </PageContainer>
 
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.7, delay: 0.5 }}
-          className="flex flex-wrap items-center gap-3 md:gap-4"
+          transition={{ duration: 0.6, delay: 0.7 }}
+          className="border-t border-white/15 bg-black/35 backdrop-blur-sm"
         >
-          <Button href="/contact">Discuss a Project</Button>
-          <Button
-            href="/projects"
-            variant="outline-light"
-            className="!border-white/50 !text-white hover:!bg-white hover:!text-black hover:!border-white"
-          >
-            View Recent Work
-          </Button>
+          <PageContainer>
+            <ul className="grid grid-cols-3 divide-x divide-white/15">
+              {trust.map((item) => (
+                <li
+                  key={item.label}
+                  className="flex flex-col sm:flex-row items-center sm:items-center justify-center sm:justify-start gap-2 sm:gap-3 py-4 md:py-5 px-2 sm:px-6 first:pl-0 text-center sm:text-left"
+                >
+                  <item.icon size={20} strokeWidth={1.75} aria-hidden className="text-accent shrink-0" />
+                  <span className="text-[10px] sm:text-xs md:text-sm font-semibold uppercase tracking-[0.12em] text-white">
+                    {item.label}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </PageContainer>
         </motion.div>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.7, delay: 0.65 }}
-          className="mt-7 text-[11px] uppercase tracking-[0.2em] text-white/55 font-light"
-        >
-          Established 1991 · Fully insured · Dublin & Wicklow
-        </motion.p>
-      </PageContainer>
+      </div>
     </section>
   );
 }

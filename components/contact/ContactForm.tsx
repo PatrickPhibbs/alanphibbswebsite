@@ -29,13 +29,12 @@ export default function ContactForm() {
   };
 
   const inputClass =
-    'w-full px-4 py-3.5 border border-warm-300 focus:outline-none focus:ring-1 focus:ring-charcoal-800 bg-warm-50 text-charcoal-900 text-sm font-light';
-  const labelClass =
-    'block text-[10px] font-light uppercase tracking-[0.15em] text-stone-400 mb-1.5';
+    'w-full px-4 py-3.5 border border-line bg-paper-2 text-ink text-base placeholder:text-subtle transition-colors focus:outline-none focus:border-accent focus:bg-paper focus:ring-2 focus:ring-accent/25';
+  const labelClass = 'block text-[11px] font-semibold uppercase tracking-[0.14em] text-muted mb-2';
 
   return (
-    <form aria-label="Contact form" onSubmit={handleSubmit} className="space-y-6">
-      <div>
+    <form aria-label="Contact form" onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-6">
+      <div className="sm:col-span-2">
         <label htmlFor="name" className={labelClass}>
           Name
         </label>
@@ -56,7 +55,7 @@ export default function ContactForm() {
         <input type="tel" id="phone" name="phone" className={inputClass} />
       </div>
 
-      <div>
+      <div className="sm:col-span-2">
         <label htmlFor="service" className={labelClass}>
           Service required
         </label>
@@ -72,7 +71,7 @@ export default function ContactForm() {
         </select>
       </div>
 
-      <div>
+      <div className="sm:col-span-2">
         <label htmlFor="message" className={labelClass}>
           Message
         </label>
@@ -85,17 +84,19 @@ export default function ContactForm() {
         />
       </div>
 
-      <Button type="submit" disabled={status === 'sending'}>
-        {status === 'sending' ? 'Sending...' : 'Send message'}
-      </Button>
+      <div className="sm:col-span-2">
+        <Button type="submit" disabled={status === 'sending'} arrow className="w-full sm:w-auto">
+          {status === 'sending' ? 'Sending...' : 'Send message'}
+        </Button>
+      </div>
 
       {status === 'success' && (
-        <p className="text-charcoal-700 font-light text-sm">
+        <p role="status" className="sm:col-span-2 border-l-4 border-accent bg-paper-2 px-4 py-3 text-ink text-sm">
           Thank you. Your message has been sent. We will be in touch shortly.
         </p>
       )}
       {status === 'error' && (
-        <p className="text-charcoal-800 font-light text-sm">
+        <p role="alert" className="sm:col-span-2 border-l-4 border-red-600 bg-paper-2 px-4 py-3 text-ink text-sm">
           Something went wrong. Please try again or call us directly.
         </p>
       )}

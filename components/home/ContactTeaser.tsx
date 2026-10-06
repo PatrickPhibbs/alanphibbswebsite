@@ -5,50 +5,59 @@ import AnimateOnScroll from '@/components/ui/AnimateOnScroll';
 import SectionHeading from '@/components/ui/SectionHeading';
 import Button from '@/components/ui/Button';
 import PageContainer from '@/components/ui/PageContainer';
+import { site } from '@/lib/site';
 
 const details = [
-  { icon: Phone, label: 'Phone', value: '+353 89 220 4082', href: 'tel:+353892204082' },
-  { icon: Mail, label: 'Email', value: 'alanphibbs@alanphibbs.ie', href: 'mailto:alanphibbs@alanphibbs.ie' },
-  { icon: MapPin, label: 'Area served', value: 'Dublin & Wicklow' },
-  { icon: Clock, label: 'Hours', value: 'Mon–Fri 8am–6pm · Sat 9am–1pm' },
+  { icon: Phone, label: 'Phone', value: site.phone, href: site.phoneHref },
+  { icon: Mail, label: 'Email', value: site.email, href: site.emailHref },
+  { icon: MapPin, label: 'Area served', value: site.area },
+  { icon: Clock, label: 'Hours', value: site.hours },
 ];
 
 export default function ContactTeaser() {
   return (
-    <section className="border-t border-warm-300/60 bg-warm-100">
-      <PageContainer className="py-14 md:py-16">
+    <section className="bg-paper-2 border-t border-line">
+      <PageContainer className="py-20 md:py-28">
         <AnimateOnScroll>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
             <div>
-              <SectionHeading subtitle="Get in touch">Tell us about your project.</SectionHeading>
-              <p className="text-charcoal-600 font-light leading-relaxed -mt-4 mb-8 max-w-md">
+              <SectionHeading subtitle="Get in touch" className="mb-6">
+                Tell us about your project.
+              </SectionHeading>
+              <p className="text-muted text-base md:text-lg leading-relaxed mb-9 max-w-lg">
                 Whether you are planning a renovation, extension or fit-out, we are happy to visit,
                 discuss the scope and give practical advice before work begins.
               </p>
-              <Button href="/contact">Discuss a Project</Button>
+              <Button href="/contact" arrow>
+                Discuss a Project
+              </Button>
             </div>
 
-            <ul className="divide-y divide-warm-300 border border-warm-300/60 bg-warm-50">
-              {details.map((item) => (
-                <li key={item.label} className="flex items-start gap-4 px-6 py-5">
-                  <item.icon size={16} strokeWidth={1.5} className="text-stone-400 mt-0.5 shrink-0" />
-                  <div>
-                    <span className="text-[10px] uppercase tracking-[0.18em] text-stone-400 font-light block mb-1">
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-line border border-line">
+              {details.map((item) => {
+                const inner = (
+                  <>
+                    <span className="flex h-11 w-11 items-center justify-center bg-night text-accent mb-5">
+                      <item.icon size={18} strokeWidth={1.75} aria-hidden />
+                    </span>
+                    <span className="block text-[11px] font-semibold uppercase tracking-[0.16em] text-subtle mb-1.5">
                       {item.label}
                     </span>
+                    <span className="block text-ink font-semibold break-words">{item.value}</span>
+                  </>
+                );
+                return (
+                  <li key={item.label} className="bg-paper">
                     {item.href ? (
-                      <a
-                        href={item.href}
-                        className="text-charcoal-800 font-light hover:text-charcoal-600 transition-colors"
-                      >
-                        {item.value}
+                      <a href={item.href} className="block h-full p-6 md:p-7 transition-colors hover:bg-paper-3">
+                        {inner}
                       </a>
                     ) : (
-                      <span className="text-charcoal-800 font-light">{item.value}</span>
+                      <div className="h-full p-6 md:p-7">{inner}</div>
                     )}
-                  </div>
-                </li>
-              ))}
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </AnimateOnScroll>

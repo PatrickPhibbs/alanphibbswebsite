@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { projects } from '@/lib/projects';
 import type { Project } from '@/lib/projects';
@@ -16,6 +16,23 @@ export default function ProjectGrid() {
 
   const filtered = filter === 'All' ? projects : projects.filter((p) => p.category === filter);
 
+  // Deep links from the home page (/projects#<id>) open that project's gallery.
+  useEffect(() => {
+    const openFromHash = () => {
+      const match = projects.find((p) => p.id === window.location.hash.slice(1));
+      if (match) {
+        setActiveProject(match);
+        setLightboxIndex(0);
+      }
+    };
+    const frame = requestAnimationFrame(openFromHash);
+    window.addEventListener('hashchange', openFromHash);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener('hashchange', openFromHash);
+    };
+  }, []);
+
   function openGallery(project: Project) {
     setActiveProject(project);
     setLightboxIndex(0);
@@ -25,15 +42,15 @@ export default function ProjectGrid() {
     <div>
       <ProjectFilter active={filter} onFilter={setFilter} />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
         <AnimatePresence mode="popLayout">
           {filtered.map((project) => (
             <motion.div
               key={project.id}
               layout
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.97 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
+              exit={{ opacity: 0, scale: 0.97 }}
               transition={{ duration: 0.3 }}
             >
               <ProjectCard

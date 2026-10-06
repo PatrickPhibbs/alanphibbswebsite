@@ -17,7 +17,7 @@ function renderNavbar() {
 describe('Navbar', () => {
   it('renders the logo image', () => {
     renderNavbar();
-    expect(screen.getByRole('img', { name: /alan phibbs construction/i })).toBeInTheDocument();
+    expect(screen.getByRole('img', { name: /ap general contractors ltd/i })).toBeInTheDocument();
   });
 
   it('renders navigation links', () => {

@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import PageHero from '@/components/ui/PageHero';
+import Button from '@/components/ui/Button';
 import AnimateOnScroll from '@/components/ui/AnimateOnScroll';
 import SectionHeading from '@/components/ui/SectionHeading';
 import FaqSection from '@/components/ui/FaqSection';
@@ -21,13 +23,13 @@ const faqs = [
 ];
 
 export const metadata: Metadata = {
-  title: 'About Us | Alan Phibbs Construction',
+  title: 'About Us | AP General Contractors Ltd',
   description:
-    'Learn about Alan Phibbs Construction, based in Co. Wicklow, with over 35 years of experience in residential construction, renovations, and fit-outs across Wicklow and Dublin.',
+    'Learn about AP General Contractors Ltd, based in Co. Wicklow, with over 35 years of experience in residential construction, renovations, and fit-outs across Wicklow and Dublin.',
   openGraph: {
-    title: 'About Us | Alan Phibbs Construction',
+    title: 'About Us | AP General Contractors Ltd',
     description: 'Co. Wicklow builders with over 35 years of experience.',
-    siteName: 'Alan Phibbs Construction',
+    siteName: 'AP General Contractors Ltd',
   },
 };
 
@@ -56,80 +58,70 @@ const features = [
 export default function AboutPage() {
   return (
     <>
-      <section className="relative h-[38vh] flex items-end mt-20">
-        <Image
-          src="/images/projects/10-victorian-building-restoration/02.jpg"
-          alt="About Alan Phibbs Construction"
-          fill
-          priority
-          className="object-cover object-top"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-black/60" />
-        <PageContainer className="relative z-10 pb-10 w-full">
-          <h1 className="font-heading text-4xl md:text-6xl font-extralight text-white">About us</h1>
-          <p className="mt-3 text-white/70 text-[11px] uppercase tracking-[0.2em] font-light">
-            Over 35 years in the trade across Wicklow and Dublin
-          </p>
-        </PageContainer>
-      </section>
+      <PageHero
+        title="About us"
+        subtitle="Over 35 years in the trade across Wicklow and Dublin"
+        image="/images/projects/10-victorian-building-restoration/02.jpg"
+        alt="Restored Victorian facade"
+        imagePosition="object-[center_30%]"
+      />
 
       <section>
-        <PageContainer className="pt-14 pb-10">
-        <AnimateOnScroll>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
-            <div className="aspect-[4/3] relative overflow-hidden bg-warm-200">
-              <Image
-                src="/images/projects/07-garden-landscaping/01.jpg"
-                alt="Alan Phibbs Construction completed project"
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover"
-                loading="lazy"
-              />
+        <PageContainer className="py-20 md:py-28">
+          <AnimateOnScroll>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+              <div className="relative aspect-[4/3] overflow-hidden bg-paper-3">
+                <Image
+                  src="/images/projects/03-new-build-extension/07.jpg"
+                  alt="Timber frame structure on site"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover"
+                />
+              </div>
+              <div>
+                <SectionHeading subtitle="Since 1987" className="mb-6">
+                  Our story
+                </SectionHeading>
+                <p className="text-muted text-base md:text-lg leading-relaxed mb-5">
+                  Alan Phibbs has been in construction since 1987, starting out as a carpenter in London
+                  before setting up his own firms on both sides of the Irish Sea. He ran Clean Cut
+                  Carpentry in Dublin through the early nineties, then co-founded Phibbs Carpentry
+                  Contractors, which handled large-scale residential work for developers including
+                  Durkans New Homes and Botes Construction. He spent several years in London taking on
+                  listed building restorations and commercial fit-outs before returning home to Ireland.
+                </p>
+                <p className="text-muted text-base md:text-lg leading-relaxed">
+                  Today, based in Kilquade, Co. Wicklow, Alan works on{' '}
+                  <a
+                    href="/services"
+                    className="text-ink font-semibold underline decoration-accent decoration-2 underline-offset-4 hover:text-accent-strong transition-colors"
+                  >
+                    extensions, full renovations, and commercial fit-outs
+                  </a>{' '}
+                  across Wicklow and Dublin. He manages every job personally, so the standard stays
+                  consistent and clients always know who they are talking to.
+                </p>
+              </div>
             </div>
-            <div className="pt-2">
-              <h2 className="font-heading text-3xl md:text-4xl font-light text-charcoal-900 mb-6">
-                Our story
-              </h2>
-              <p className="text-charcoal-600 leading-relaxed mb-4 text-sm font-light">
-                Alan Phibbs has been in construction since 1987, starting out as a carpenter in London
-                before setting up his own firms on both sides of the Irish Sea. He ran Clean Cut
-                Carpentry in Dublin through the early nineties, then co-founded Phibbs Carpentry
-                Contractors, which handled large-scale residential work for developers including
-                Durkans New Homes and Botes Construction. He spent several years in London taking on
-                listed building restorations and commercial fit-outs before returning home to Ireland.
-              </p>
-              <p className="text-charcoal-600 leading-relaxed text-sm font-light">
-                Today, based in Kilquade, Co. Wicklow, Alan works on{' '}
-                <a
-                  href="/services"
-                  className="text-charcoal-900 underline underline-offset-2 hover:text-charcoal-700 transition-colors"
-                >
-                  extensions, full renovations, and commercial fit-outs
-                </a>{' '}
-                across Wicklow and Dublin. He manages every job personally, so the standard stays
-                consistent and clients always know who they are talking to.
-              </p>
-            </div>
-          </div>
-        </AnimateOnScroll>
+          </AnimateOnScroll>
         </PageContainer>
       </section>
 
-      <section className="bg-warm-100 border-y border-warm-300/50 py-20">
-        <PageContainer>
-          <SectionHeading subtitle="What sets us apart">Why choose us</SectionHeading>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-10">
+      <section className="bg-night text-white">
+        <PageContainer className="py-20 md:py-28">
+          <SectionHeading light subtitle="What sets us apart">
+            Why choose us
+          </SectionHeading>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-night-line border border-night-line">
             {features.map((feature, i) => (
-              <AnimateOnScroll key={feature.title} delay={i * 0.08}>
-                <div className="border-l border-charcoal-800/20 pl-6 py-1">
-                  <h3 className="font-heading text-xl font-light text-charcoal-900 mb-2">
-                    {feature.title}
-                  </h3>
-                  <p className="text-charcoal-600 text-sm leading-relaxed font-light">
-                    {feature.description}
-                  </p>
+              <AnimateOnScroll key={feature.title} delay={i * 0.06} className="bg-night">
+                <div className="h-full p-7 md:p-8">
+                  <span className="block font-heading text-sm font-bold text-accent tabular-nums mb-8">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <h3 className="font-heading text-xl md:text-2xl font-bold text-white mb-3">{feature.title}</h3>
+                  <p className="text-white/65 text-[15px] leading-relaxed">{feature.description}</p>
                 </div>
               </AnimateOnScroll>
             ))}
@@ -138,6 +130,17 @@ export default function AboutPage() {
       </section>
 
       <FaqSection faqs={faqs} />
+
+      <section className="border-t border-line">
+        <PageContainer className="py-14 md:py-16 flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <p className="text-muted text-lg max-w-xl">
+            Every project starts with a practical visit and an honest conversation about what is involved.
+          </p>
+          <Button href="/projects" variant="outline" arrow>
+            View Recent Work
+          </Button>
+        </PageContainer>
+      </section>
     </>
   );
 }

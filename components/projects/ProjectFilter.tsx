@@ -9,15 +9,17 @@ interface ProjectFilterProps {
 
 export default function ProjectFilter({ active, onFilter }: ProjectFilterProps) {
   return (
-    <div className="flex flex-wrap gap-2 mb-12">
+    <div role="group" aria-label="Filter projects" className="flex flex-wrap gap-2 mb-10 md:mb-12">
       {categories.map((cat) => (
         <button
           key={cat}
+          type="button"
+          aria-pressed={active === cat}
           onClick={() => onFilter(cat)}
-          className={`px-4 py-2 text-[11px] font-light uppercase tracking-[0.15em] transition-all duration-200 cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-charcoal-800 ${
+          className={`inline-flex items-center gap-2 px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.12em] border transition-colors cursor-pointer ${
             active === cat
-              ? 'bg-charcoal-800 text-warm-50 dark:bg-warm-300 dark:text-charcoal-900'
-              : 'bg-transparent text-charcoal-600 border border-warm-300 hover:border-charcoal-800/30 hover:text-charcoal-900 dark:text-charcoal-600 dark:border-warm-400 dark:hover:border-warm-300 dark:hover:text-charcoal-900'
+              ? 'bg-ink text-paper border-ink'
+              : 'bg-transparent text-muted border-line hover:border-ink hover:text-ink'
           }`}
         >
           {cat}

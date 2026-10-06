@@ -1,13 +1,15 @@
 import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
 
 interface ButtonProps {
   children: React.ReactNode;
-  variant?: 'solid' | 'outline' | 'outline-light';
+  variant?: 'solid' | 'outline' | 'outline-light' | 'dark';
   href?: string;
   onClick?: () => void;
   type?: 'button' | 'submit';
   className?: string;
   disabled?: boolean;
+  arrow?: boolean;
 }
 
 export default function Button({
@@ -18,31 +20,43 @@ export default function Button({
   type = 'button',
   className = '',
   disabled = false,
+  arrow = false,
 }: ButtonProps) {
   const base =
-    'inline-flex items-center justify-center px-7 py-3.5 text-sm font-light tracking-[0.08em] transition-all duration-250 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-charcoal-800';
+    'group inline-flex items-center justify-center gap-2.5 px-6 py-3.5 text-[13px] font-semibold uppercase tracking-[0.1em] transition-colors duration-200 cursor-pointer';
   const variants = {
-    solid:
-      'bg-charcoal-800 text-warm-50 hover:bg-charcoal-900 dark:bg-warm-300 dark:text-charcoal-900 dark:hover:bg-warm-400',
-    outline:
-      'border border-charcoal-800/25 text-charcoal-800 bg-transparent hover:bg-charcoal-800 hover:text-warm-50 hover:border-charcoal-800 dark:border-warm-400 dark:text-charcoal-900 dark:hover:bg-warm-200 dark:hover:text-charcoal-900 dark:hover:border-warm-300',
-    'outline-light':
-      'border border-warm-50/50 text-warm-50 bg-transparent hover:bg-warm-50 hover:text-charcoal-900 hover:border-warm-50',
+    solid: 'bg-accent text-on-accent hover:bg-accent-strong',
+    dark: 'bg-ink text-paper hover:bg-ink-soft',
+    outline: 'border border-ink/25 text-ink hover:border-ink hover:bg-ink hover:text-paper',
+    'outline-light': 'border border-white/45 text-white hover:bg-white hover:text-night hover:border-white',
   };
 
   const classes = `${base} ${variants[variant]} ${disabled ? 'opacity-50 pointer-events-none' : ''} ${className}`;
+  const content = (
+    <>
+      {children}
+      {arrow && (
+        <ArrowRight
+          size={16}
+          strokeWidth={2}
+          aria-hidden
+          className="transition-transform duration-200 group-hover:translate-x-0.5"
+        />
+      )}
+    </>
+  );
 
   if (href) {
     return (
-      <Link href={href} className={classes}>
-        {children}
+      <Link href={href} onClick={onClick} className={classes}>
+        {content}
       </Link>
     );
   }
 
   return (
     <button type={type} onClick={onClick} className={classes} disabled={disabled}>
-      {children}
+      {content}
     </button>
   );
 }

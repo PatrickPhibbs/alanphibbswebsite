@@ -1,19 +1,19 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
-import { MapPin, Clock, ChevronRight } from 'lucide-react';
+import PageHero from '@/components/ui/PageHero';
+import { MapPin, Clock, ArrowRight, Check } from 'lucide-react';
 import Button from '@/components/ui/Button';
 import SectionHeading from '@/components/ui/SectionHeading';
 import AnimateOnScroll from '@/components/ui/AnimateOnScroll';
 import PageContainer from '@/components/ui/PageContainer';
 
 export const metadata: Metadata = {
-  title: 'Careers | Alan Phibbs Construction',
+  title: 'Careers | AP General Contractors Ltd',
   description:
-    'Join the Alan Phibbs Construction team. We are hiring experienced tradespeople and site staff across Dublin and Wicklow.',
+    'Join the AP General Contractors Ltd team. We are hiring experienced tradespeople and site staff across Dublin and Wicklow.',
   openGraph: {
-    title: 'Careers | Alan Phibbs Construction',
+    title: 'Careers | AP General Contractors Ltd',
     description: 'Join our team. We are hiring experienced tradespeople across Dublin and Wicklow.',
-    siteName: 'Alan Phibbs Construction',
+    siteName: 'AP General Contractors Ltd',
   },
 };
 
@@ -66,103 +66,88 @@ const roles = [
 export default function JobsPage() {
   return (
     <>
-      <section className="relative h-[38vh] flex items-end mt-20">
-        <Image
-          src="/images/projects/03-new-build-extension/01.jpg"
-          alt="Work with Alan Phibbs Construction"
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-black/60" />
-        <PageContainer className="relative z-10 pb-10 w-full">
-          <h1 className="font-heading text-4xl md:text-6xl font-extralight text-white">Careers</h1>
-          <p className="mt-3 text-white/70 text-[11px] uppercase tracking-[0.2em] font-light">
-            Work with us across Dublin and Wicklow
-          </p>
+      <PageHero
+        title="Careers"
+        subtitle="Work with us across Dublin and Wicklow"
+        image="/images/projects/04-country-house-renovation/18.jpg"
+        alt="Site team fitting insulation on a renovation"
+      />
+
+      <section>
+        <PageContainer className="py-16 md:py-24">
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] lg:gap-20">
+            <AnimateOnScroll className="lg:sticky lg:top-28 lg:self-start">
+              <SectionHeading subtitle="Current openings" className="mb-6">
+                Join our team
+              </SectionHeading>
+              <p className="text-muted text-base md:text-lg leading-relaxed">
+                AP General Contractors Ltd has been building across Dublin and Wicklow since 1991. We take
+                pride in our work, our team, and the standards we hold ourselves to. If you are a skilled
+                tradesperson or site professional looking for steady, quality work, we want to hear from
+                you.
+              </p>
+            </AnimateOnScroll>
+
+            <div>
+              <h2 className="sr-only">Open positions</h2>
+              <div className="space-y-5">
+                {roles.map((role, i) => (
+                  <AnimateOnScroll key={role.id} delay={i * 0.06}>
+                    <article
+                      data-testid="job-role"
+                      className="border border-line bg-paper p-6 sm:p-8 transition-colors hover:border-accent"
+                    >
+                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-5 mb-5">
+                        <div>
+                          <h3 className="font-heading text-2xl font-bold text-ink">{role.title}</h3>
+                          <div className="flex flex-wrap items-center gap-2 mt-3">
+                            <span className="inline-flex items-center gap-1.5 bg-paper-2 border border-line px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-muted">
+                              <Clock size={12} strokeWidth={2} aria-hidden />
+                              {role.type}
+                            </span>
+                            <span className="inline-flex items-center gap-1.5 bg-paper-2 border border-line px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-muted">
+                              <MapPin size={12} strokeWidth={2} aria-hidden />
+                              {role.location}
+                            </span>
+                          </div>
+                        </div>
+                        <a
+                          href={`mailto:alanphibbs@alanphibbs.ie?subject=Application: ${role.title}`}
+                          className="group shrink-0 inline-flex items-center justify-center gap-2 bg-accent px-5 py-3 text-xs font-semibold uppercase tracking-[0.12em] text-on-accent hover:bg-accent-strong transition-colors"
+                        >
+                          Apply now
+                          <ArrowRight size={14} aria-hidden className="transition-transform group-hover:translate-x-0.5" />
+                        </a>
+                      </div>
+                      <p className="text-muted text-[15px] md:text-base leading-relaxed mb-5">{role.description}</p>
+                      <ul className="grid gap-2.5 sm:grid-cols-2">
+                        {role.requirements.map((req) => (
+                          <li key={req} className="flex items-start gap-2.5 text-[15px] text-ink-soft">
+                            <Check size={16} strokeWidth={2.5} aria-hidden className="mt-0.5 shrink-0 text-accent-strong" />
+                            {req}
+                          </li>
+                        ))}
+                      </ul>
+                    </article>
+                  </AnimateOnScroll>
+                ))}
+              </div>
+            </div>
+          </div>
         </PageContainer>
       </section>
 
-      <section>
-        <PageContainer className="pt-16 pb-4">
-        <AnimateOnScroll>
-          <div className="max-w-2xl">
-            <h2 className="font-heading text-3xl md:text-4xl font-light text-charcoal-900 mb-4">
-              Join our team
+      <section className="bg-night text-white">
+        <PageContainer className="py-16 md:py-20 flex flex-col md:flex-row md:items-end justify-between gap-8">
+          <div>
+            <h2 className="font-heading text-3xl md:text-5xl font-extrabold mb-4 leading-tight">
+              Don&apos;t see your role?
             </h2>
-            <p className="text-charcoal-600 text-sm leading-relaxed font-light">
-              Alan Phibbs Construction has been building across Dublin and Wicklow since 1991. We take
-              pride in our work, our team, and the standards we hold ourselves to. If you are a skilled
-              tradesperson or site professional looking for steady, quality work, we want to hear from
-              you.
+            <p className="text-white/70 max-w-md text-base md:text-lg">
+              Send us your CV and we will keep you in mind for future openings.
             </p>
           </div>
-        </AnimateOnScroll>
-        </PageContainer>
-      </section>
-
-      <section>
-        <PageContainer className="pt-12 pb-16">
-        <SectionHeading subtitle="Current openings">Open positions</SectionHeading>
-        <div className="space-y-4">
-          {roles.map((role, i) => (
-            <AnimateOnScroll key={role.id} delay={i * 0.08}>
-              <div
-                data-testid="job-role"
-                className="bg-warm-50 border border-warm-300/60 p-8"
-              >
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
-                  <div>
-                    <h3 className="font-heading text-xl font-light text-charcoal-900">{role.title}</h3>
-                    <div className="flex items-center gap-4 mt-2">
-                      <span className="flex items-center gap-1.5 text-xs text-stone-400 uppercase tracking-wider font-light">
-                        <Clock size={11} strokeWidth={1.5} />
-                        {role.type}
-                      </span>
-                      <span className="flex items-center gap-1.5 text-xs text-stone-400 uppercase tracking-wider font-light">
-                        <MapPin size={11} strokeWidth={1.5} />
-                        {role.location}
-                      </span>
-                    </div>
-                  </div>
-                  <a
-                    href={`mailto:alanphibbs@alanphibbs.ie?subject=Application: ${role.title}`}
-                    className="shrink-0 inline-flex items-center gap-2 text-[11px] font-light uppercase tracking-[0.15em] text-charcoal-800 border-b border-charcoal-800/20 hover:border-charcoal-800 pb-px transition-colors"
-                  >
-                    Apply now <ChevronRight size={12} strokeWidth={1.5} />
-                  </a>
-                </div>
-                <p className="text-charcoal-600 text-sm leading-relaxed mb-4 font-light">
-                  {role.description}
-                </p>
-                <ul className="space-y-1.5">
-                  {role.requirements.map((req) => (
-                    <li
-                      key={req}
-                      className="flex items-start gap-3 text-sm text-charcoal-600 font-light"
-                    >
-                      <span className="w-px h-4 bg-bronze-500/60 mt-1 shrink-0" />
-                      {req}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </AnimateOnScroll>
-          ))}
-        </div>
-        </PageContainer>
-      </section>
-
-      <section className="bg-charcoal-900 py-20">
-        <PageContainer>
-          <h2 className="font-heading text-3xl md:text-4xl font-light text-warm-50 mb-4 leading-tight">
-            Don&apos;t see your role?
-          </h2>
-          <p className="text-warm-200/70 mb-8 max-w-sm text-sm font-light">
-            Send us your CV and we will keep you in mind for future openings.
-          </p>
-          <Button href="/contact" variant="outline-light">
+          <Button href="/contact" arrow>
             Get in touch
           </Button>
         </PageContainer>

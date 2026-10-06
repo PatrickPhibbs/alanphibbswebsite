@@ -1,21 +1,25 @@
 import type { Metadata } from 'next';
-import { Raleway } from 'next/font/google';
+import { Archivo, Inter } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import MobileActionBar from '@/components/layout/MobileActionBar';
 import JsonLd from '@/components/JsonLd';
 import ThemeProvider from '@/components/ui/ThemeProvider';
 import { THEME_STORAGE_KEY } from '@/lib/theme';
+import { site } from '@/lib/site';
 
 const businessSchema = {
   '@context': 'https://schema.org',
   '@type': 'GeneralContractor',
-  name: 'Alan Phibbs Construction',
+  name: site.name,
+  slogan: site.tagline,
+  founder: { '@type': 'Person', name: 'Alan Phibbs' },
   url: 'https://www.alanphibbs.ie',
   telephone: '+353892204082',
   email: 'alanphibbs@alanphibbs.ie',
   foundingDate: '1991',
-  logo: 'https://www.alanphibbs.ie/logo-removebg-preview.png',
+  logo: `${site.url}${site.logo}`,
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Greystones',
@@ -35,21 +39,27 @@ const businessSchema = {
   sameAs: [],
 };
 
-const raleway = Raleway({
-  variable: '--font-raleway',
+const archivo = Archivo({
+  variable: '--font-archivo',
   subsets: ['latin'],
-  weight: ['200', '300', '400'],
+  weight: ['500', '600', '700', '800'],
+});
+
+const inter = Inter({
+  variable: '--font-inter',
+  subsets: ['latin'],
 });
 
 export const metadata: Metadata = {
-  title: 'Alan Phibbs General Contractor',
+  metadataBase: new URL(site.url),
+  title: `${site.name} | ${site.tagline}`,
   description:
     'Residential renovations, restorations and fit-outs across Dublin and Wicklow. Careful planning, reliable delivery and a high-quality finish since 1991.',
   openGraph: {
-    title: 'Alan Phibbs Construction | General Contractor',
+    title: `${site.name} | ${site.tagline}`,
     description:
       'Residential renovations, restorations and fit-outs across Dublin and Wicklow.',
-    siteName: 'Alan Phibbs',
+    siteName: site.name,
     type: 'website',
   },
   twitter: {
@@ -69,12 +79,13 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className={`${raleway.variable} antialiased`}>
+      <body className={`${archivo.variable} ${inter.variable} antialiased`}>
         <ThemeProvider>
           <JsonLd data={businessSchema} />
           <Navbar />
-          <main>{children}</main>
+          <main id="main">{children}</main>
           <Footer />
+          <MobileActionBar />
         </ThemeProvider>
       </body>
     </html>

@@ -4,7 +4,7 @@ import Logo from '@/components/ui/Logo';
 describe('Logo', () => {
   it('renders logo image', () => {
     render(<Logo />);
-    expect(screen.getByRole('img', { name: /alan phibbs construction/i })).toBeInTheDocument();
+    expect(screen.getByRole('img', { name: /ap general contractors ltd/i })).toBeInTheDocument();
   });
 
   it('wraps in a link to home', () => {

@@ -25,6 +25,6 @@ describe('ProjectFilter', () => {
   it('highlights active filter', () => {
     render(<ProjectFilter active="Renovation" onFilter={onFilter} />);
     const btn = screen.getByText('Renovation');
-    expect(btn.className).toMatch(/bg-charcoal-800/);
+    expect(btn.className).toMatch(/bg-ink/);
   });
 });

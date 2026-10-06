@@ -33,31 +33,36 @@ const qualities = [
 
 export default function AwardBanner() {
   return (
-    <section className="bg-charcoal-900 overflow-hidden">
-      <PageContainer className="py-14 md:py-16">
-        <AnimateOnScroll direction="fade">
-          <SectionHeading light subtitle="How we work">
-            Built properly, finished carefully.
-          </SectionHeading>
-          <p className="text-warm-200/75 text-base md:text-lg font-light leading-relaxed max-w-2xl -mt-4 mb-10">
-            From first visit to final handover, the work is planned clearly, managed on site and finished
-            with attention to the details that make a project feel complete.
-          </p>
-        </AnimateOnScroll>
+    <section className="bg-night text-white overflow-hidden">
+      <PageContainer className="py-20 md:py-28">
+        <div className="grid gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-20">
+          <AnimateOnScroll direction="fade" className="lg:sticky lg:top-32 lg:self-start">
+            <SectionHeading light subtitle="How we work" className="mb-6">
+              Built properly, finished carefully.
+            </SectionHeading>
+            <p className="text-white/70 text-base md:text-lg leading-relaxed max-w-xl">
+              From first visit to final handover, the work is planned clearly, managed on site and finished
+              with attention to the details that make a project feel complete.
+            </p>
+          </AnimateOnScroll>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-warm-50/10">
-          {qualities.map((item, i) => (
-            <AnimateOnScroll key={item.title} delay={i * 0.05}>
-              <div className="bg-charcoal-900 p-6 md:p-7 h-full border border-warm-50/5">
-                <h3 className="font-heading text-lg font-light text-warm-50 mb-3 leading-snug">
-                  {item.title}
-                </h3>
-                <p className="text-warm-300/70 text-sm font-light leading-relaxed">
-                  {item.description}
-                </p>
-              </div>
-            </AnimateOnScroll>
-          ))}
+          <ol className="border-t border-night-line">
+            {qualities.map((item, i) => (
+              <li key={item.title} className="border-b border-night-line">
+                <AnimateOnScroll delay={i * 0.04} className="grid grid-cols-[3.5rem_1fr] md:grid-cols-[5rem_1fr] gap-4 py-7 md:py-8">
+                  <span className="font-heading text-2xl md:text-3xl font-extrabold text-accent tabular-nums leading-none">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <div>
+                    <h3 className="font-heading text-xl md:text-2xl font-bold text-white mb-2 leading-snug">
+                      {item.title}
+                    </h3>
+                    <p className="text-white/65 text-[15px] leading-relaxed max-w-xl">{item.description}</p>
+                  </div>
+                </AnimateOnScroll>
+              </li>
+            ))}
+          </ol>
         </div>
       </PageContainer>
     </section>
