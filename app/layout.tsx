@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
-import { Archivo, Inter } from 'next/font/google';
+import { Inter } from 'next/font/google';
+import localFont from 'next/font/local';
 import './globals.css';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -39,10 +40,13 @@ const businessSchema = {
   sameAs: [],
 };
 
-const archivo = Archivo({
+// Self-hosted: Google serves Archivo from multi-parameter URLs that Turbopack's
+// next/font/google loader can't resolve, which fails production builds.
+const archivo = localFont({
+  src: './fonts/archivo-latin-wght.woff2',
   variable: '--font-archivo',
-  subsets: ['latin'],
-  weight: ['500', '600', '700', '800'],
+  weight: '100 900',
+  display: 'swap',
 });
 
 const inter = Inter({
