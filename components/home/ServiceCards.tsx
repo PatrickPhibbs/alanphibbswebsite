@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowUpRight } from 'lucide-react';
 import AnimateOnScroll from '@/components/ui/AnimateOnScroll';
 import SectionHeading from '@/components/ui/SectionHeading';
 import PageContainer from '@/components/ui/PageContainer';
@@ -90,7 +89,7 @@ export default function ServiceCards() {
                   href={service.href}
                   onMouseEnter={() => setActive(i)}
                   onFocus={() => setActive(i)}
-                  className="group grid grid-cols-[1fr_auto] gap-x-6 py-7 md:py-9 focus-visible:outline-offset-[-2px]"
+                  className="group block py-7 md:py-9 focus-visible:outline-offset-[-2px]"
                 >
                   <h3
                     className={`font-heading text-2xl md:text-[2rem] font-bold tracking-[-0.025em] leading-tight transition-colors duration-300 ${
@@ -99,12 +98,6 @@ export default function ServiceCards() {
                   >
                     {service.title}
                   </h3>
-                  <ArrowUpRight
-                    size={28}
-                    strokeWidth={1.75}
-                    aria-hidden
-                    className="row-span-2 self-start mt-1 text-subtle transition-[color,transform] duration-300 group-hover:text-accent-strong group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                  />
                   <p className="mt-3 max-w-xl text-base md:text-lg leading-relaxed text-muted">
                     {service.description}
                   </p>

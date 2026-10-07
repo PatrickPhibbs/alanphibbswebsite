@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { Check } from 'lucide-react';
 import { services } from '@/lib/services';
 import type { Service } from '@/lib/services';
 import AnimateOnScroll from '@/components/ui/AnimateOnScroll';
@@ -103,7 +102,7 @@ function FeatureList({ features, tick }: { features: string[]; tick: string }) {
     <ul className="grid gap-3.5">
       {features.map((feature) => (
         <li key={feature} className="flex items-start gap-3 text-base md:text-[17px] leading-snug">
-          <Check size={20} strokeWidth={2.5} aria-hidden className={`mt-px shrink-0 ${tick}`} />
+          <span aria-hidden className={`mt-[0.7em] h-px w-3 shrink-0 bg-current ${tick}`} />
           {feature}
         </li>
       ))}
@@ -126,7 +125,7 @@ function ServiceBlock({ service, index }: { service: Service; index: number }) {
   const { tone, layout, imageRight } = plan[index % plan.length];
   const t = tones[tone];
   const cta = (
-    <Button href="/contact" variant={t.button} className={t.focus} arrow>
+    <Button href="/contact" variant={t.button} className={t.focus}>
       Discuss a project
     </Button>
   );
@@ -213,7 +212,7 @@ export default function ServicesPage() {
             Get in touch for a site visit and an honest conversation about what is involved.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button href="/contact" variant="light" arrow>
+            <Button href="/contact" variant="light">
               Discuss a Project
             </Button>
             <Button href="/projects" variant="outline-light">

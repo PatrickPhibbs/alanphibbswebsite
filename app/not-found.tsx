@@ -23,7 +23,7 @@ export default function NotFound() {
           This page may have moved. Our projects, services and contact details are all a click away.
         </p>
         <div className="mt-10 flex flex-col sm:flex-row gap-3">
-          <Button href="/" variant="light" arrow>
+          <Button href="/" variant="light">
             Back to home
           </Button>
           <Button href="/projects" variant="outline-light">

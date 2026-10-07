@@ -131,7 +131,7 @@ export default function AboutPage() {
           <p className="text-muted text-lg max-w-xl">
             Every project starts with a practical visit and an honest conversation about what is involved.
           </p>
-          <Button href="/projects" variant="outline" arrow>
+          <Button href="/projects" variant="outline">
             View Recent Work
           </Button>
         </PageContainer>

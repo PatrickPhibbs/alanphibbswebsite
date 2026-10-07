@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { Phone, ArrowRight } from 'lucide-react';
 import { site } from '@/lib/site';
 
 export default function MobileActionBar() {
@@ -9,7 +8,6 @@ export default function MobileActionBar() {
         href={site.phoneHref}
         className="flex items-center justify-center gap-2 py-4 text-xs font-semibold uppercase tracking-[0.12em] text-white"
       >
-        <Phone size={16} aria-hidden className="text-accent" />
         Call
       </a>
       <Link
@@ -17,7 +15,6 @@ export default function MobileActionBar() {
         className="flex items-center justify-center gap-2 bg-white py-4 text-xs font-semibold uppercase tracking-[0.12em] text-night"
       >
         Discuss a Project
-        <ArrowRight size={15} aria-hidden />
       </Link>
     </div>
   );

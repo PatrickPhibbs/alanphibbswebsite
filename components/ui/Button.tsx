@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -9,7 +8,6 @@ interface ButtonProps {
   type?: 'button' | 'submit';
   className?: string;
   disabled?: boolean;
-  arrow?: boolean;
 }
 
 export default function Button({
@@ -20,7 +18,6 @@ export default function Button({
   type = 'button',
   className = '',
   disabled = false,
-  arrow = false,
 }: ButtonProps) {
   const base =
     'group inline-flex items-center justify-center gap-2.5 px-6 py-3.5 text-[13px] font-semibold uppercase tracking-[0.1em] transition-[color,background-color,border-color,transform] duration-200 active:translate-y-px cursor-pointer';
@@ -37,14 +34,6 @@ export default function Button({
   const content = (
     <>
       {children}
-      {arrow && (
-        <ArrowRight
-          size={16}
-          strokeWidth={2}
-          aria-hidden
-          className="transition-transform duration-200 group-hover:translate-x-0.5"
-        />
-      )}
     </>
   );
 

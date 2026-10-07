@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Logo from '@/components/ui/Logo';
 import Button from '@/components/ui/Button';
@@ -88,7 +88,6 @@ export default function Navbar() {
                 solid ? 'text-ink hover:text-accent-strong' : 'text-white hover:text-accent'
               }`}
             >
-              <Phone size={15} strokeWidth={2} aria-hidden className="text-accent" />
               {site.phone}
             </a>
             <ThemeToggle className={solid ? '' : '!text-white'} />
@@ -143,14 +142,13 @@ export default function Navbar() {
               ))}
             </ul>
             <div className="mt-auto flex flex-col gap-3">
-              <Button href="/contact" variant="light" onClick={() => setIsOpen(false)} arrow>
+              <Button href="/contact" variant="light" onClick={() => setIsOpen(false)}>
                 Discuss a Project
               </Button>
               <a
                 href={site.phoneHref}
                 className="inline-flex items-center justify-center gap-2 border border-white/25 py-3.5 text-sm font-semibold text-white"
               >
-                <Phone size={16} aria-hidden className="text-accent" />
                 {site.phone}
               </a>
             </div>

@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { ArrowDown, Pause, Play, ShieldCheck, MapPin, CalendarCheck } from 'lucide-react';
+import { Pause, Play } from 'lucide-react';
 import Button from '@/components/ui/Button';
 import PageContainer from '@/components/ui/PageContainer';
 import AnimateOnScroll from '@/components/ui/AnimateOnScroll';
@@ -12,9 +12,9 @@ const clips = [
 ];
 
 const trust = [
-  { icon: CalendarCheck, label: 'Established 1991' },
-  { icon: ShieldCheck, label: 'Fully insured' },
-  { icon: MapPin, label: 'Dublin & Wicklow' },
+  { label: 'Established 1991' },
+  { label: 'Fully insured' },
+  { label: 'Dublin & Wicklow' },
 ];
 
 /** Plays the clips back to back, cross-fading between them, with a pause control. */
@@ -84,7 +84,6 @@ function HeroReel() {
           className="inline-flex h-12 items-center gap-2.5 bg-white px-6 text-[13px] font-semibold uppercase tracking-[0.1em] text-night transition-colors hover:bg-white/85"
         >
           More
-          <ArrowDown size={17} strokeWidth={2.25} aria-hidden />
         </a>
         <button
           type="button"
@@ -121,7 +120,7 @@ export default function Hero() {
               Wicklow, with a focus on careful planning, reliable delivery and a high-quality finish.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
-              <Button href="/contact" variant="solid" arrow>
+              <Button href="/contact" variant="solid">
                 Discuss a Project
               </Button>
               <Button href="/projects" variant="outline">
@@ -139,7 +138,6 @@ export default function Hero() {
                 key={item.label}
                 className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 py-5 px-2 text-center sm:text-left"
               >
-                <item.icon size={20} strokeWidth={1.75} aria-hidden className="text-accent-strong shrink-0" />
                 <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.12em] text-ink">
                   {item.label}
                 </span>

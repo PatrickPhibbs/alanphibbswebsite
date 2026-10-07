@@ -28,7 +28,7 @@ export default function ContactTeaser() {
                 Whether you are planning a renovation, extension or fit-out, we are happy to visit,
                 discuss the scope and give practical advice before work begins.
               </p>
-              <Button href="/contact" arrow>
+              <Button href="/contact">
                 Discuss a Project
               </Button>
             </div>

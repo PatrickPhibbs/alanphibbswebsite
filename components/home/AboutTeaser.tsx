@@ -34,7 +34,7 @@ export default function AboutTeaser() {
               standard stays consistent.
             </p>
           </div>
-          <Button href="/about" variant="dark" arrow className="mt-10">
+          <Button href="/about" variant="dark" className="mt-10">
             Read our story
           </Button>
         </AnimateOnScroll>

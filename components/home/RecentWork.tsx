@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight } from 'lucide-react';
 import Button from '@/components/ui/Button';
 import { projects } from '@/lib/projects';
 
@@ -61,13 +60,6 @@ export default function RecentWork() {
                     isActive ? 'text-white' : 'text-white/70 hover:text-white'
                   }`}
                 >
-                  <ArrowRight
-                    aria-hidden
-                    strokeWidth={2}
-                    className={`absolute right-full hidden sm:block mr-3 md:mr-5 h-7 w-7 md:h-12 md:w-12 transition-[opacity,transform] duration-300 ${
-                      isActive ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2'
-                    }`}
-                  />
                   {item.title}
                 </Link>
               </li>

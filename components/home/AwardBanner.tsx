@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import { Check } from 'lucide-react';
 import AnimateOnScroll from '@/components/ui/AnimateOnScroll';
 import SectionHeading from '@/components/ui/SectionHeading';
 
@@ -59,8 +58,7 @@ export default function AwardBanner() {
         <ul className="mt-12 md:mt-14 grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-8 md:gap-y-10">
           {qualities.map((item, i) => (
             <li key={item.title} className="border-t border-night-line pt-5">
-              <AnimateOnScroll delay={i * 0.04} className="grid grid-cols-[1.5rem_1fr] gap-3">
-                <Check size={20} strokeWidth={2.25} aria-hidden className="mt-0.5 text-accent" />
+              <AnimateOnScroll delay={i * 0.04}>
                 <div>
                   <h3 className="font-heading text-lg md:text-xl font-bold tracking-[-0.015em] leading-snug mb-2 text-white">
                     {item.title}

@@ -136,7 +136,7 @@ export default function ProjectGrid({ title, subtitle }: ProjectGridProps) {
             >
               <p className="max-w-xl text-lg md:text-2xl leading-snug text-ink-soft">{single.description}</p>
               <div className="mt-8">
-                <Button onClick={() => openGallery(single)} variant="dark" arrow>
+                <Button onClick={() => openGallery(single)} variant="dark">
                   View {single.images.length} photos
                 </Button>
               </div>

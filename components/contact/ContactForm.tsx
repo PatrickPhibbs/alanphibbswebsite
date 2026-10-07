@@ -93,7 +93,7 @@ export default function ContactForm() {
       </div>
 
       <div className="sm:col-span-2">
-        <Button type="submit" variant="solid" disabled={status === 'sending'} arrow className="w-full sm:w-auto">
+        <Button type="submit" variant="solid" disabled={status === 'sending'} className="w-full sm:w-auto">
           {status === 'sending' ? 'Sending...' : 'Send message'}
         </Button>
       </div>

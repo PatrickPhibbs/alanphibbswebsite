@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import PageHero from '@/components/ui/PageHero';
-import { MapPin, Clock, ArrowRight, Check } from 'lucide-react';
 import Button from '@/components/ui/Button';
 import SectionHeading from '@/components/ui/SectionHeading';
 import AnimateOnScroll from '@/components/ui/AnimateOnScroll';
@@ -94,14 +93,8 @@ export default function JobsPage() {
                     <div>
                       <h3 className="font-heading text-3xl md:text-4xl font-bold tracking-[-0.025em] text-ink">{role.title}</h3>
                       <p className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2 text-[15px] text-muted">
-                        <span className="inline-flex items-center gap-1.5">
-                          <Clock size={15} strokeWidth={2} aria-hidden />
-                          {role.type}
-                        </span>
-                        <span className="inline-flex items-center gap-1.5">
-                          <MapPin size={15} strokeWidth={2} aria-hidden />
-                          {role.location}
-                        </span>
+                        <span>{role.type}</span>
+                        <span>{role.location}</span>
                       </p>
                     </div>
                     <a
@@ -109,7 +102,6 @@ export default function JobsPage() {
                       className="group inline-flex items-center justify-center gap-2.5 bg-cta px-6 py-3.5 text-[13px] font-semibold uppercase tracking-[0.1em] text-on-cta transition-colors hover:bg-cta-hover active:translate-y-px"
                     >
                       Apply now
-                      <ArrowRight size={16} strokeWidth={2} aria-hidden className="transition-transform group-hover:translate-x-0.5" />
                     </a>
                   </div>
                   <div>
@@ -117,7 +109,7 @@ export default function JobsPage() {
                     <ul className="grid gap-3 sm:grid-cols-2 sm:gap-x-8">
                       {role.requirements.map((req) => (
                         <li key={req} className="flex items-start gap-3 text-[15px] text-ink-soft">
-                          <Check size={16} strokeWidth={2.5} aria-hidden className="mt-1 shrink-0 text-accent-strong" />
+                          <span aria-hidden className="mt-[0.7em] h-px w-3 shrink-0 bg-current opacity-50" />
                           {req}
                         </li>
                       ))}
@@ -140,7 +132,7 @@ export default function JobsPage() {
               Send us your CV and we will keep you in mind for future openings.
             </p>
           </div>
-          <Button href="/contact" variant="light" arrow className="self-start md:self-auto">
+          <Button href="/contact" variant="light" className="self-start md:self-auto">
             Get in touch
           </Button>
         </PageContainer>

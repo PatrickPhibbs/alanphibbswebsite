@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import PageHero from '@/components/ui/PageHero';
-import { Phone, Mail, Clock, MapPin } from 'lucide-react';
 import ContactForm from '@/components/contact/ContactForm';
 import FaqSection from '@/components/ui/FaqSection';
 import PageContainer from '@/components/ui/PageContainer';
@@ -32,10 +31,10 @@ export const metadata: Metadata = {
 };
 
 const contactDetails = [
-  { icon: Phone, label: 'Phone', text: '+353 89 220 4082', href: 'tel:+353892204082' },
-  { icon: Mail, label: 'Email', text: 'alanphibbs@alanphibbs.ie', href: 'mailto:alanphibbs@alanphibbs.ie' },
-  { icon: MapPin, label: 'Area served', text: 'Dublin & Wicklow' },
-  { icon: Clock, label: 'Hours', text: 'Mon–Fri 8am–6pm · Sat 9am–1pm' },
+  { label: 'Phone', text: '+353 89 220 4082', href: 'tel:+353892204082' },
+  { label: 'Email', text: 'alanphibbs@alanphibbs.ie', href: 'mailto:alanphibbs@alanphibbs.ie' },
+  { label: 'Area served', text: 'Dublin & Wicklow' },
+  { label: 'Hours', text: 'Mon–Fri 8am–6pm · Sat 9am–1pm' },
 ];
 
 export default function ContactPage() {
@@ -57,9 +56,6 @@ export default function ContactPage() {
                 {contactDetails.map((item) => {
                   const body = (
                     <>
-                      <span className="flex h-11 w-11 shrink-0 items-center justify-center bg-night text-white">
-                        <item.icon size={18} strokeWidth={1.75} aria-hidden />
-                      </span>
                       <span className="min-w-0">
                         <span className="block text-[11px] font-semibold uppercase tracking-[0.16em] text-muted mb-1">{item.label}</span>
                         <span className="block font-semibold text-ink break-words transition-colors group-hover:text-accent-strong">{item.text}</span>

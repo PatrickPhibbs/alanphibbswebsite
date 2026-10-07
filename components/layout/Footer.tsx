@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { Facebook, Linkedin } from 'lucide-react';
 import PageContainer from '@/components/ui/PageContainer';
 import Logo from '@/components/ui/Logo';
 import { site } from '@/lib/site';
@@ -23,8 +22,8 @@ const services = [
 ];
 
 const socials = [
-  { href: 'https://www.facebook.com/profile.php?id=61579554132431', label: 'Facebook', icon: Facebook },
-  { href: 'https://www.linkedin.com/in/alan-patrick-phibbs-05012127a/', label: 'LinkedIn', icon: Linkedin },
+  { href: 'https://www.facebook.com/profile.php?id=61579554132431', label: 'Facebook' },
+  { href: 'https://www.linkedin.com/in/alan-patrick-phibbs-05012127a/', label: 'LinkedIn' },
 ];
 
 export default function Footer() {
@@ -43,11 +42,8 @@ export default function Footer() {
                   href={s.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 text-base font-medium hover:opacity-70 transition-opacity"
+                  className="text-base font-medium underline decoration-1 underline-offset-4 hover:opacity-70 transition-opacity"
                 >
-                  <span className="flex h-8 w-8 items-center justify-center bg-night text-accent">
-                    <s.icon size={15} aria-hidden />
-                  </span>
                   {s.label}
                 </a>
               </li>
