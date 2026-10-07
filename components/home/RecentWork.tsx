@@ -8,14 +8,14 @@ import { projects } from '@/lib/projects';
 
 // Each featured project is paired with one of its own photos for the full-bleed backdrop.
 const featured = [
+  { id: '11-wellington-baggot-street', image: '/images/projects/11-wellington-baggot-street/01.jpg' },
   { id: '04-country-house-renovation', image: '/images/projects/04-country-house-renovation/13.jpg' },
   { id: '10-victorian-building-restoration', image: '/images/projects/10-victorian-building-restoration/03.jpg' },
-  { id: '06-period-house-interior', image: '/images/projects/06-period-house-interior/02.jpg' },
   { id: '01-office-fitout', image: '/images/projects/01-office-fitout/03.jpg' },
   { id: '07-garden-landscaping', image: '/images/projects/07-garden-landscaping/04.jpg' },
 ].flatMap((item) => {
   const project = projects.find((p) => p.id === item.id);
-  return project ? [{ ...item, title: project.title }] : [];
+  return project ? [{ ...item, title: project.title, href: project.href ?? `/projects#${item.id}` }] : [];
 });
 
 /** Featured projects: the backdrop follows whichever project name is hovered or focused. */
@@ -52,7 +52,7 @@ export default function RecentWork() {
             return (
               <li key={item.id}>
                 <Link
-                  href={`/projects#${item.id}`}
+                  href={item.href}
                   data-testid="project-thumb"
                   onMouseEnter={() => setActive(i)}
                   onFocus={() => setActive(i)}

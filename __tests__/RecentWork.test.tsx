@@ -11,7 +11,7 @@ describe('RecentWork', () => {
     const { container } = render(<RecentWork />);
     const links = container.querySelectorAll('[data-testid="project-thumb"]');
     expect(links.length).toBe(5);
-    links.forEach((link) => expect(link.getAttribute('href')).toMatch(/^\/projects#.+/));
+    links.forEach((link) => expect(link.getAttribute('href')).toMatch(/^\/projects(#|\/).+/));
   });
 
   it('swaps the backdrop when a project name is focused', () => {

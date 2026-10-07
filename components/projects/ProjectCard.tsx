@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import type { Project } from '@/lib/projects';
 
 interface ProjectCardProps {
@@ -49,13 +50,22 @@ export default function ProjectCard({ project, onClick, wide = false, hideDescri
         </div>
       )}
 
-      <button
-        type="button"
-        onClick={onClick}
-        aria-label={`${project.title}: view ${photos}`}
-        aria-describedby={hideDescription ? undefined : descId}
-        className="absolute inset-0 z-10 cursor-pointer focus-visible:outline-offset-[-6px]"
-      />
+      {project.href ? (
+        <Link
+          href={project.href}
+          aria-label={`${project.title}: view project`}
+          aria-describedby={hideDescription ? undefined : descId}
+          className="absolute inset-0 z-10 focus-visible:outline-offset-[-6px]"
+        />
+      ) : (
+        <button
+          type="button"
+          onClick={onClick}
+          aria-label={`${project.title}: view ${photos}`}
+          aria-describedby={hideDescription ? undefined : descId}
+          className="absolute inset-0 z-10 cursor-pointer focus-visible:outline-offset-[-6px]"
+        />
+      )}
     </article>
   );
 }
