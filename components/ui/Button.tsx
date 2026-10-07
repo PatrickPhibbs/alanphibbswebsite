@@ -3,7 +3,7 @@ import { ArrowRight } from 'lucide-react';
 
 interface ButtonProps {
   children: React.ReactNode;
-  variant?: 'solid' | 'outline' | 'outline-light' | 'dark';
+  variant?: 'solid' | 'outline' | 'outline-light' | 'dark' | 'light';
   href?: string;
   onClick?: () => void;
   type?: 'button' | 'submit';
@@ -29,6 +29,8 @@ export default function Button({
     dark: 'bg-ink text-paper hover:bg-ink-soft',
     outline: 'border border-ink/25 text-ink hover:border-ink hover:bg-ink hover:text-paper',
     'outline-light': 'border border-white/45 text-white hover:bg-white hover:text-night hover:border-white',
+    // White square button for use over photos and dark bands.
+    light: 'bg-white text-night hover:bg-white/85',
   };
 
   const classes = `${base} ${variants[variant]} ${disabled ? 'opacity-50 pointer-events-none' : ''} ${className}`;

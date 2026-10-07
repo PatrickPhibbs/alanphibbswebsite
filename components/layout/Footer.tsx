@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Facebook, Linkedin, Phone, Mail } from 'lucide-react';
+import { Facebook, Linkedin } from 'lucide-react';
 import PageContainer from '@/components/ui/PageContainer';
 import Logo from '@/components/ui/Logo';
 import { site } from '@/lib/site';
@@ -22,99 +22,99 @@ const services = [
   'Garden & External Works',
 ];
 
-const columnHeading = 'text-[11px] font-bold uppercase tracking-[0.18em] text-accent mb-5';
-const linkClass = 'text-white/70 text-[15px] hover:text-white transition-colors';
+const socials = [
+  { href: 'https://www.facebook.com/profile.php?id=61579554132431', label: 'Facebook', icon: Facebook },
+  { href: 'https://www.linkedin.com/in/alan-patrick-phibbs-05012127a/', label: 'LinkedIn', icon: Linkedin },
+];
 
 export default function Footer() {
   return (
-    <footer className="bg-night text-white pb-16 md:pb-0">
-      <PageContainer className="pt-14 pb-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1.3fr_1.3fr] gap-12 lg:gap-10">
-          <div>
-            <Logo light className="mb-6" />
-            <p className="text-white/60 text-[15px] leading-relaxed max-w-sm">
-              Based in Kilquade, Co. Wicklow. Residential renovations, restorations and fit-outs
-              across Wicklow and Dublin, with over 35 years in the trade.
+    <footer className="pb-20 md:pb-0">
+      {/* Contact block: one saturated colour field with the details set large. */}
+      <section aria-labelledby="footer-contact" className="bg-accent text-on-accent">
+        <PageContainer className="py-20 md:py-28 text-center">
+          <h2 id="footer-contact" className="sr-only">
+            Contact
+          </h2>
+          <ul className="flex items-center justify-center gap-8 mb-10">
+            {socials.map((s) => (
+              <li key={s.label}>
+                <a
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2.5 text-base font-medium hover:opacity-70 transition-opacity"
+                >
+                  <span className="flex h-8 w-8 items-center justify-center bg-night text-accent">
+                    <s.icon size={15} aria-hidden />
+                  </span>
+                  {s.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <div className="space-y-3 md:space-y-4 font-heading font-extrabold tracking-[-0.03em]">
+            <p>
+              <a href={site.phoneHref} className="text-4xl sm:text-5xl md:text-6xl hover:opacity-70 transition-opacity tabular-nums">
+                {site.phone}
+              </a>
+            </p>
+            <p className="text-2xl sm:text-3xl md:text-[2.6rem] leading-tight">
+              Based in Kilquade, Co. Wicklow
+              <br />
+              {site.area}
+            </p>
+            <p>
+              <a href={site.emailHref} className="text-2xl sm:text-3xl md:text-[2.6rem] break-all hover:opacity-70 transition-opacity">
+                {site.email}
+              </a>
             </p>
           </div>
+          <p className="mt-8 text-base font-medium opacity-75">{site.hours}</p>
+        </PageContainer>
+      </section>
 
-          <div>
-            <h3 className={columnHeading}>Navigation</h3>
-            <ul className="space-y-3">
-              {quickLinks.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className={linkClass}>
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className={columnHeading}>Services</h3>
-            <ul className="space-y-3">
-              {services.map((service) => (
-                <li key={service}>
-                  <Link href="/services" className={linkClass}>
-                    {service}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className={columnHeading}>Contact</h3>
-            <ul className="space-y-3 text-[15px]">
-              <li>
-                <a href={site.phoneHref} className={`${linkClass} inline-flex items-center gap-2`}>
-                  <Phone size={14} aria-hidden className="text-accent" />
-                  {site.phone}
-                </a>
-              </li>
-              <li>
-                <a href={site.emailHref} className={`${linkClass} inline-flex items-center gap-2 break-all`}>
-                  <Mail size={14} aria-hidden className="text-accent shrink-0" />
-                  {site.email}
-                </a>
-              </li>
-              <li className="text-white/50 text-sm pt-2 leading-relaxed">
-                {site.area}
-                <br />
-                {site.hours}
-              </li>
-            </ul>
-          </div>
-        </div>
-      </PageContainer>
-
-      <div className="border-t border-night-line">
-        <PageContainer className="py-5 flex flex-col md:flex-row justify-between items-center text-white/45 text-xs gap-4">
-          <span>© {new Date().getFullYear()} {site.name}</span>
-          <div className="flex items-center gap-5">
-            <a
-              href="https://www.facebook.com/profile.php?id=61579554132431"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook"
-              className="flex items-center gap-1.5 hover:text-white transition-colors"
-            >
-              <Facebook size={14} strokeWidth={1.75} />
-              <span>Facebook</span>
-            </a>
-            <a
-              href="https://www.linkedin.com/in/alan-patrick-phibbs-05012127a/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              className="flex items-center gap-1.5 hover:text-white transition-colors"
-            >
-              <Linkedin size={14} strokeWidth={1.75} />
-              <span>LinkedIn</span>
-            </a>
+      <div className="bg-night text-white">
+        <PageContainer className="py-12 md:py-14">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1.4fr] gap-10">
+            <div>
+              <Logo light />
+              <p className="mt-6 text-white/60 text-[15px] leading-relaxed max-w-sm">
+                Based in Kilquade, Co. Wicklow. Residential renovations, restorations and fit-outs
+                across Wicklow and Dublin, with over 35 years in the trade.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-[11px] font-bold uppercase tracking-[0.18em] text-accent mb-5">Navigation</h3>
+              <ul className="grid grid-cols-2 gap-x-6 gap-y-2.5">
+                {quickLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link href={link.href} className="text-white/80 hover:text-white transition-colors">
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-[11px] font-bold uppercase tracking-[0.18em] text-accent mb-5">Services</h3>
+              <ul className="space-y-2.5">
+                {services.map((service) => (
+                  <li key={service}>
+                    <Link href="/services" className="text-white/80 hover:text-white transition-colors">
+                      {service}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </PageContainer>
+        <div className="border-t border-night-line">
+          <PageContainer className="py-5 text-sm text-white/45">
+            © {new Date().getFullYear()} {site.name}
+          </PageContainer>
+        </div>
       </div>
     </footer>
   );

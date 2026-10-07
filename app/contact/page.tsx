@@ -41,55 +41,43 @@ const contactDetails = [
 export default function ContactPage() {
   return (
     <>
-      <PageHero
-        title="Tell us about your project"
-        subtitle="We would be glad to hear from you"
-        image="/images/projects/07-garden-landscaping/05.jpg"
-        alt="Finished garden terrace"
-      />
+      <PageHero title="Tell us about your project" subtitle="We would be glad to hear from you" />
 
-      <section className="bg-paper-2">
-        <PageContainer className="py-14 md:py-20">
-          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] gap-6 lg:gap-8 items-start">
-            <div className="bg-paper border border-line p-6 sm:p-8 md:p-10">
-              <h2 className="font-heading text-2xl md:text-3xl font-bold text-ink mb-8">Send a message</h2>
+      <section className="bg-paper">
+        <PageContainer className="py-16 md:py-24">
+          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,7fr)_minmax(0,4fr)] gap-14 lg:gap-24 items-start">
+            <div>
+              <h2 className="font-heading text-3xl md:text-4xl font-bold tracking-[-0.025em] text-ink mb-8 md:mb-10">Send a message</h2>
               <ContactForm />
             </div>
 
-            <div className="bg-night text-white p-6 sm:p-8 md:p-10 lg:sticky lg:top-28">
-              <h2 className="font-heading text-2xl md:text-3xl font-bold mb-8">Contact details</h2>
-              <ul className="divide-y divide-night-line border-y border-night-line">
-                {contactDetails.map((item) => (
-                  <li key={item.text}>
-                    {item.href ? (
-                      <a href={item.href} className="group flex items-center gap-4 py-5">
-                        <span className="flex h-11 w-11 shrink-0 items-center justify-center bg-accent text-on-accent">
-                          <item.icon size={18} strokeWidth={1.75} aria-hidden />
-                        </span>
-                        <span>
-                          <span className="block text-[11px] font-semibold uppercase tracking-[0.16em] text-white/50 mb-1">
-                            {item.label}
-                          </span>
-                          <span className="block font-semibold break-all group-hover:text-accent transition-colors">
-                            {item.text}
-                          </span>
-                        </span>
-                      </a>
-                    ) : (
-                      <div className="flex items-center gap-4 py-5">
-                        <span className="flex h-11 w-11 shrink-0 items-center justify-center border border-night-line text-accent">
-                          <item.icon size={18} strokeWidth={1.75} aria-hidden />
-                        </span>
-                        <span>
-                          <span className="block text-[11px] font-semibold uppercase tracking-[0.16em] text-white/50 mb-1">
-                            {item.label}
-                          </span>
-                          <span className="block font-semibold">{item.text}</span>
-                        </span>
-                      </div>
-                    )}
-                  </li>
-                ))}
+            <div className="lg:sticky lg:top-28 lg:border-l lg:border-line lg:pl-12">
+              <h2 className="font-heading text-2xl md:text-3xl font-bold tracking-[-0.025em] text-ink mb-6">Contact details</h2>
+              <ul className="space-y-1">
+                {contactDetails.map((item) => {
+                  const body = (
+                    <>
+                      <span className="flex h-11 w-11 shrink-0 items-center justify-center bg-accent text-on-accent">
+                        <item.icon size={18} strokeWidth={1.75} aria-hidden />
+                      </span>
+                      <span className="min-w-0">
+                        <span className="block text-[11px] font-semibold uppercase tracking-[0.16em] text-muted mb-1">{item.label}</span>
+                        <span className="block font-semibold text-ink break-words transition-colors group-hover:text-accent-strong">{item.text}</span>
+                      </span>
+                    </>
+                  );
+                  return (
+                    <li key={item.text}>
+                      {item.href ? (
+                        <a href={item.href} className="group flex items-center gap-4 py-3">
+                          {body}
+                        </a>
+                      ) : (
+                        <div className="flex items-center gap-4 py-3">{body}</div>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           </div>

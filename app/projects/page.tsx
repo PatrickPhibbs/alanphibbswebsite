@@ -1,7 +1,5 @@
 import type { Metadata } from 'next';
 import ProjectGrid from '@/components/projects/ProjectGrid';
-import PageContainer from '@/components/ui/PageContainer';
-import PageHero from '@/components/ui/PageHero';
 
 export const metadata: Metadata = {
   title: 'Our Projects | AP General Contractors Ltd',
@@ -17,19 +15,9 @@ export const metadata: Metadata = {
 
 export default function ProjectsPage() {
   return (
-    <>
-      <PageHero
-        title="Our projects"
-        subtitle="Renovations, restorations and fit-outs across Dublin and Wicklow"
-        image="/images/projects/09-apartment-fitout/04.jpg"
-        alt="Finished apartment kitchen"
-      />
-
-      <section>
-        <PageContainer className="py-14 md:py-20">
-          <ProjectGrid />
-        </PageContainer>
-      </section>
-    </>
+    <ProjectGrid
+      title="Our projects"
+      subtitle="Renovations, restorations and fit-outs across Dublin and Wicklow"
+    />
   );
 }

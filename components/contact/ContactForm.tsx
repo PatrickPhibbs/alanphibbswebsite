@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { ChevronDown } from 'lucide-react';
 import Button from '@/components/ui/Button';
 
 export default function ContactForm() {
@@ -29,11 +30,11 @@ export default function ContactForm() {
   };
 
   const inputClass =
-    'w-full px-4 py-3.5 border border-line bg-paper-2 text-ink text-base placeholder:text-subtle transition-colors focus:outline-none focus:border-accent focus:bg-paper focus:ring-2 focus:ring-accent/25';
+    'w-full border border-line bg-paper-2 px-4 py-3.5 text-ink text-base placeholder:text-subtle transition-colors hover:border-ink/40 focus:outline-none focus:border-accent focus:bg-paper focus:ring-2 focus:ring-accent/40';
   const labelClass = 'block text-[11px] font-semibold uppercase tracking-[0.14em] text-muted mb-2';
 
   return (
-    <form aria-label="Contact form" onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-6">
+    <form aria-label="Contact form" onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-7">
       <div className="sm:col-span-2">
         <label htmlFor="name" className={labelClass}>
           Name
@@ -59,16 +60,23 @@ export default function ContactForm() {
         <label htmlFor="service" className={labelClass}>
           Service required
         </label>
-        <select id="service" name="service" required className={inputClass}>
-          <option value="">Select a service...</option>
-          <option value="renovation">Residential Renovations</option>
-          <option value="extension">Extensions & Structural Works</option>
-          <option value="restoration">Restoration & Conservation</option>
-          <option value="fitout">Kitchen, Bathroom & Interior Fit-Outs</option>
-          <option value="commercial">Office & Commercial Fit-Out</option>
-          <option value="garden">Garden & External Works</option>
-          <option value="other">Other</option>
-        </select>
+        <div className="relative">
+          <select id="service" name="service" required className={`${inputClass} appearance-none pr-11`}>
+            <option value="">Select a service...</option>
+            <option value="renovation">Residential Renovations</option>
+            <option value="extension">Extensions & Structural Works</option>
+            <option value="restoration">Restoration & Conservation</option>
+            <option value="fitout">Kitchen, Bathroom & Interior Fit-Outs</option>
+            <option value="commercial">Office & Commercial Fit-Out</option>
+            <option value="garden">Garden & External Works</option>
+            <option value="other">Other</option>
+          </select>
+          <ChevronDown
+            size={18}
+            aria-hidden
+            className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-muted"
+          />
+        </div>
       </div>
 
       <div className="sm:col-span-2">
@@ -85,7 +93,7 @@ export default function ContactForm() {
       </div>
 
       <div className="sm:col-span-2">
-        <Button type="submit" disabled={status === 'sending'} arrow className="w-full sm:w-auto">
+        <Button type="submit" variant="solid" disabled={status === 'sending'} arrow className="w-full sm:w-auto">
           {status === 'sending' ? 'Sending...' : 'Send message'}
         </Button>
       </div>

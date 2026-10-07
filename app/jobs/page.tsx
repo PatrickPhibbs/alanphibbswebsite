@@ -66,88 +66,81 @@ const roles = [
 export default function JobsPage() {
   return (
     <>
-      <PageHero
-        title="Careers"
-        subtitle="Work with us across Dublin and Wicklow"
-        image="/images/projects/04-country-house-renovation/18.jpg"
-        alt="Site team fitting insulation on a renovation"
-      />
+      <PageHero title="Careers" subtitle="Work with us across Dublin and Wicklow" />
 
-      <section>
+      <section className="bg-paper">
         <PageContainer className="py-16 md:py-24">
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] lg:gap-20">
-            <AnimateOnScroll className="lg:sticky lg:top-28 lg:self-start">
-              <SectionHeading subtitle="Current openings" className="mb-6">
-                Join our team
-              </SectionHeading>
-              <p className="text-muted text-base md:text-lg leading-relaxed">
-                AP General Contractors Ltd has been building across Dublin and Wicklow since 1991. We take
-                pride in our work, our team, and the standards we hold ourselves to. If you are a skilled
-                tradesperson or site professional looking for steady, quality work, we want to hear from
-                you.
-              </p>
-            </AnimateOnScroll>
+          <AnimateOnScroll className="mb-14 md:mb-20 grid gap-6 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-20">
+            <SectionHeading subtitle="Current openings" className="">
+              Join our team
+            </SectionHeading>
+            <p className="text-muted text-lg md:text-xl leading-relaxed max-w-[60ch] lg:pt-9">
+              AP General Contractors Ltd has been building across Dublin and Wicklow since 1991. We take
+              pride in our work, our team, and the standards we hold ourselves to. If you are a skilled
+              tradesperson or site professional looking for steady, quality work, we want to hear from
+              you.
+            </p>
+          </AnimateOnScroll>
 
-            <div>
-              <h2 className="sr-only">Open positions</h2>
-              <div className="space-y-5">
-                {roles.map((role, i) => (
-                  <AnimateOnScroll key={role.id} delay={i * 0.06}>
-                    <article
-                      data-testid="job-role"
-                      className="border border-line bg-paper p-6 sm:p-8 transition-colors hover:border-accent"
+          <h2 className="sr-only">Open positions</h2>
+          <div className="grid gap-px border-y border-line bg-line">
+            {roles.map((role, i) => (
+              <AnimateOnScroll key={role.id} delay={i * 0.06}>
+                <article
+                  data-testid="job-role"
+                  className="bg-paper-2 px-5 py-10 sm:px-10 md:py-14 lg:px-14 grid gap-8 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-20"
+                >
+                  <div className="flex flex-col items-start gap-6">
+                    <div>
+                      <h3 className="font-heading text-3xl md:text-4xl font-bold tracking-[-0.025em] text-ink">{role.title}</h3>
+                      <p className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2 text-[15px] text-muted">
+                        <span className="inline-flex items-center gap-1.5">
+                          <Clock size={15} strokeWidth={2} aria-hidden />
+                          {role.type}
+                        </span>
+                        <span className="inline-flex items-center gap-1.5">
+                          <MapPin size={15} strokeWidth={2} aria-hidden />
+                          {role.location}
+                        </span>
+                      </p>
+                    </div>
+                    <a
+                      href={`mailto:alanphibbs@alanphibbs.ie?subject=Application: ${role.title}`}
+                      className="group inline-flex items-center justify-center gap-2.5 bg-accent px-6 py-3.5 text-[13px] font-semibold uppercase tracking-[0.1em] text-on-accent transition-colors hover:bg-accent-strong active:translate-y-px"
                     >
-                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-5 mb-5">
-                        <div>
-                          <h3 className="font-heading text-2xl font-bold text-ink">{role.title}</h3>
-                          <div className="flex flex-wrap items-center gap-2 mt-3">
-                            <span className="inline-flex items-center gap-1.5 bg-paper-2 border border-line px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-muted">
-                              <Clock size={12} strokeWidth={2} aria-hidden />
-                              {role.type}
-                            </span>
-                            <span className="inline-flex items-center gap-1.5 bg-paper-2 border border-line px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-muted">
-                              <MapPin size={12} strokeWidth={2} aria-hidden />
-                              {role.location}
-                            </span>
-                          </div>
-                        </div>
-                        <a
-                          href={`mailto:alanphibbs@alanphibbs.ie?subject=Application: ${role.title}`}
-                          className="group shrink-0 inline-flex items-center justify-center gap-2 bg-accent px-5 py-3 text-xs font-semibold uppercase tracking-[0.12em] text-on-accent hover:bg-accent-strong transition-colors"
-                        >
-                          Apply now
-                          <ArrowRight size={14} aria-hidden className="transition-transform group-hover:translate-x-0.5" />
-                        </a>
-                      </div>
-                      <p className="text-muted text-[15px] md:text-base leading-relaxed mb-5">{role.description}</p>
-                      <ul className="grid gap-2.5 sm:grid-cols-2">
-                        {role.requirements.map((req) => (
-                          <li key={req} className="flex items-start gap-2.5 text-[15px] text-ink-soft">
-                            <Check size={16} strokeWidth={2.5} aria-hidden className="mt-0.5 shrink-0 text-accent-strong" />
-                            {req}
-                          </li>
-                        ))}
-                      </ul>
-                    </article>
-                  </AnimateOnScroll>
-                ))}
-              </div>
-            </div>
+                      Apply now
+                      <ArrowRight size={16} strokeWidth={2} aria-hidden className="transition-transform group-hover:translate-x-0.5" />
+                    </a>
+                  </div>
+                  <div>
+                    <p className="text-muted text-base md:text-lg leading-relaxed mb-7">{role.description}</p>
+                    <ul className="grid gap-3 sm:grid-cols-2 sm:gap-x-8">
+                      {role.requirements.map((req) => (
+                        <li key={req} className="flex items-start gap-3 text-[15px] text-ink-soft">
+                          <Check size={16} strokeWidth={2.5} aria-hidden className="mt-1 shrink-0 text-accent-strong" />
+                          {req}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </article>
+              </AnimateOnScroll>
+            ))}
           </div>
         </PageContainer>
       </section>
 
       <section className="bg-night text-white">
-        <PageContainer className="py-16 md:py-20 flex flex-col md:flex-row md:items-end justify-between gap-8">
+        <PageContainer className="py-20 md:py-28 flex flex-col md:flex-row md:items-end justify-between gap-8">
           <div>
-            <h2 className="font-heading text-3xl md:text-5xl font-extrabold mb-4 leading-tight">
+            <h2 className="font-heading text-4xl md:text-6xl font-extrabold tracking-[-0.03em] mb-5 leading-[1.02]">
               Don&apos;t see your role?
             </h2>
-            <p className="text-white/70 max-w-md text-base md:text-lg">
+            <p className="max-w-md text-lg md:text-xl text-white/70">
               Send us your CV and we will keep you in mind for future openings.
             </p>
           </div>
-          <Button href="/contact" arrow>
+          <Button href="/contact" variant="solid" arrow className="self-start md:self-auto">
             Get in touch
           </Button>
         </PageContainer>

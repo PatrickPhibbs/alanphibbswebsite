@@ -16,6 +16,8 @@ export interface Project {
 
 // Images are listed in display order: the first is the cover, finished work comes before
 // in-progress shots. Near-duplicates and photos that read as mess rather than craft are left out.
+// Project order also sets the portfolio rhythm (pairs, then a full-width row): the projects at
+// positions 3 and 6 fill full-width rows, so they have landscape covers.
 function imgs(folder: string, order: number[]): string[] {
   return order.map((n) => `/images/projects/${folder}/${String(n).padStart(2, '0')}.jpg`);
 }
@@ -58,20 +60,20 @@ export const projects: Project[] = [
     images: imgs('04-country-house-renovation', [13, 14, 10, 8, 9, 7, 15, 5, 2, 3, 4, 18, 16, 17, 19, 11, 12, 1]),
   }),
   project({
-    id: '07-garden-landscaping',
-    title: 'Garden Renovation',
-    category: 'Renovation',
-    description:
-      'Rear garden transformation featuring timber slatted fencing, granite paving, composite decking, and rendered boundary walls.',
-    images: imgs('07-garden-landscaping', [4, 5, 1]),
-  }),
-  project({
     id: '06-period-house-interior',
     title: 'Period House Interior',
     category: 'Period Property',
     description:
       'Sensitive interior renovation of a Victorian terraced house, including restoration of original pine floors and a full bathroom installation.',
     images: imgs('06-period-house-interior', [2, 1, 3]),
+  }),
+  project({
+    id: '07-garden-landscaping',
+    title: 'Garden Renovation',
+    category: 'Renovation',
+    description:
+      'Rear garden transformation featuring timber slatted fencing, granite paving, composite decking, and rendered boundary walls.',
+    images: imgs('07-garden-landscaping', [4, 5, 1]),
   }),
   project({
     id: '02-commercial-fitout',

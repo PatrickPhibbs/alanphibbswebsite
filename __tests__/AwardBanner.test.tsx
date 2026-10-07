@@ -18,7 +18,7 @@ describe('AwardBanner', () => {
     expect(screen.queryByText(/award.winning/i)).not.toBeInTheDocument();
   });
 
-  it('has dark background', () => {
+  it('is a dark band', () => {
     const { container } = render(<AwardBanner />);
     const section = container.firstChild as HTMLElement;
     expect(section.className).toMatch(/bg-night/);

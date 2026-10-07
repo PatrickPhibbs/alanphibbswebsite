@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
-import { Check, ArrowRight } from 'lucide-react';
+import { Check } from 'lucide-react';
 import { services } from '@/lib/services';
+import type { Service } from '@/lib/services';
 import AnimateOnScroll from '@/components/ui/AnimateOnScroll';
 import Button from '@/components/ui/Button';
 import FaqSection from '@/components/ui/FaqSection';
@@ -40,12 +40,42 @@ export const metadata: Metadata = {
   },
 };
 
-function Photo({ src, alt, label }: { src: string; alt: string; label?: string }) {
+type Tone = 'paper' | 'paper-2' | 'night' | 'accent';
+type Layout = 'split' | 'pair';
+
+// One entry per service, in order. Mostly paper panels; the night band and a single amber
+// block give contrast. Before/after services use the 'pair' layout to break up the split rows.
+const plan: { tone: Tone; layout: Layout; imageRight?: boolean }[] = [
+  { tone: 'night', layout: 'pair' },
+  { tone: 'paper-2', layout: 'split' },
+  { tone: 'accent', layout: 'split', imageRight: true },
+  { tone: 'paper', layout: 'split' },
+  { tone: 'paper-2', layout: 'pair' },
+  { tone: 'night', layout: 'split', imageRight: true },
+  { tone: 'paper', layout: 'split' },
+];
+
+// Ticks on paper use accent-strong for contrast. The amber focus ring disappears on the amber
+// block, so its button uses an ink one.
+const tones: Record<Tone, { panel: string; body: string; tick: string; button: 'light' | 'dark'; focus: string }> = {
+  paper: { panel: 'bg-paper text-ink', body: 'text-ink-soft', tick: 'text-accent-strong', button: 'dark', focus: '' },
+  'paper-2': { panel: 'bg-paper-2 text-ink', body: 'text-ink-soft', tick: 'text-accent-strong', button: 'dark', focus: '' },
+  night: { panel: 'bg-night text-white', body: 'text-white/80', tick: 'text-accent', button: 'light', focus: '' },
+  accent: {
+    panel: 'bg-accent text-on-accent',
+    body: 'text-on-accent',
+    tick: 'text-on-accent',
+    button: 'dark',
+    focus: 'focus-visible:outline-ink',
+  },
+};
+
+function Photo({ src, alt, label, sizes }: { src: string; alt: string; label?: string; sizes: string }) {
   return (
-    <div className="relative h-full min-h-[16rem] overflow-hidden bg-paper-3">
-      <Image src={src} alt={alt} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
+    <div className="relative h-full w-full overflow-hidden bg-paper-3">
+      <Image src={src} alt={alt} fill sizes={sizes} className="object-cover" />
       {label && (
-        <span className="absolute left-3 top-3 bg-night/85 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-white">
+        <span className="absolute left-4 top-4 md:left-6 md:top-6 bg-night/85 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-white">
           {label}
         </span>
       )}
@@ -53,14 +83,33 @@ function Photo({ src, alt, label }: { src: string; alt: string; label?: string }
   );
 }
 
-function FeatureList({ features }: { features: string[] }) {
+function Photos({ service, sizes }: { service: Service; sizes: string }) {
+  const half = sizes.replace(/\d+vw/g, (v) => `${Math.round(parseInt(v, 10) / 2)}vw`);
+  if (service.beforeImage) {
+    return (
+      <div className="grid h-full grid-cols-2">
+        <Photo src={service.beforeImage} alt={`${service.title} before`} label="Before" sizes={half} />
+        <Photo src={service.image} alt={`${service.title} after`} label="After" sizes={half} />
+      </div>
+    );
+  }
+  if (service.secondImage) {
+    return (
+      <div className="grid h-full grid-cols-2">
+        <Photo src={service.image} alt={service.title} sizes={half} />
+        <Photo src={service.secondImage} alt={`${service.title} detail`} sizes={half} />
+      </div>
+    );
+  }
+  return <Photo src={service.image} alt={service.title} sizes={sizes} />;
+}
+
+function FeatureList({ features, tick }: { features: string[]; tick: string }) {
   return (
-    <ul className="grid gap-3 mb-9">
+    <ul className="grid gap-3.5">
       {features.map((feature) => (
-        <li key={feature} className="flex items-start gap-3 text-[15px] text-ink-soft">
-          <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center bg-accent text-on-accent">
-            <Check size={13} strokeWidth={3} aria-hidden />
-          </span>
+        <li key={feature} className="flex items-start gap-3 text-base md:text-[17px] leading-snug">
+          <Check size={20} strokeWidth={2.5} aria-hidden className={`mt-px shrink-0 ${tick}`} />
           {feature}
         </li>
       ))}
@@ -68,139 +117,112 @@ function FeatureList({ features }: { features: string[] }) {
   );
 }
 
-function DiscussLink() {
+function ServiceTitle({ service }: { service: Service }) {
   return (
-    <Link
-      href="/contact"
-      className="group inline-flex w-fit items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-ink border-b-2 border-accent pb-1 hover:text-accent-strong transition-colors"
+    <h2
+      id={`${service.slug}-title`}
+      className="font-heading text-[2.25rem] md:text-5xl lg:text-[3.25rem] font-extrabold leading-[1.02] tracking-[-0.03em]"
     >
+      {service.title}
+    </h2>
+  );
+}
+
+function ServiceBlock({ service, index }: { service: Service; index: number }) {
+  const { tone, layout, imageRight } = plan[index % plan.length];
+  const t = tones[tone];
+  const cta = (
+    <Button href="/contact" variant={t.button} className={t.focus} arrow>
       Discuss a project
-      <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" aria-hidden />
-    </Link>
+    </Button>
+  );
+
+  if (layout === 'pair') {
+    return (
+      <>
+        <div className="aspect-[3/2] md:aspect-[12/5]">
+          <Photos service={service} sizes="100vw" />
+        </div>
+        <div className={t.panel}>
+          <PageContainer className="grid gap-10 py-14 md:py-20 lg:grid-cols-12 lg:gap-16">
+            <AnimateOnScroll direction="fade" className="lg:col-span-7">
+              <ServiceTitle service={service} />
+              <p className={`mt-6 max-w-[65ch] text-base md:text-lg leading-relaxed ${t.body}`}>{service.description}</p>
+            </AnimateOnScroll>
+            <AnimateOnScroll direction="fade" delay={0.1} className="lg:col-span-5 lg:pt-3">
+              <FeatureList features={service.features} tick={t.tick} />
+              <div className="mt-10">{cta}</div>
+            </AnimateOnScroll>
+          </PageContainer>
+        </div>
+      </>
+    );
+  }
+
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-2">
+      <div className={`aspect-[4/3] lg:aspect-auto lg:min-h-[44rem] ${imageRight ? 'lg:order-2' : ''}`}>
+        <Photos service={service} sizes="(max-width: 1024px) 100vw, 50vw" />
+      </div>
+      <div className={`flex items-center px-5 py-14 sm:px-8 md:py-20 lg:px-14 xl:px-20 ${t.panel}`}>
+        <AnimateOnScroll direction="fade" className="max-w-[38rem]">
+          <ServiceTitle service={service} />
+          <p className={`mt-6 text-base md:text-lg leading-relaxed ${t.body}`}>{service.description}</p>
+          <div className="mt-9">
+            <FeatureList features={service.features} tick={t.tick} />
+          </div>
+          <div className="mt-10">{cta}</div>
+        </AnimateOnScroll>
+      </div>
+    </div>
   );
 }
 
 export default function ServicesPage() {
   return (
     <>
-      <PageHero
-        title="Our services"
-        subtitle="Residential and commercial work across Wicklow and Dublin"
-        image="/images/services/restoration-after.jpg"
-        alt="Restored Victorian facade"
-        imagePosition="object-[center_35%]"
-      />
+      <PageHero title="Our services" subtitle="Residential and commercial work across Wicklow and Dublin" />
 
-      <nav
-        aria-label="Services"
-        className="sticky top-16 md:top-[68px] z-30 border-b border-line bg-paper/95 backdrop-blur-md"
-      >
-        <PageContainer>
-          <ul className="flex gap-1 overflow-x-auto py-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <nav aria-label="Services" className="sticky top-16 md:top-[68px] z-30 border-b border-line bg-paper/95 backdrop-blur-md">
+        <div className="mx-auto w-full max-w-[1440px]">
+          <ul className="flex gap-2 overflow-x-auto px-5 py-3 sm:px-8 lg:px-12 lg:flex-wrap [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {services.map((service) => (
               <li key={service.id} className="shrink-0">
                 <a
                   href={`#${service.slug}`}
-                  className="block whitespace-nowrap border border-transparent px-3 py-2 text-xs font-semibold uppercase tracking-[0.1em] text-muted hover:border-line hover:text-ink transition-colors"
+                  className="block whitespace-nowrap border border-line px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.1em] text-muted transition-colors hover:border-ink hover:text-ink"
                 >
                   {service.title}
                 </a>
               </li>
             ))}
           </ul>
-        </PageContainer>
+        </div>
       </nav>
 
-      <PageContainer className="py-16 md:py-24 space-y-20 md:space-y-28">
-        {services.map((service, i) => {
-          const fullWidth = i % 3 === 0;
-          const imageLeft = i % 3 === 1;
-
-          return (
-            <section key={service.id} id={service.slug} className="scroll-mt-12" aria-labelledby={`${service.slug}-title`}>
-              <AnimateOnScroll>
-                {fullWidth ? (
-                  <div>
-                    <div className="aspect-[4/3] sm:aspect-[16/9] lg:aspect-[21/9] mb-8 md:mb-12">
-                      {service.beforeImage ? (
-                        <div className="grid h-full grid-cols-2 gap-2">
-                          <Photo src={service.beforeImage} alt={`${service.title} before`} label="Before" />
-                          <Photo src={service.image} alt={`${service.title} after`} label="After" />
-                        </div>
-                      ) : service.secondImage ? (
-                        <div className="grid h-full grid-cols-2 gap-2">
-                          <Photo src={service.image} alt={service.title} />
-                          <Photo src={service.secondImage} alt={`${service.title} detail`} />
-                        </div>
-                      ) : (
-                        <Photo src={service.image} alt={service.title} />
-                      )}
-                    </div>
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
-                      <div>
-                        <h2
-                          id={`${service.slug}-title`}
-                          className="font-heading text-3xl md:text-[2.6rem] font-bold text-ink mb-5 leading-[1.08]"
-                        >
-                          {service.title}
-                        </h2>
-                        <p className="text-muted text-base md:text-[17px] leading-relaxed max-w-[65ch]">{service.description}</p>
-                      </div>
-                      <div className="lg:pt-2">
-                        <FeatureList features={service.features} />
-                        <DiscussLink />
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-stretch">
-                  <div className={`${imageLeft ? '' : 'lg:order-2'} aspect-[4/3] lg:aspect-auto lg:min-h-[30rem]`}>
-                    {service.beforeImage ? (
-                      <div className="grid h-full grid-cols-2 gap-2">
-                        <Photo src={service.beforeImage} alt={`${service.title} before`} label="Before" />
-                        <Photo src={service.image} alt={`${service.title} after`} label="After" />
-                      </div>
-                    ) : (
-                      <Photo src={service.image} alt={service.title} />
-                    )}
-                  </div>
-
-                  <div className="flex flex-col justify-center lg:py-6">
-                    <h2
-                      id={`${service.slug}-title`}
-                      className="font-heading text-3xl md:text-[2.6rem] font-bold text-ink mb-5 leading-[1.08]"
-                    >
-                      {service.title}
-                    </h2>
-                    <p className="text-muted text-base md:text-[17px] leading-relaxed mb-7">{service.description}</p>
-                    <FeatureList features={service.features} />
-                    <DiscussLink />
-                  </div>
-                </div>
-                )}
-              </AnimateOnScroll>
-            </section>
-          );
-        })}
-      </PageContainer>
+      <div>
+        {services.map((service, i) => (
+          <section key={service.id} id={service.slug} className="scroll-mt-12" aria-labelledby={`${service.slug}-title`}>
+            <ServiceBlock service={service} index={i} />
+          </section>
+        ))}
+      </div>
 
       <FaqSection faqs={faqs} />
 
-      <section className="bg-accent text-on-accent">
-        <PageContainer className="py-16 md:py-20 flex flex-col lg:flex-row lg:items-end justify-between gap-8">
-          <div>
-            <h2 className="font-heading text-3xl md:text-5xl font-extrabold mb-4 leading-tight">
-              Ready to discuss your project?
-            </h2>
-            <p className="text-on-accent/80 max-w-md text-base md:text-lg">
-              Get in touch for a site visit and an honest conversation about what is involved.
-            </p>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-3">
-            <Button href="/contact" variant="dark" arrow>
+      <section className="bg-night text-white">
+        <PageContainer className="py-24 md:py-32 text-center">
+          <h2 className="mx-auto max-w-3xl font-heading text-4xl md:text-6xl font-extrabold leading-[1.02] tracking-[-0.03em]">
+            Ready to discuss your project?
+          </h2>
+          <p className="mx-auto mt-6 max-w-xl text-lg md:text-xl text-white/80">
+            Get in touch for a site visit and an honest conversation about what is involved.
+          </p>
+          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Button href="/contact" variant="solid" arrow>
               Discuss a Project
             </Button>
-            <Button href="/projects" variant="outline" className="!border-on-accent/40 !text-on-accent hover:!bg-on-accent hover:!text-accent">
+            <Button href="/projects" variant="outline-light">
               View Recent Work
             </Button>
           </div>

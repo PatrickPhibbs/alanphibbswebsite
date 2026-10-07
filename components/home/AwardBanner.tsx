@@ -1,8 +1,9 @@
 'use client';
 
+import Image from 'next/image';
+import { Check } from 'lucide-react';
 import AnimateOnScroll from '@/components/ui/AnimateOnScroll';
 import SectionHeading from '@/components/ui/SectionHeading';
-import PageContainer from '@/components/ui/PageContainer';
 
 const qualities = [
   {
@@ -33,38 +34,44 @@ const qualities = [
 
 export default function AwardBanner() {
   return (
-    <section className="bg-night text-white overflow-hidden">
-      <PageContainer className="py-20 md:py-28">
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-20">
-          <AnimateOnScroll direction="fade" className="lg:sticky lg:top-32 lg:self-start">
-            <SectionHeading light subtitle="How we work" className="mb-6">
-              Built properly, finished carefully.
-            </SectionHeading>
-            <p className="text-white/70 text-base md:text-lg leading-relaxed max-w-xl">
-              From first visit to final handover, the work is planned clearly, managed on site and finished
-              with attention to the details that make a project feel complete.
-            </p>
-          </AnimateOnScroll>
+    <section className="bg-night text-white grid grid-cols-1 lg:grid-cols-12">
+      <div className="relative aspect-[4/3] sm:aspect-[16/10] lg:aspect-auto lg:col-span-5 lg:min-h-full bg-night-2">
+        <Image
+          src="/images/projects/04-country-house-renovation/10.jpg"
+          alt="Finished flat roof and restored chimney stacks on a country house"
+          fill
+          sizes="(max-width: 1024px) 100vw, 42vw"
+          className="object-cover"
+        />
+      </div>
 
-          <ol className="border-t border-night-line">
-            {qualities.map((item, i) => (
-              <li key={item.title} className="border-b border-night-line">
-                <AnimateOnScroll delay={i * 0.04} className="grid grid-cols-[3.5rem_1fr] md:grid-cols-[5rem_1fr] gap-4 py-7 md:py-8">
-                  <span className="font-heading text-2xl md:text-3xl font-extrabold text-accent tabular-nums leading-none">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <div>
-                    <h3 className="font-heading text-xl md:text-2xl font-bold text-white mb-2 leading-snug">
-                      {item.title}
-                    </h3>
-                    <p className="text-white/65 text-[15px] leading-relaxed max-w-xl">{item.description}</p>
-                  </div>
-                </AnimateOnScroll>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </PageContainer>
+      <div className="lg:col-span-7 px-5 sm:px-8 lg:px-16 xl:px-24 py-16 md:py-24 lg:py-28">
+        <AnimateOnScroll direction="fade">
+          <SectionHeading light subtitle="How we work" className="mb-6">
+            Built properly, finished carefully.
+          </SectionHeading>
+          <p className="text-white/70 text-base md:text-lg leading-relaxed max-w-xl">
+            From first visit to final handover, the work is planned clearly, managed on site and finished
+            with attention to the details that make a project feel complete.
+          </p>
+        </AnimateOnScroll>
+
+        <ul className="mt-12 md:mt-14 grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-8 md:gap-y-10">
+          {qualities.map((item, i) => (
+            <li key={item.title} className="border-t border-night-line pt-5">
+              <AnimateOnScroll delay={i * 0.04} className="grid grid-cols-[1.5rem_1fr] gap-3">
+                <Check size={20} strokeWidth={2.25} aria-hidden className="mt-0.5 text-accent" />
+                <div>
+                  <h3 className="font-heading text-lg md:text-xl font-bold tracking-[-0.015em] leading-snug mb-2 text-white">
+                    {item.title}
+                  </h3>
+                  <p className="text-white/65 text-[15px] leading-relaxed">{item.description}</p>
+                </div>
+              </AnimateOnScroll>
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
   );
 }
