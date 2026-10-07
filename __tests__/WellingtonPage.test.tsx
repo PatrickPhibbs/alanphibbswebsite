@@ -14,16 +14,29 @@ describe('The Wellington project page', () => {
     expect(project.captions).toHaveLength(project.images.length);
   });
 
-  it('shows every gallery photo with its caption', () => {
+  it('shows every photo, described by its caption', () => {
     render(<WellingtonPage />);
-    project.captions!.slice(1).forEach((caption) => {
-      expect(screen.getByText(caption)).toBeInTheDocument();
+    project.captions!.forEach((caption) => {
+      expect(screen.queryAllByText(caption).length + screen.queryAllByAltText(caption).length).toBeGreaterThan(0);
     });
   });
 
   it('links back to the projects page', () => {
     render(<WellingtonPage />);
     expect(screen.getAllByRole('link', { name: 'All projects' })[0]).toHaveAttribute('href', '/projects');
+  });
+});
+
+describe('Before and after', () => {
+  it('pairs each in-progress photo with a finished photo', () => {
+    render(<WellingtonPage />);
+    expect(screen.getByRole('heading', { name: 'Before and after' })).toBeInTheDocument();
+    expect(screen.getAllByText('Before')).toHaveLength(project.beforeAfter!.length);
+    expect(screen.getAllByText('After')).toHaveLength(project.beforeAfter!.length);
+  });
+
+  it('is the only listing for the bar fit-out', () => {
+    expect(projects.find((p) => p.id === '02-commercial-fitout')).toBeUndefined();
   });
 });
 

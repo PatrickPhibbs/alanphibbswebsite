@@ -17,12 +17,14 @@ export interface Project {
   location?: string;
   /** One caption per image, in the same order (used on the project page). */
   captions?: string[];
+  /** Before/after pairs: an in-progress photo and the index of the matching finished photo. */
+  beforeAfter?: { before: string; after: number; caption: string }[];
 }
 
 // Images are listed in display order: the first is the cover, finished work comes before
 // in-progress shots. Near-duplicates and photos that read as mess rather than craft are left out.
 // Project order also sets the portfolio rhythm (pairs, then a full-width row): the projects at
-// positions 3, 6 and 9 fill full-width rows, so they have landscape covers.
+// positions 3 and 6 fill full-width rows, so they have landscape covers.
 function imgs(folder: string, order: number[]): string[] {
   return order.map((n) => `/images/projects/${folder}/${String(n).padStart(2, '0')}.jpg`);
 }
@@ -55,7 +57,7 @@ export const projects: Project[] = [
     location: 'Baggot Street, Dublin',
     href: '/projects/the-wellington-baggot-street',
     description:
-      'Interior fit-out of The Wellington on Baggot Street: a bright main bar with a marble-topped counter, a darker oxblood lounge bar, a snug, leather banquette seating and new washrooms.',
+      'Urban commercial build-out featuring a curved oak bar counter, structural steel frame, and full street-facing glazing, from shell and core to finished venue.',
     images: imgs('11-wellington-baggot-street', [1, 2, 3, 4, 5, 6, 7, 8]),
     captions: [
       'The main bar: a curved, timber-panelled counter with a marble top and brass foot rail, globe pendants overhead and a herringbone timber floor.',
@@ -66,6 +68,23 @@ export const projects: Project[] = [
       'A quieter snug with banquette seating, wall lights and a patterned carpet.',
       'Washrooms finished in dark timber panelling and white wall tiling, with arched mirrors and twin basins.',
       'A hand-wash area in glazed oxblood tiles with a ceramic basin and brass wall light.',
+    ],
+    beforeAfter: [
+      {
+        before: '/images/projects/02-commercial-fitout/04.jpg',
+        after: 0,
+        caption: 'The curved bar counter taking shape in front of the arched alcove, and the finished main bar.',
+      },
+      {
+        before: '/images/projects/02-commercial-fitout/10.jpg',
+        after: 1,
+        caption: 'The front room by the sash windows during the build, and finished with high tables and bar seating.',
+      },
+      {
+        before: '/images/projects/02-commercial-fitout/01.jpg',
+        after: 3,
+        caption: 'Wall panelling going in at the front window, and the finished banquette seating.',
+      },
     ],
   }),
   project({
@@ -91,14 +110,6 @@ export const projects: Project[] = [
     description:
       'Contemporary apartment fit-out with a sleek white kitchen, vertically tiled bathrooms, built-in bookshelving, and floating timber shelves throughout.',
     images: imgs('09-apartment-fitout', [1, 4, 5, 3, 6, 7, 2, 8, 10]),
-  }),
-  project({
-    id: '02-commercial-fitout',
-    title: 'Bar & Restaurant Fit-Out',
-    category: 'Fit-Out',
-    description:
-      'Urban commercial build-out featuring a curved oak bar counter, structural steel frame, and full street-facing glazing, from shell and core to finished venue.',
-    images: imgs('02-commercial-fitout', [4, 3, 10, 1, 9, 8, 5, 6, 7, 11, 12]),
   }),
   project({
     id: '03-new-build-extension',

@@ -12,7 +12,7 @@ const project = projects.find((p) => p.id === '11-wellington-baggot-street');
 export const metadata: Metadata = {
   title: 'The Wellington, Baggot Street | AP General Contractors Ltd',
   description:
-    'Interior fit-out of The Wellington pub on Baggot Street, Dublin: main bar, lounge bar, snug, banquette seating and washrooms.',
+    'Fit-out of The Wellington pub on Baggot Street, Dublin, from shell and core to finished venue: structural steel, street-facing glazing, a curved oak bar and new washrooms.',
   openGraph: {
     title: 'The Wellington, Baggot Street | AP General Contractors Ltd',
     description: 'Interior fit-out of The Wellington pub on Baggot Street, Dublin.',
@@ -24,27 +24,20 @@ export const metadata: Metadata = {
 const facts = [
   { label: 'Location', value: 'Baggot Street, Dublin' },
   { label: 'Sector', value: 'Commercial, hospitality' },
-  { label: 'Work', value: 'Interior fit-out' },
+  { label: 'Work', value: 'Shell and core to finished venue' },
   { label: 'Spaces', value: 'Main bar, lounge bar, snug, washrooms' },
 ];
 
 // Photo order matches lib/projects.ts: 0 main bar (hero), 1-3 seating, 4 lounge bar, 5 snug, 6-7 washrooms.
+// Photos 0, 1 and 3 already appear in the header and the before/after pairs, so the gallery shows the rest.
 const groups: GalleryGroup[] = [
   {
-    title: 'Main bar and seating',
+    title: 'Lounge bar, snug and seating',
     columns: 'md:grid-cols-3',
     items: [
-      { index: 1, aspect: 'aspect-[4/5]' },
+      { index: 4, aspect: 'aspect-[4/5]' },
+      { index: 5, aspect: 'aspect-[4/5]' },
       { index: 2, aspect: 'aspect-[4/5]' },
-      { index: 3, aspect: 'aspect-[4/5]' },
-    ],
-  },
-  {
-    title: 'Lounge bar and snug',
-    columns: 'md:grid-cols-12',
-    items: [
-      { index: 4, span: 'md:col-span-7', aspect: 'aspect-[4/3] md:aspect-[7/6]' },
-      { index: 5, span: 'md:col-span-5', aspect: 'aspect-[4/5] md:aspect-[5/6]' },
     ],
   },
   {
@@ -59,7 +52,7 @@ const groups: GalleryGroup[] = [
 
 export default function WellingtonPage() {
   if (!project || !project.captions) notFound();
-  const { title, images, captions } = project;
+  const { title, images, captions, beforeAfter = [] } = project;
 
   return (
     <>
@@ -89,9 +82,10 @@ export default function WellingtonPage() {
               </p>
               <div className="mt-8 space-y-5 text-base md:text-lg leading-relaxed text-muted max-w-[65ch]">
                 <p>
-                  The Wellington on Baggot Street brings together a bright main bar, a darker lounge bar, a
-                  snug and new washrooms. The main bar pairs a curved, timber-panelled counter and marble top
-                  with a brass foot rail, globe pendants and a herringbone timber floor.
+                  We took The Wellington on Baggot Street from shell and core to a finished venue, including a
+                  structural steel frame, full street-facing glazing and a curved oak bar counter. The main bar
+                  pairs that counter with a marble top, a brass foot rail, globe pendants and a herringbone
+                  timber floor.
                 </p>
                 <p>
                   The lounge bar takes a warmer, lower-lit approach, with oxblood walls, a backlit back bar and
@@ -112,6 +106,47 @@ export default function WellingtonPage() {
           </div>
         </PageContainer>
       </section>
+
+      {beforeAfter.length > 0 && (
+        <section aria-labelledby="before-after" className="bg-paper-2 border-y border-line">
+          <PageContainer className="py-16 md:py-24">
+            <h2
+              id="before-after"
+              className="font-heading text-3xl md:text-4xl font-bold tracking-[-0.025em] text-ink mb-8 md:mb-12"
+            >
+              Before and after
+            </h2>
+            <div className="space-y-14 md:space-y-20">
+              {beforeAfter.map((pair) => (
+                <figure key={pair.before}>
+                  <div className="grid grid-cols-2 gap-2 md:gap-4">
+                    {[
+                      { src: pair.before, label: 'Before', alt: `During the fit-out: ${pair.caption}` },
+                      { src: images[pair.after], label: 'After', alt: captions[pair.after] },
+                    ].map((photo) => (
+                      <div key={photo.label} className="relative aspect-[3/4] md:aspect-[4/5] overflow-hidden bg-paper-3">
+                        <Image
+                          src={photo.src}
+                          alt={photo.alt}
+                          fill
+                          sizes="(max-width: 768px) 50vw, 45vw"
+                          className="object-cover"
+                        />
+                        <span className="absolute left-0 top-0 bg-night/85 px-3 py-1.5 text-[10px] md:text-[11px] font-bold uppercase tracking-[0.16em] text-white">
+                          {photo.label}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                  <figcaption className="mt-4 max-w-[60ch] text-[15px] md:text-base leading-relaxed text-muted">
+                    {pair.caption}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </PageContainer>
+        </section>
+      )}
 
       <CaseStudyGallery title={title} images={images} captions={captions} groups={groups} />
 
