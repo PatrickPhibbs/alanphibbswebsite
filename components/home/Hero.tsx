@@ -59,18 +59,18 @@ function HeroReel() {
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-[92svh] md:min-h-screen items-end overflow-hidden bg-night">
+    <section className="relative flex min-h-[calc(100svh-9rem)] md:min-h-[calc(100dvh-4.75rem)] items-end overflow-hidden bg-night">
       <HeroReel />
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/25" />
       <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent" />
 
       <div className="relative z-10 w-full">
-        <PageContainer className="pt-36 pb-10 md:pb-14">
+        <PageContainer className="pt-28 md:pt-32 pb-10 md:pb-20">
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="inline-flex items-center gap-3 text-[11px] md:text-xs font-semibold uppercase tracking-[0.22em] text-accent mb-6"
+            className="inline-flex items-center gap-3 text-[10.5px] md:text-xs font-semibold uppercase tracking-[0.14em] sm:tracking-[0.22em] text-accent mb-6"
           >
             <span aria-hidden className="h-px w-10 bg-accent" />
             Dublin & Wicklow · Established 1991
@@ -80,9 +80,9 @@ export default function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="font-heading font-extrabold text-white text-[2.6rem] leading-[1.02] sm:text-6xl md:text-7xl lg:text-[5.5rem] tracking-[-0.035em] max-w-5xl mb-6"
+            className="font-heading font-extrabold text-white text-[2.05rem] leading-[1.06] sm:text-5xl md:text-6xl lg:text-[4.5rem] tracking-[-0.03em] max-w-6xl mb-6"
           >
-            Renovations, restorations and fit-outs finished with care.
+            Renovations, restorations and <span className="whitespace-nowrap">fit-outs</span> finished with care.
           </motion.h1>
 
           <motion.p
@@ -110,29 +110,30 @@ export default function Hero() {
           </motion.div>
         </PageContainer>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.7 }}
-          className="border-t border-white/15 bg-black/35 backdrop-blur-sm"
-        >
-          <PageContainer>
-            <ul className="grid grid-cols-3 divide-x divide-white/15">
-              {trust.map((item) => (
-                <li
-                  key={item.label}
-                  className="flex flex-col sm:flex-row items-center sm:items-center justify-center sm:justify-start gap-2 sm:gap-3 py-4 md:py-5 px-2 sm:px-6 first:pl-0 text-center sm:text-left"
-                >
-                  <item.icon size={20} strokeWidth={1.75} aria-hidden className="text-accent shrink-0" />
-                  <span className="text-[10px] sm:text-xs md:text-sm font-semibold uppercase tracking-[0.12em] text-white">
-                    {item.label}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </PageContainer>
-        </motion.div>
       </div>
+    </section>
+  );
+}
+
+/** Trust signals sit in their own band directly under the hero, not inside it. */
+export function TrustBar() {
+  return (
+    <section aria-label="Credentials" className="bg-night border-t border-night-line">
+      <PageContainer>
+        <ul className="grid grid-cols-3 divide-x divide-night-line">
+          {trust.map((item) => (
+            <li
+              key={item.label}
+              className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 py-5 md:py-6 px-2 text-center sm:text-left"
+            >
+              <item.icon size={20} strokeWidth={1.75} aria-hidden className="text-accent shrink-0" />
+              <span className="text-[10px] sm:text-xs md:text-sm font-semibold uppercase tracking-[0.12em] text-white">
+                {item.label}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </PageContainer>
     </section>
   );
 }

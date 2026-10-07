@@ -1,6 +1,9 @@
 interface SectionHeadingProps {
   children: React.ReactNode;
+  /** Small uppercase label above the heading. Use sparingly: at most one in three sections. */
   subtitle?: string;
+  /** Sentence-case supporting line under the heading. */
+  lead?: string;
   light?: boolean;
   centered?: boolean;
   className?: string;
@@ -9,6 +12,7 @@ interface SectionHeadingProps {
 export default function SectionHeading({
   children,
   subtitle,
+  lead,
   light = false,
   centered = false,
   className = 'mb-10 md:mb-12',
@@ -32,6 +36,9 @@ export default function SectionHeading({
       >
         {children}
       </h2>
+      {lead && (
+        <p className={`mt-4 text-base md:text-lg max-w-2xl ${light ? 'text-white/70' : 'text-muted'}`}>{lead}</p>
+      )}
     </div>
   );
 }

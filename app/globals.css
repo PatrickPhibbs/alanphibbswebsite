@@ -8,14 +8,15 @@
  * swaps the underlying variables, so no per-class overrides are needed.
  */
 :root {
-  --paper: #f6f4ef;
-  --paper-2: #eeeae2;
-  --paper-3: #e2dccf;
-  --line: #d8d1c4;
-  --ink: #15171a;
-  --ink-soft: #33373d;
-  --muted: #5a5f66;
-  --subtle: #858a91;
+  /* One neutral concrete-grey family (no cream), so greys never mix warm and cool. */
+  --paper: #f4f4f2;
+  --paper-2: #eaeae7;
+  --paper-3: #dededa;
+  --line: #d3d3ce;
+  --ink: #151618;
+  --ink-soft: #313337;
+  --muted: #55585d;
+  --subtle: #7d8085;
   --accent: #c8862b;
   --accent-strong: #a96d1c;
   --on-accent: #15171a;
@@ -59,7 +60,7 @@ html.dark {
   --color-night-line: var(--night-line);
 
   --font-heading: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
-  --font-body: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-body: var(--font-geist), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
 html {
@@ -100,6 +101,11 @@ h6 {
   font-weight: 700;
   line-height: 1.08;
   letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
 }
 
 ::selection {

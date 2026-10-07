@@ -23,7 +23,7 @@ export default function Button({
   arrow = false,
 }: ButtonProps) {
   const base =
-    'group inline-flex items-center justify-center gap-2.5 px-6 py-3.5 text-[13px] font-semibold uppercase tracking-[0.1em] transition-colors duration-200 cursor-pointer';
+    'group inline-flex items-center justify-center gap-2.5 px-6 py-3.5 text-[13px] font-semibold uppercase tracking-[0.1em] transition-[color,background-color,border-color,transform] duration-200 active:translate-y-px cursor-pointer';
   const variants = {
     solid: 'bg-accent text-on-accent hover:bg-accent-strong',
     dark: 'bg-ink text-paper hover:bg-ink-soft',

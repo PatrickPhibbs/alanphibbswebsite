@@ -19,7 +19,7 @@ export default function PageHero({ title, subtitle, image, alt, imagePosition = 
         <h1 className="font-heading text-[2.6rem] sm:text-5xl md:text-7xl font-extrabold text-white tracking-[-0.03em] max-w-4xl">
           {title}
         </h1>
-        <p className="mt-5 text-xs md:text-sm font-semibold uppercase tracking-[0.2em] text-white/75">
+        <p className="mt-5 text-base md:text-xl text-white/80 max-w-2xl">
           {subtitle}
         </p>
       </PageContainer>

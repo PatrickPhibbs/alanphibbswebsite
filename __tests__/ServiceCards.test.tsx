@@ -17,10 +17,10 @@ describe('ServiceCards', () => {
     expect(screen.getByText('Garden & External Works')).toBeInTheDocument();
   });
 
-  it('renders credibility line', () => {
+  it('does not repeat the credentials shown in the trust bar', () => {
     render(<ServiceCards />);
-    expect(screen.getByText(/Established 1991/)).toBeInTheDocument();
-    expect(screen.getByText(/Fully insured/)).toBeInTheDocument();
+    expect(screen.queryByText(/Established 1991/)).not.toBeInTheDocument();
+
   });
 
   it('renders cards as links', () => {

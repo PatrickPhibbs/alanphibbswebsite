@@ -53,6 +53,33 @@ function Photo({ src, alt, label }: { src: string; alt: string; label?: string }
   );
 }
 
+function FeatureList({ features }: { features: string[] }) {
+  return (
+    <ul className="grid gap-3 mb-9">
+      {features.map((feature) => (
+        <li key={feature} className="flex items-start gap-3 text-[15px] text-ink-soft">
+          <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center bg-accent text-on-accent">
+            <Check size={13} strokeWidth={3} aria-hidden />
+          </span>
+          {feature}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function DiscussLink() {
+  return (
+    <Link
+      href="/contact"
+      className="group inline-flex w-fit items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-ink border-b-2 border-accent pb-1 hover:text-accent-strong transition-colors"
+    >
+      Discuss a project
+      <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" aria-hidden />
+    </Link>
+  );
+}
+
 export default function ServicesPage() {
   return (
     <>
@@ -86,11 +113,46 @@ export default function ServicesPage() {
 
       <PageContainer className="py-16 md:py-24 space-y-20 md:space-y-28">
         {services.map((service, i) => {
-          const imageLeft = i % 2 === 0;
+          const fullWidth = i % 3 === 0;
+          const imageLeft = i % 3 === 1;
 
           return (
-            <section key={service.id} id={service.slug} className="scroll-mt-36" aria-labelledby={`${service.slug}-title`}>
+            <section key={service.id} id={service.slug} className="scroll-mt-12" aria-labelledby={`${service.slug}-title`}>
               <AnimateOnScroll>
+                {fullWidth ? (
+                  <div>
+                    <div className="aspect-[4/3] sm:aspect-[16/9] lg:aspect-[21/9] mb-8 md:mb-12">
+                      {service.beforeImage ? (
+                        <div className="grid h-full grid-cols-2 gap-2">
+                          <Photo src={service.beforeImage} alt={`${service.title} before`} label="Before" />
+                          <Photo src={service.image} alt={`${service.title} after`} label="After" />
+                        </div>
+                      ) : service.secondImage ? (
+                        <div className="grid h-full grid-cols-2 gap-2">
+                          <Photo src={service.image} alt={service.title} />
+                          <Photo src={service.secondImage} alt={`${service.title} detail`} />
+                        </div>
+                      ) : (
+                        <Photo src={service.image} alt={service.title} />
+                      )}
+                    </div>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
+                      <div>
+                        <h2
+                          id={`${service.slug}-title`}
+                          className="font-heading text-3xl md:text-[2.6rem] font-bold text-ink mb-5 leading-[1.08]"
+                        >
+                          {service.title}
+                        </h2>
+                        <p className="text-muted text-base md:text-[17px] leading-relaxed max-w-[65ch]">{service.description}</p>
+                      </div>
+                      <div className="lg:pt-2">
+                        <FeatureList features={service.features} />
+                        <DiscussLink />
+                      </div>
+                    </div>
+                  </div>
+                ) : (
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-stretch">
                   <div className={`${imageLeft ? '' : 'lg:order-2'} aspect-[4/3] lg:aspect-auto lg:min-h-[30rem]`}>
                     {service.beforeImage ? (
@@ -104,9 +166,6 @@ export default function ServicesPage() {
                   </div>
 
                   <div className="flex flex-col justify-center lg:py-6">
-                    <span className="font-heading text-sm font-bold text-accent-strong tabular-nums mb-4">
-                      {String(i + 1).padStart(2, '0')} / {String(services.length).padStart(2, '0')}
-                    </span>
                     <h2
                       id={`${service.slug}-title`}
                       className="font-heading text-3xl md:text-[2.6rem] font-bold text-ink mb-5 leading-[1.08]"
@@ -114,25 +173,11 @@ export default function ServicesPage() {
                       {service.title}
                     </h2>
                     <p className="text-muted text-base md:text-[17px] leading-relaxed mb-7">{service.description}</p>
-                    <ul className="grid gap-3 mb-9">
-                      {service.features.map((feature) => (
-                        <li key={feature} className="flex items-start gap-3 text-[15px] text-ink-soft">
-                          <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center bg-accent text-on-accent">
-                            <Check size={13} strokeWidth={3} aria-hidden />
-                          </span>
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                    <Link
-                      href="/contact"
-                      className="group inline-flex w-fit items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-ink border-b-2 border-accent pb-1 hover:text-accent-strong transition-colors"
-                    >
-                      Discuss a project
-                      <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" aria-hidden />
-                    </Link>
+                    <FeatureList features={service.features} />
+                    <DiscussLink />
                   </div>
                 </div>
+                )}
               </AnimateOnScroll>
             </section>
           );
@@ -156,7 +201,7 @@ export default function ServicesPage() {
               Discuss a Project
             </Button>
             <Button href="/projects" variant="outline" className="!border-on-accent/40 !text-on-accent hover:!bg-on-accent hover:!text-accent">
-              View recent work
+              View Recent Work
             </Button>
           </div>
         </PageContainer>

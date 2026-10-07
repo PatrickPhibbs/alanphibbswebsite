@@ -59,7 +59,7 @@ export default function Navbar() {
       <PageContainer>
         <nav
           aria-label="Main"
-          className={`flex items-center justify-between gap-6 transition-[padding] duration-300 ${solid ? 'py-3' : 'py-5'}`}
+          className={`flex items-center justify-between gap-6 transition-[padding] duration-300 ${solid ? 'py-3' : 'py-4'}`}
         >
           <Logo light={!solid} />
 

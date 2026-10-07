@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Geist } from 'next/font/google';
 import localFont from 'next/font/local';
 import './globals.css';
 import Navbar from '@/components/layout/Navbar';
@@ -49,8 +49,8 @@ const archivo = localFont({
   display: 'swap',
 });
 
-const inter = Inter({
-  variable: '--font-inter',
+const geist = Geist({
+  variable: '--font-geist',
   subsets: ['latin'],
 });
 
@@ -83,7 +83,7 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className={`${archivo.variable} ${inter.variable} antialiased`}>
+      <body className={`${archivo.variable} ${geist.variable} antialiased`}>
         <ThemeProvider>
           <JsonLd data={businessSchema} />
           <Navbar />

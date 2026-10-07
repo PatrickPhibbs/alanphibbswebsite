@@ -18,7 +18,7 @@ export default function RecentWork() {
     <section>
       <PageContainer className="py-20 md:py-28">
         <div className="flex items-end justify-between gap-6 flex-wrap mb-10 md:mb-12">
-          <SectionHeading subtitle="Selected work across Dublin and Wicklow" className="">
+          <SectionHeading lead="Selected work across Dublin and Wicklow" className="">
             Recent projects
           </SectionHeading>
           <Link
@@ -48,9 +48,7 @@ export default function RecentWork() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 md:p-6">
                   <div>
-                    <span className="mb-2 inline-block bg-accent px-2 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-on-accent">
-                      {project.category}
-                    </span>
+                    <span className="mb-1.5 block text-xs font-medium text-white/75">{project.category}</span>
                     <h3
                       className={`font-heading font-bold text-white leading-tight ${
                         i === 0 ? 'text-2xl md:text-4xl' : 'text-xl md:text-2xl'

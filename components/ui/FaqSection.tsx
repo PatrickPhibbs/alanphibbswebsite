@@ -27,7 +27,7 @@ export default function FaqSection({ faqs }: { faqs: Faq[] }) {
       <PageContainer className="py-20 md:py-24">
         <JsonLd data={schema} />
         <div className="grid gap-10 lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] lg:gap-20">
-          <SectionHeading subtitle="FAQ" className="">
+          <SectionHeading className="">
             Frequently asked questions
           </SectionHeading>
           <div className="border-t border-line">

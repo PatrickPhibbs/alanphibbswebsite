@@ -28,7 +28,7 @@ export default function AboutTeaser() {
           </AnimateOnScroll>
 
           <AnimateOnScroll delay={0.1}>
-            <SectionHeading subtitle="About Alan Phibbs" className="mb-6">
+            <SectionHeading className="mb-6">
               Hands-on delivery, trusted locally.
             </SectionHeading>
             <div className="space-y-4 text-muted text-base md:text-lg leading-relaxed">

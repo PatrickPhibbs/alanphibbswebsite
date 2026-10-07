@@ -1,4 +1,4 @@
-import Hero from '@/components/home/Hero';
+import Hero, { TrustBar } from '@/components/home/Hero';
 import RecentWork from '@/components/home/RecentWork';
 import ServiceCards from '@/components/home/ServiceCards';
 import AwardBanner from '@/components/home/AwardBanner';
@@ -9,6 +9,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <TrustBar />
       <RecentWork />
       <ServiceCards />
       <AwardBanner />

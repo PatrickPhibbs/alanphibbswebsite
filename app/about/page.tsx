@@ -80,7 +80,7 @@ export default function AboutPage() {
                 />
               </div>
               <div>
-                <SectionHeading subtitle="Since 1987" className="mb-6">
+                <SectionHeading className="mb-6">
                   Our story
                 </SectionHeading>
                 <p className="text-muted text-base md:text-lg leading-relaxed mb-5">
@@ -117,9 +117,7 @@ export default function AboutPage() {
             {features.map((feature, i) => (
               <AnimateOnScroll key={feature.title} delay={i * 0.06} className="bg-night">
                 <div className="h-full p-7 md:p-8">
-                  <span className="block font-heading text-sm font-bold text-accent tabular-nums mb-8">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
+                  <span aria-hidden className="block h-1 w-10 bg-accent mb-8" />
                   <h3 className="font-heading text-xl md:text-2xl font-bold text-white mb-3">{feature.title}</h3>
                   <p className="text-white/65 text-[15px] leading-relaxed">{feature.description}</p>
                 </div>

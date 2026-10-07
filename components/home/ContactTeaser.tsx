@@ -21,7 +21,7 @@ export default function ContactTeaser() {
         <AnimateOnScroll>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
             <div>
-              <SectionHeading subtitle="Get in touch" className="mb-6">
+              <SectionHeading className="mb-6">
                 Tell us about your project.
               </SectionHeading>
               <p className="text-muted text-base md:text-lg leading-relaxed mb-9 max-w-lg">

@@ -6,6 +6,8 @@ export interface Service {
   features: string[];
   image: string;
   beforeImage?: string;
+  /** Optional second photo shown alongside `image` (no before/after labels). */
+  secondImage?: string;
 }
 
 export const services: Service[] = [
@@ -65,6 +67,7 @@ export const services: Service[] = [
       'Bathroom and kitchen plumbing first and second fix',
     ],
     image: '/images/services/bathroom-fitout.jpg',
+    secondImage: '/images/projects/09-apartment-fitout/07.jpg',
   },
   {
     id: '5',
