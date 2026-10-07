@@ -7,10 +7,10 @@ describe('Button', () => {
     expect(screen.getByText('Click Me')).toBeInTheDocument();
   });
 
-  it('renders solid variant by default with accent background', () => {
+  it('renders solid variant by default with charcoal background', () => {
     render(<Button>Solid</Button>);
     const btn = screen.getByRole('button');
-    expect(btn.className).toMatch(/bg-accent/);
+    expect(btn.className).toMatch(/bg-cta/);
   });
 
   it('renders outline variant with border', () => {

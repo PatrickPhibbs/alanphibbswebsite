@@ -25,7 +25,7 @@ export default function Button({
   const base =
     'group inline-flex items-center justify-center gap-2.5 px-6 py-3.5 text-[13px] font-semibold uppercase tracking-[0.1em] transition-[color,background-color,border-color,transform] duration-200 active:translate-y-px cursor-pointer';
   const variants = {
-    solid: 'bg-accent text-on-accent hover:bg-accent-strong',
+    solid: 'bg-cta text-on-cta hover:bg-cta-hover',
     dark: 'bg-ink text-paper hover:bg-ink-soft',
     outline: 'border border-ink/25 text-ink hover:border-ink hover:bg-ink hover:text-paper',
     'outline-light': 'border border-white/45 text-white hover:bg-white hover:text-night hover:border-white',

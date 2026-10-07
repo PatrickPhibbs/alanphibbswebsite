@@ -14,7 +14,7 @@ export default function MobileActionBar() {
       </a>
       <Link
         href="/contact"
-        className="flex items-center justify-center gap-2 bg-accent py-4 text-xs font-semibold uppercase tracking-[0.12em] text-on-accent"
+        className="flex items-center justify-center gap-2 bg-white py-4 text-xs font-semibold uppercase tracking-[0.12em] text-night"
       >
         Discuss a Project
         <ArrowRight size={15} aria-hidden />

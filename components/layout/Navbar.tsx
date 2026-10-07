@@ -49,7 +49,7 @@ export default function Navbar() {
     >
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:bg-accent focus:px-4 focus:py-2 focus:text-on-accent"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:bg-cta focus:px-4 focus:py-2 focus:text-on-cta"
       >
         Skip to content
       </a>
@@ -92,7 +92,7 @@ export default function Navbar() {
               {site.phone}
             </a>
             <ThemeToggle className={solid ? '' : '!text-white'} />
-            <Button href="/contact" className="!px-5 !py-3 !text-xs">
+            <Button href="/contact" variant={solid ? 'solid' : 'light'} className="!px-5 !py-3 !text-xs">
               Discuss a Project
             </Button>
           </div>
@@ -143,7 +143,7 @@ export default function Navbar() {
               ))}
             </ul>
             <div className="mt-auto flex flex-col gap-3">
-              <Button href="/contact" onClick={() => setIsOpen(false)} arrow>
+              <Button href="/contact" variant="light" onClick={() => setIsOpen(false)} arrow>
                 Discuss a Project
               </Button>
               <a

@@ -43,7 +43,7 @@ export const metadata: Metadata = {
 type Tone = 'paper' | 'paper-2' | 'night' | 'accent';
 type Layout = 'split' | 'pair';
 
-// One entry per service, in order. Mostly paper panels; the night band and a single amber
+// One entry per service, in order. Mostly paper panels; the night band and a single stone
 // block give contrast. Before/after services use the 'pair' layout to break up the split rows.
 const plan: { tone: Tone; layout: Layout; imageRight?: boolean }[] = [
   { tone: 'night', layout: 'pair' },
@@ -55,19 +55,13 @@ const plan: { tone: Tone; layout: Layout; imageRight?: boolean }[] = [
   { tone: 'paper', layout: 'split' },
 ];
 
-// Ticks on paper use accent-strong for contrast. The amber focus ring disappears on the amber
-// block, so its button uses an ink one.
+// Ticks on light panels use accent-strong for contrast.
 const tones: Record<Tone, { panel: string; body: string; tick: string; button: 'light' | 'dark'; focus: string }> = {
   paper: { panel: 'bg-paper text-ink', body: 'text-ink-soft', tick: 'text-accent-strong', button: 'dark', focus: '' },
   'paper-2': { panel: 'bg-paper-2 text-ink', body: 'text-ink-soft', tick: 'text-accent-strong', button: 'dark', focus: '' },
   night: { panel: 'bg-night text-white', body: 'text-white/80', tick: 'text-accent', button: 'light', focus: '' },
-  accent: {
-    panel: 'bg-accent text-on-accent',
-    body: 'text-on-accent',
-    tick: 'text-on-accent',
-    button: 'dark',
-    focus: 'focus-visible:outline-ink',
-  },
+  // Warm stone block.
+  accent: { panel: 'bg-paper-3 text-ink', body: 'text-ink-soft', tick: 'text-accent-strong', button: 'dark', focus: '' },
 };
 
 function Photo({ src, alt, label, sizes }: { src: string; alt: string; label?: string; sizes: string }) {
@@ -219,7 +213,7 @@ export default function ServicesPage() {
             Get in touch for a site visit and an honest conversation about what is involved.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button href="/contact" variant="solid" arrow>
+            <Button href="/contact" variant="light" arrow>
               Discuss a Project
             </Button>
             <Button href="/projects" variant="outline-light">

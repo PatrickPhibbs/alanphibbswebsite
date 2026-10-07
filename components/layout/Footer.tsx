@@ -31,7 +31,7 @@ export default function Footer() {
   return (
     <footer className="pb-20 md:pb-0">
       {/* Contact block: one saturated colour field with the details set large. */}
-      <section aria-labelledby="footer-contact" className="bg-accent text-on-accent">
+      <section aria-labelledby="footer-contact" className="bg-paper-3 text-ink">
         <PageContainer className="py-20 md:py-28 text-center">
           <h2 id="footer-contact" className="sr-only">
             Contact

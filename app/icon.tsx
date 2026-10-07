@@ -13,12 +13,12 @@ export function Monogram({ px }: { px: number }) {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        background: '#151618',
+        background: '#2a2a28',
         color: '#ffffff',
         fontSize: px * 0.46,
         fontWeight: 800,
         letterSpacing: -px * 0.02,
-        borderBottom: `${Math.round(px * 0.09)}px solid #c8862b`,
+        borderBottom: `${Math.round(px * 0.09)}px solid #9a8468`,
       }}
     >
       AP

@@ -57,7 +57,7 @@ export default function ContactPage() {
                 {contactDetails.map((item) => {
                   const body = (
                     <>
-                      <span className="flex h-11 w-11 shrink-0 items-center justify-center bg-accent text-on-accent">
+                      <span className="flex h-11 w-11 shrink-0 items-center justify-center bg-night text-white">
                         <item.icon size={18} strokeWidth={1.75} aria-hidden />
                       </span>
                       <span className="min-w-0">

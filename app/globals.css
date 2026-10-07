@@ -8,39 +8,47 @@
  * swaps the underlying variables, so no per-class overrides are needed.
  */
 :root {
-  /* One neutral concrete-grey family (no cream), so greys never mix warm and cool. */
-  --paper: #f4f4f2;
-  --paper-2: #eaeae7;
-  --paper-3: #dededa;
-  --line: #d3d3ce;
-  --ink: #151618;
-  --ink-soft: #313337;
-  --muted: #55585d;
-  --subtle: #7d8085;
-  --accent: #c8862b;
-  --accent-strong: #a96d1c;
-  --on-accent: #15171a;
-  /* Always-dark bands (footer, process, CTA) */
-  --night: #15171a;
-  --night-2: #1e2125;
-  --night-line: #2e3237;
+  /* The site's original warm palette: off-white stone, soft charcoal, muted bronze. */
+  --paper: #faf8f5;
+  --paper-2: #f5f2ed;
+  --paper-3: #ebe6de;
+  --line: #ddd6cb;
+  --ink: #2a2a28;
+  --ink-soft: #3d3d3a;
+  --muted: #6b6b66;
+  --subtle: #8a8780;
+  /* Muted bronze: small details only (rules, ticks, icons, focus). Never a large fill. */
+  --accent: #9a8468;
+  --accent-strong: #6b6359;
+  --on-accent: #faf8f5;
+  /* Primary buttons are charcoal, as on the original site. */
+  --cta: #3d3d3a;
+  --cta-hover: #2a2a28;
+  --on-cta: #faf8f5;
+  /* Always-dark bands (process, story, CTA, footer) */
+  --night: #2a2a28;
+  --night-2: #33332f;
+  --night-line: #45453f;
 }
 
 html.dark {
-  --paper: #101214;
-  --paper-2: #16191c;
-  --paper-3: #1f2226;
-  --line: #2c3035;
-  --ink: #f3f0ea;
-  --ink-soft: #ddd8cf;
-  --muted: #a7a9ad;
-  --subtle: #7e8288;
-  --accent: #d99a3f;
-  --accent-strong: #e7ad57;
-  --on-accent: #15171a;
-  --night: #0a0b0d;
-  --night-2: #141619;
-  --night-line: #26292e;
+  --paper: #141413;
+  --paper-2: #1c1c1a;
+  --paper-3: #2a2a28;
+  --line: #3d3d3a;
+  --ink: #faf8f5;
+  --ink-soft: #f5f2ed;
+  --muted: #c9c0b3;
+  --subtle: #9c958c;
+  --accent: #b09a7e;
+  --accent-strong: #c9b49a;
+  --on-accent: #141413;
+  --cta: #ebe6de;
+  --cta-hover: #ddd6cb;
+  --on-cta: #141413;
+  --night: #1c1c1a;
+  --night-2: #232321;
+  --night-line: #3d3d3a;
 }
 
 @theme inline {
@@ -55,6 +63,9 @@ html.dark {
   --color-accent: var(--accent);
   --color-accent-strong: var(--accent-strong);
   --color-on-accent: var(--on-accent);
+  --color-cta: var(--cta);
+  --color-cta-hover: var(--cta-hover);
+  --color-on-cta: var(--on-cta);
   --color-night: var(--night);
   --color-night-2: var(--night-2);
   --color-night-line: var(--night-line);
