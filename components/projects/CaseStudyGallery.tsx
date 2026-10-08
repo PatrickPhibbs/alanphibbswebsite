@@ -25,7 +25,7 @@ const lightboxStyles = {
   root: { '--yarl__color_backdrop': 'rgba(20, 20, 19, 0.96)' },
 };
 
-/** Captioned photo groups for a project page; any photo opens the full set in a lightbox. */
+/** Photo groups for a project page; captions are used as alt text, and any photo opens the full set in a lightbox. */
 export default function CaseStudyGallery({ title, images, captions, groups }: CaseStudyGalleryProps) {
   const [open, setOpen] = useState<number | null>(null);
 
@@ -44,7 +44,7 @@ export default function CaseStudyGallery({ title, images, captions, groups }: Ca
             >
               {group.title}
             </h2>
-            <div className={`grid grid-cols-1 gap-x-5 gap-y-10 ${group.columns}`}>
+            <div className={`grid grid-cols-1 gap-4 md:gap-5 ${group.columns}`}>
               {group.items.map(({ index, span = '', aspect }) => (
                 <figure key={index} className={span}>
                   <button
@@ -61,9 +61,6 @@ export default function CaseStudyGallery({ title, images, captions, groups }: Ca
                       className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                     />
                   </button>
-                  <figcaption className="mt-4 max-w-[60ch] text-[15px] md:text-base leading-relaxed text-muted">
-                    {captions[index]}
-                  </figcaption>
                 </figure>
               ))}
             </div>

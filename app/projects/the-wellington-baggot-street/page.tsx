@@ -21,13 +21,6 @@ export const metadata: Metadata = {
   },
 };
 
-const facts = [
-  { label: 'Location', value: 'Baggot Street, Dublin' },
-  { label: 'Sector', value: 'Commercial, hospitality' },
-  { label: 'Work', value: 'Shell and core to finished venue' },
-  { label: 'Spaces', value: 'Main bar, lounge bar, snug, washrooms' },
-];
-
 // Photo order matches lib/projects.ts: 0 main bar (hero), 1-3 seating, 4 lounge bar, 5 snug, 6-7 washrooms.
 // Photos 0, 1 and 3 already appear in the header and the before/after pairs, so the gallery shows the rest.
 const groups: GalleryGroup[] = [
@@ -69,41 +62,15 @@ export default function WellingtonPage() {
           <h1 className="mt-6 max-w-4xl font-heading text-5xl sm:text-6xl md:text-[5.5rem] font-extrabold leading-[0.98] tracking-[-0.03em]">
             {title}
           </h1>
-          <p className="mt-5 text-lg md:text-2xl text-white/85">Bar and pub fit-out, Baggot Street, Dublin</p>
+          <p className="mt-5 text-lg md:text-2xl text-white/85">Bar fit-out, Baggot Street, Dublin</p>
         </PageContainer>
       </section>
 
       <section className="bg-paper">
-        <PageContainer className="py-16 md:py-24">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-            <div className="lg:col-span-7">
-              <p className="font-heading text-2xl md:text-[2rem] font-bold leading-snug tracking-[-0.02em] text-ink">
-                A city pub fitted out as a set of distinct rooms, each with its own character.
-              </p>
-              <div className="mt-8 space-y-5 text-base md:text-lg leading-relaxed text-muted max-w-[65ch]">
-                <p>
-                  We took The Wellington on Baggot Street from shell and core to a finished venue, including a
-                  structural steel frame, full street-facing glazing and a curved oak bar counter. The main bar
-                  pairs that counter with a marble top, a brass foot rail, globe pendants and a herringbone
-                  timber floor.
-                </p>
-                <p>
-                  The lounge bar takes a warmer, lower-lit approach, with oxblood walls, a backlit back bar and
-                  concealed lighting under the counter. Seating throughout mixes leather banquettes, high
-                  tables and bar stools, and the washrooms are finished in timber panelling and glazed tile.
-                </p>
-              </div>
-            </div>
-
-            <dl className="lg:col-span-5 lg:border-l lg:border-line lg:pl-12 divide-y divide-line border-y border-line lg:border-y-0">
-              {facts.map((fact) => (
-                <div key={fact.label} className="grid grid-cols-[7.5rem_1fr] gap-4 py-5 lg:first:pt-0">
-                  <dt className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted pt-1">{fact.label}</dt>
-                  <dd className="text-ink font-semibold">{fact.value}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
+        <PageContainer className="py-14 md:py-20">
+          <p className="max-w-3xl font-heading text-2xl md:text-[2rem] font-bold leading-snug tracking-[-0.02em] text-ink">
+            Shell and core to finished venue: a structural steel frame, street-facing glazing and a curved oak bar.
+          </p>
         </PageContainer>
       </section>
 
@@ -116,7 +83,7 @@ export default function WellingtonPage() {
             >
               Before and after
             </h2>
-            <div className="space-y-14 md:space-y-20">
+            <div className="space-y-4 md:space-y-6">
               {beforeAfter.map((pair) => (
                 <figure key={pair.before}>
                   <div className="grid grid-cols-2 gap-2 md:gap-4">
@@ -138,9 +105,6 @@ export default function WellingtonPage() {
                       </div>
                     ))}
                   </div>
-                  <figcaption className="mt-4 max-w-[60ch] text-[15px] md:text-base leading-relaxed text-muted">
-                    {pair.caption}
-                  </figcaption>
                 </figure>
               ))}
             </div>
@@ -156,9 +120,6 @@ export default function WellingtonPage() {
             <h2 className="font-heading text-3xl md:text-5xl font-extrabold leading-tight tracking-[-0.03em]">
               Planning a bar or restaurant fit-out?
             </h2>
-            <p className="mt-4 max-w-md text-base md:text-lg text-white/75">
-              Get in touch for a site visit and an honest conversation about what is involved.
-            </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-3">
             <Button href="/contact" variant="light">
